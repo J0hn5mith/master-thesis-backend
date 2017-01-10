@@ -1,0 +1,9 @@
+{% load static from staticfiles %}
+{% if false %}
+<!-- build:js /js/libs.js -->
+<script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<!-- endbuild -->
+{% else %}
+<script type="text/javascript" src="{% static "js/libs.js" %}"></script>
+{% endif %}

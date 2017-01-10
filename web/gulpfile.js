@@ -6,6 +6,13 @@ var useref = require('gulp-useref');
 var browserSync = require('browser-sync').create();
 var exec = require('child_process').exec;
 
+var uglify = require('gulp-uglify');
+var usemin = require('gulp-usemin');
+var minifyCss = require('gulp-minify-css');
+var rimraf = require('gulp-rimraf');
+var clean = require('gulp-clean');
+var runSequence = require('run-sequence');
+
 var input_css = './frontend/css/**/*.scss';
 var output_css = './static/css';
 
@@ -14,6 +21,9 @@ var input_folder_js = './frontend/js/*';
 var output_js = './static/js/';
 
 var input_html = '**/templates/**/*.html';
+
+var input_libs = './templates/partials/*.html';
+var libs_output = './static/';
 
 
 function swallowError(error) {
@@ -35,9 +45,33 @@ gulp.task('sass', function() {
 });
 
 gulp.task('html', function() {
-    return gulp.src(input_html).pipe(browserSync.reload({
+    gulp.src(input_html).pipe(browserSync.reload({
         stream: true
     }))
+});
+
+gulp.task('libs',  function(callback){
+    runSequence('libs-compile',  'libs-clean', callback);
+});
+
+gulp.task('libs-compile', function() {
+    return gulp.src('templates/partials/*.html')
+        .pipe(usemin({
+            assetsDir: './',
+            js: [uglify(), 'concat'],
+            css: [minifyCss(), 'concat'],
+        }))
+        .pipe(gulp.dest(libs_output))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
+});
+
+//Does not work yet
+gulp.task('libs-clean', function() {
+    var generated = ['./static/*.html'];
+    return gulp.src(generated)
+        .pipe(clean());
 });
 
 gulp.task('webpack', function() {
@@ -68,16 +102,14 @@ gulp.task('watch', ['browserSync'], function() {
         .on('change', function(event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
         });
-});
-
-gulp.task('useref', function(){
-    return gulp.src('templates/*.html')
-        .pipe(useref())
-        .pipe(gulp.dest('static/'))
+    gulp.watch(input_libs, ['libs'])
+        .on('change', function(event) {
+            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+        });
 });
 
 gulp.task('browserSync', ['runserver'], function() {
-    browserSync.init({
+    return browserSync.init({
         notify: false,
         port: 8000,
         proxy: 'localhost:8000'
@@ -86,4 +118,10 @@ gulp.task('browserSync', ['runserver'], function() {
 
 gulp.task('runserver', function() {
     var proc = exec('python manage.py runserver');
+});
+
+gulp.task('clean',['libs-clean'], function() {
+    var generated = ['static/js/libs.js', 'static/css/libs.css'];
+    return gulp.src(generated)
+        .pipe(rimraf());
 });

@@ -10,10 +10,19 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "bootstrap": "^3.3.7",
     "browser-sync": "^2.18.5",
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rimraf": "^0.2.1",
     "gulp-sass": "^3.0.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-uglifyjs": "^0.6.2",
+    "gulp-usemin": "^0.3.27",
     "gulp-useref": "^3.1.2",
+    "jquery": "^3.1.1",
+    "run-sequence": "^1.2.2",
     "webpack": "^1.14.0",
     "webpack-stream": "^3.2.0"
   }

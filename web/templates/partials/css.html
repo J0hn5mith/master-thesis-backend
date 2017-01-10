@@ -1,0 +1,8 @@
+{% load static from staticfiles %}
+{% if false %}
+<!-- build:css /css/libs.css -->
+<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"></link>
+<!-- endbuild -->
+{% else %}
+<link href="{% static "css/libs.css" %}" rel="stylesheet"></link>
+{% endif %}
