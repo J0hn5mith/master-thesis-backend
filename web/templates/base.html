@@ -19,9 +19,9 @@
   </head>
   <body>
     <div class="window">
-      <div class="navbar">
-        {% include "partials/navbar.html" %}
-      </div>
+      {% block navbar %}
+      {% include "partials/navbar.html" %}
+      {% endblock %}
       <section class="content">
         {% block content %}{% endblock %}
       </section>

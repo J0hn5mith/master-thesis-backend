@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
+# TODO: Update with https://github.com/jpadilla/django-project-template/blob/master/project_name/settings.py
 import os
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
 
     'utils',
     'home',
+    'dashboard',
 ]
 
 MIDDLEWARE_CLASSES = [
