@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="section">
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    This user name has already been taken by someone else.
+  </div>
+  <div class="alert alert-warning" role="alert">
+    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+        This password is not secure.
+  </div>
+  <form>
+    <div class="form-group has-error has-feedback">
+      <label for="userName">UserName</label>
+      <input type="text" class="form-control" id="userName" placeholder="Email">
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+      <span id="inputSuccess2Status" class="sr-only">(success)</span>
+      <span id="helpBlock" class="help-block">
+        This user name has already been taken by someone else.
+      </span>
+    </div>
+    <div class="form-group has-warning has-feedback">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password">
+      <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+      <span id="inputWarning2Status" class="sr-only">(warning)</span>
+      <span id="helpBlock" class="help-block">
+        This password is not secure.
+      </span>
+    </div>
+    <a>Register</a>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

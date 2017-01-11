@@ -24,6 +24,8 @@ var input_html = '**/templates/**/*.html';
 
 var input_libs = './templates/partials/*.html';
 var libs_output = './static/';
+var fonts_input = './node_modules/bootstrap/fonts/*'
+var fonts_output = './static/fonts/'
 
 
 function swallowError(error) {
@@ -51,7 +53,7 @@ gulp.task('html', function() {
 });
 
 gulp.task('libs',  function(callback){
-    runSequence('libs-compile',  'libs-clean', callback);
+    runSequence('libs-compile',  'coppy-fonts' ,'libs-clean', callback);
 });
 
 gulp.task('libs-compile', function() {
@@ -67,7 +69,10 @@ gulp.task('libs-compile', function() {
         }));
 });
 
-//Does not work yet
+gulp.task('coppy-fonts', function() {
+    return gulp.src(fonts_input).pipe(gulp.dest(fonts_output));
+});
+
 gulp.task('libs-clean', function() {
     var generated = ['./static/*.html'];
     return gulp.src(generated)
