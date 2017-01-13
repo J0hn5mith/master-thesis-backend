@@ -1,0 +1,27 @@
+@mixin gradient($args...) {
+  background: nth($args, 1);
+  background: -webkit-linear-gradient(left, $args);
+  background: -o-linear-gradient(left, $args);
+  background: -moz-linear-gradient(left, $args);
+  background: linear-gradient(left, $args);
+}
+
+@mixin blur($spread: 4px) {
+  filter:blur($spread);
+  -o-filter:blur($spread);
+  -ms-filter:blur($spread);
+  -moz-filter:blur($spread);
+  -webkit-filter:blur($spread);
+}
+
+$gray: #676767;
+$darkgrey: #4A4A4A;
+
+$white: white;
+$blue: #1380D5;
+$green: #53B70F;
+
+$darken-light: rgba(0,0,0,0.25);
+$darken: rgba(0,0,0,0.5);
+
+$font-color--inverted:white;

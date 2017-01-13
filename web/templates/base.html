@@ -22,12 +22,12 @@
       {% block navbar %}
       {% include "partials/navbar.html" %}
       {% endblock %}
-      <section class="content">
+      <section>
         {% block content %}{% endblock %}
       </section>
-    </div>
-    <div class="footer">
-      {% include "partials/footer.html" %}
+      <div class="footer">
+        {% include "partials/footer.html" %}
+      </div>
     </div>
     {% block extra-js %}{% endblock %}
   </body>

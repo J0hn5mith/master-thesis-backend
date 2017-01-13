@@ -1,0 +1,114 @@
+.home__banner{
+  width: 200px;
+
+  @include screen(small){
+    width: 150px;
+  }
+  @include screen(mobile){
+    width: 100px;
+  }
+}
+.home__banner-heading{
+  @include screen(mobile){
+    font-size: 60px;
+    padding-left: 10px;
+  }
+}
+
+.home__login-form{
+  padding-top: 30px;
+}
+
+.home__login-form-fields{
+  display: flex;
+  .form-group{
+    padding: 10px;
+    width: 300px;
+  }
+
+  @include screen(small){
+    flex-direction: column;
+  }
+
+}
+
+.home__login-form-buttons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.home__login-form-register{
+  margin-right: 20px;
+  font-size: 18px;
+  font-color: $blue;
+}
+
+.home__image--large{
+  height: 400px;
+  width: 400px;
+  margin: 50px;
+
+  @include screen(med){
+    height: 300px;
+    width: 300px;
+    margin: 30px;
+  }
+
+  @include screen(mobile){
+    height: 250px;
+    width: 250px;
+    margin: 30px;
+  }
+}
+
+.home__text-block{
+  padding: 50px;
+  @include screen(mobile){
+    padding: 25px;
+  }
+}
+
+.home__section-background-image{
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height:40%;
+  z-index:-1;
+}
+
+.home__section-background{
+  @include gradient(red, yellow);
+}
+
+.home__video{
+  width: 550px;
+  height: 315px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+  @include screen(med){
+    width: 450px;
+    height: 255px;
+  }
+
+  @include screen(small){
+    margin-top: 100px;
+    margin-bottom: 0px;
+  }
+
+  @include screen(mobile){
+    width: 350px;
+    height: 205px;
+  }
+}
+
+.home__heading {
+  font-size: 38px;
+  @include screen(med){
+    font-size: 32px;
+  }
+  @include screen(small){
+    font-size: 28px;
+  }
+}

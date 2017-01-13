@@ -1,32 +1,42 @@
+{% load static %}
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Brand</a>
-        </div>
+  <div class="container-fluid">
+    <div class="blur-layer">
+    </div>
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <object class="navbar__logo" data="{% static "img/icon/logo.svg"%}" type="image/svg+xml"></object>
+        <h1 class="navbar__logo-title">Pharos</h1>
+      </a>
+    </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-right">
-                <button type="Login" class="btn btn-info">Sign Up</button>
-            </form>
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email or Username">
-                    <input type="password" class="form-control" placeholder="Password">
-                </div>
-                <button type="Login" class="btn btn-success">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Support</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-right large-only">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Email or Username">
+          <input type="password" class="form-control" placeholder="Password">
+        </div>
+        <button type="Login" class="btn btn-success">Submit</button>
+        <button type="Login" class="btn btn-info">Sign Up</button>
+      </form>
+      <form class="navbar-form navbar-right med-only">
+        <button type="Login" class="btn btn-success">Submit</button>
+        <button type="Login" class="btn btn-info">Sign Up</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Technology</a></li>
+        <li><a href="#">Support</a></li>
+        <li class="small-only"><a href="#">Login</a></li>
+        <li class="small-only"><a href="#">Register</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>

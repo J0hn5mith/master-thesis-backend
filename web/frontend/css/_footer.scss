@@ -1,0 +1,19 @@
+footer{
+  background: $darkgrey;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+
+  @include screen(mobile){
+    flex-direction: column;
+  }
+}
+
+.footer__column{
+  width: 30%;
+}
+
+.footer__link{
+  font-size: 18px;
+  color: $white;
+}

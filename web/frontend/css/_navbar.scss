@@ -1,0 +1,48 @@
+.navbar{
+  position: absolute;
+  width: 100%;
+  background: $darken-light;
+  border: none;
+  padding-top: 10px;
+
+  font-size: 22px;
+  a{
+    color: $font-color--inverted !important;
+  }
+}
+
+.navbar-default{
+  border-width: 0px !important;
+  border-color: transparent !important;
+}
+
+.navbar__logo{
+  height: 50px;
+}
+
+.navbar-brand{
+  display: flex;
+  align-items: center;
+  h1{
+    color: $font-color--inverted;
+    padding-left: 10px;
+  }
+}
+
+.navbar-form{
+  padding-left: 0px !important;
+  border-color: transparent !important;
+}
+
+
+
+.navbar-toggle{
+  border-width: 2px;
+  border-color: $white !important;
+  span{
+    background-color: $white !important;
+  }
+}
+.navbar__logo-title{
+  font-size: 36px;
+}

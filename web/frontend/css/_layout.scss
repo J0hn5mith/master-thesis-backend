@@ -1,0 +1,138 @@
+$breakpoint-mobile: 500px;
+$breakpoint-small: 767px;
+$breakpoint-med-small: 960px;
+$breakpoint-med: 1175px;
+
+@mixin screen($size, $type: max, $pixels: $breakpoint-small) {
+    @if $size == 'mobile' {
+        @media screen and ($type + -width: $breakpoint-mobile) {
+            @content;
+        }
+    }
+    @else if $size == 'small' {
+        @media screen and ($type + -width: $breakpoint-small) {
+            @content;
+        }
+    }
+    @else if $size == 'med-small' {
+        @media screen and ($type + -width: $breakpoint-med-small) {
+            @content;
+        }
+    }
+    @else if $size == 'med' {
+        @media screen and ($type + -width: $breakpoint-med) {
+            @content;
+        }
+    }
+    @else if $size == 'large' {
+        @media screen and ($type + -width: $breakpoint-med) {
+            @content;
+        }
+    }
+    @else if $size == 'custom' {
+        @media screen and ($type + -width: $pixels) {
+            @content;
+        }
+    }
+    @else {
+        @content;
+    }
+}
+
+.section{
+    background: transparent;
+    width: 100%;
+}
+
+.section--fullscreen{
+    height: 95vh;
+}
+
+.section--purple{
+    @include gradient(darkblue, purple , red);
+}
+
+.large-only{
+    @include screen(small){
+        visibility:hidden;
+        height: 0px;
+        width: 0px;
+    }
+    @include screen(custom, max, $breakpoint-med - 1){
+        visibility:hidden;
+        height: 0px;
+        width: 0px;
+    }
+}
+
+.med-only{
+    @include screen(small){
+        visibility:hidden;
+        visibility:hidden;
+        height: 0px;
+        width: 0px;
+    }
+    @include screen(large, min){
+        visibility:hidden;
+        height: 0px;
+        width: 0px;
+    }
+}
+
+.small-only{
+    @include screen(custom, min, $breakpoint-small - 1){
+        visibility:hidden;
+        height: 0px;
+        width: 0px;
+    }
+    @include screen(large, min){
+        visibility:hidden;
+        height: 0px;
+        width: 0px;
+    }
+}
+
+.align-horizontal{
+    display: flex;
+    align-items: center;
+}
+
+.center-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.columns__1-1{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+
+    >div{
+        width: 50%
+    }
+
+    @include screen(small){
+        >div{
+            width: 100%
+        }
+    }
+}
+.columns__1-1--reverse{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    width: 100%;
+
+    div{
+        width: 50%
+    }
+
+    @include screen(small){
+        div{
+            width: 100%
+        }
+    }
+}

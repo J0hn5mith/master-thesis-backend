@@ -1,33 +1,59 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
+<div class="section section--fullscreen section--purple center-content">
+  <div class="align-horizontal">
+    <object class="home__banner" data="{% static "img/icon/logo.svg"%}" type="image/svg+xml"></object>
+    <h1 class="home__banner-heading">Pharos</h1>
+  </div>
+  <form class="home__login-form">
+
+    <div class="home__login-form-fields">
+      <div class="form-group">
+        <input type="text" class="form-control" id="userName" placeholder="Email">
+      </div>
+      <div class="form-group ">
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+    </div>
+    <div class="home__login-form-buttons">
+      <a class="home__login-form-register">Register</a>
+      <button type="submit" class="btn btn-success btn-lg">Login</button>
+    </div>
+  </form>
+</div>
 
 <div class="section">
-  <h1>Pharos</h1>
-  <img src="https://dummyimage.com/200x1:1"></img>
-  <form>
-    <div class="form-group">
-      <label for="userName">UserName</label>
-      <input type="text" class="form-control" id="userName" placeholder="Email">
+  <div class="home__section-background-image parallax__layer--back" >
+    <div class="center-content">
+      <img src="{% static "./img/map.png" %}"></img>
     </div>
-</div>
-<div class="form-group">
-  <label for="password">Password</label>
-  <input type="password" class="form-control" id="password" placeholder="Password">
-</div>
-<a>Register</a>
-<button type="submit" class="btn btn-default">Submit</button>
-  </form>
   </div>
+  <div class="columns__1-1--reverse">
+    <div class="home__text-block">
+      <h2 class="font__inverted home__heading">Keep Track of your Things!</h2>
+      <p class="font__inverted">{% lorem %}</p>
+    </div>
+    <div class="center-content">
+      <object class="home__image--large" data="{% static "img/icons/tag.svg"%}" type="image/svg+xml"></object>
+    </div>
+  </div>
+</div>
 
-  <div class="section">
-    <h2>Keep Track of your Things!</h2>
-    <p>{% lorem %}</p>
-    <img src="https://dummyimage.com/400x1:1"></img>
+<div class="section home__section-background">
+  <div class="columns__1-1">
     <div>
-      <div class="section">
-        <h2>Object Tracking Made Easy!</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/ITHKAu4xmNg" frameborder="0" allowfullscreen></iframe>
-        <img src="https://dummyimage.com/400x1:1"></img>
-        <div>
-          {% endblock %}
+      <h2 class="font__inverted home__heading">Object Tracking Made Easy!</h2>
+      <div class="center-content">
+          <iframe class="home__video" src="https://www.youtube.com/embed/ITHKAu4xmNg" frameborder="0" allowfullscreen></iframe>
+          <!--<div class="home__video">Hello</div>-->
+      </div>
+    </div>
+    <div class="center-content">
+      <object class="home__image--large" data="{% static "img/icons/lock.svg"%}" type="image/svg+xml"></object>
+    </div>
+  </div>
+</div>
+{% endblock %}
