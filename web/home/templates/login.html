@@ -1,56 +1,61 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="section">
-  <h2> Login </h2>
-  <div class="alert alert-danger" role="alert">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Error:</span>
-    This user name has already been taken by someone else.
+<div class="section section--fullscreen section--purple center-content">
+  <div class="form__panel">
+    <h2 class="login__heading">Login</h2>
+    <!--<div class="alert alert-danger" role="alert">-->
+    <!--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>-->
+    <!--<span class="sr-only">Error:</span>-->
+    <!--This user name has already been taken by someone else.-->
+    <!--</div>-->
+    <!--<div class="alert alert-warning" role="alert">-->
+    <!--<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>-->
+    <!--<span class="sr-only">Error:</span>-->
+    <!--This password is not secure.-->
+    <!--</div>-->
+    <form>
+      <div class="form-group has-error has-feedback">
+        <input type="text" class="form-control" id="userName" placeholder="Email or Email">
+        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span id="inputSuccess2Status" class="sr-only">(success)</span>
+        <span id="helpBlock" class="help-block">
+          This user name has already been taken by someone else.
+        </span>
+      </div>
+      <div class="form-group has-warning has-feedback">
+        <input type="password" class="form-control" id="password" placeholder="Password">
+        <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+        <span id="inputWarning2Status" class="sr-only">(warning)</span>
+        <span id="helpBlock" class="help-block help-block--warning">
+          This password is not secure.
+        </span>
+      </div>
+      <div class="form__buttons">
+        <a class="form__link">Register</a>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </form>
   </div>
-  <div class="alert alert-warning" role="alert">
-    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-    <span class="sr-only">Error:</span>
-        This password is not secure.
-  </div>
-  <form>
-    <div class="form-group has-error has-feedback">
-      <label for="userName">User Name</label>
-      <input type="text" class="form-control" id="userName" placeholder="Email or Email">
-      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-      <span id="inputSuccess2Status" class="sr-only">(success)</span>
-      <span id="helpBlock" class="help-block">
-        This user name has already been taken by someone else.
-      </span>
-    </div>
-    <div class="form-group has-warning has-feedback">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Password">
-      <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
-      <span id="inputWarning2Status" class="sr-only">(warning)</span>
-      <span id="helpBlock" class="help-block">
-        This password is not secure.
-      </span>
-    </div>
-    <a>Register</a>
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
 </div>
 
-<div class="section">
-  <h2> 2 Phase Authentication </h2>
-  <div class="alert alert-info" role="alert">
-    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-    Your code has been resent.
-  </div>
-  <form>
-    <div class="form-group">
-      <label for="oneTimeCode">Code</label>
-      <input type="text" class="form-control" id="oneTimeCode" placeholder="Code">
+<div class="section section--fullscreen section--purple center-content">
+  <div class="form__panel">
+    <h2 class="login__heading"> 2 Phase Authentication </h2>
+    <div class="alert alert-info" role="alert">
+      <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      Your code has been resent.
     </div>
-    <button type="submit" class="btn btn-warning">Resend</button>
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control" id="oneTimeCode" placeholder="Code">
+      </div>
+      <div class="form__buttons">
+        <button type="submit" class="btn btn-warning btn-form">Resend</button>
+        <button type="submit" class="btn btn-success btn-form">Submit</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 {% endblock %}

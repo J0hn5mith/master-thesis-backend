@@ -1,3 +1,71 @@
 .form-control{
   border: none;
+  border-radius: 0px !important;
+}
+
+.form__buttons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.has-error{
+  color: $red !important;
+}
+
+.help-block--warning .has-warning{
+  color: $yellow !important;
+}
+
+.alert{
+  border-radius: 0px;
+  border-width: 0px;
+  color: $black;
+}
+
+
+.alert-info{
+  background-color: $blue;
+}
+
+.alert-warning{
+  background-color: $yellow;
+}
+
+.alert-danger{
+  background-color: $red;
+}
+
+.form__link{
+  padding-right: 20px;
+}
+
+.form__panel{
+  background-color: $darken;
+  padding: 125px;
+
+  padding-top: 25px;
+  padding-bottom: 25px;
+  @include screen(med){
+    padding: 100px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  @include screen(small){
+    padding: 75px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  @include screen(mobile){
+    padding: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+}
+
+.btn-form{
+  margin-left: 20px;
 }
