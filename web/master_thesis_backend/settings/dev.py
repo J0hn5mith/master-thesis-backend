@@ -11,7 +11,13 @@ INSTALLED_APPS += (
 INTERNAL_IPS = ('127.0.0.1', )
 
 #: Don't send emails, just print them on stdout
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ.get( 'EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+print(EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
 
 #: Run celery tasks synchronously
 CELERY_ALWAYS_EAGER = True

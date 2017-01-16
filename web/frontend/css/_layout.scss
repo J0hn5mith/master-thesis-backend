@@ -49,7 +49,7 @@ $breakpoint-med: 1175px;
 }
 
 .section--purple{
-    @include gradient(darkblue, purple , red);
+    @include gradient(blue, purple , red);
 }
 
 .large-only{
@@ -120,6 +120,7 @@ $breakpoint-med: 1175px;
         }
     }
 }
+
 .columns__1-1--reverse{
     display: flex;
     flex-direction: row-reverse;

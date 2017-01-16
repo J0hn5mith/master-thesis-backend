@@ -1,0 +1,73 @@
+{% extends "register.html" %}
+{% load widget_tweaks i18n %}
+
+{% block form %}
+<form class="form-horizontal" role="form" action="." method="post">
+  {% csrf_token %}
+  {% for field in form %}
+  {% if field.errors %}
+  <div class="form-group has-error">
+    {% if field.help_text %}
+    <span class="hint--right" aria-label="{{ field.help_text }}">
+      {% endif %}
+
+      {% render_field field placeholder=field.label class="form-control" %}
+
+      {% if field.help_text %}
+    </span>
+    {% endif %}
+    {% for error in  field.errors %}
+    <span class="help-block">
+      {{ error }}
+    </span>
+    {% endfor %}
+
+  </div>
+  {% else %}
+  <div class="form-group">
+    {% if field.help_text %}
+    <span class="hint--right" aria-label="{{ field.help_text }}">
+      {% endif %}
+
+      {% render_field field placeholder=field.label class="form-control" %}
+
+      {% if field.help_text %}
+    </span>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% endfor %}
+  <div class="form__buttons">
+    <button type="submit" class="btn btn-success">Submit</button>
+  </div>
+</form>
+</form> {% csrf_token %}
+
+<!--{% if form.error_messages %}-->
+<!--{% for name, message in form.error_messages.items %}-->
+<!--<div class="alert alert-danger" role="alert">-->
+<!--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>-->
+<!--<span class="sr-only">Error:</span>-->
+<!--{{ message }}-->
+<!--</div>-->
+<!--{% endfor %}-->
+
+<!--{% endif %}-->
+<!--{% for name, data in form.fields.items %}-->
+<!--<div class="form-group">-->
+<!--{% if data.help_text  %}-->
+<!--<span class="hint--right" aria-label="{{ data.help_text }}">-->
+<!--{% endif %}-->
+<!--<input type="{{data.widget.input_type}}"-->
+<!--class="form-control"-->
+<!--id="email"-->
+<!--placeholder="{{ data.label }}"-->
+<!--data-toggle="tooltip" title="Hello">-->
+<!--{% if data.help_text  %}-->
+<!--</span>-->
+<!--{% endif %}-->
+<!--</input>-->
+<!--</div>-->
+<!--{% endfor %}-->
+{% endblock form %}
+

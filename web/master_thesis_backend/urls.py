@@ -18,9 +18,11 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
+from registration.backends import * 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('home.urls')),
-    url(r'^dashboard/', include('dashboard.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+        url(r'^admin/', admin.site.urls),
+        url(r'^', include('home.urls')),
+        url(r'^dashboard/', include('dashboard.urls')),
+        url(r'^accounts/', include('registration.backends.default.urls')),
+        ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
