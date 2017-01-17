@@ -1,0 +1,45 @@
+{% load widget_tweaks i18n %}
+
+{{ wizard.management_form }}
+{% if form.non_field_errors %}
+{% for non_field_error in form.non_field_errors %}
+<div class="alert alert-danger alert-danger--focus" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  {{ non_field_error }}
+</div>
+{% endfor %}
+{% endif %}
+{% for field in form %}
+{% if field.errors %}
+<div class="form-group has-error">
+  {% if field.help_text %}
+  <span class="hint--right" aria-label="{{ field.help_text }}">
+    {% endif %}
+
+    {% render_field field placeholder=field.label class="form-control formpanel__form-control" %}
+
+    {% if field.help_text %}
+  </span>
+  {% endif %}
+  {% for error in  field.errors %}
+  <span class="help-block">
+    {{ error }}
+  </span>
+  {% endfor %}
+
+</div>
+{% else %}
+<div class="form-group">
+  {% if field.help_text %}
+  <span class="hint--right" aria-label="{{ field.help_text }}">
+    {% endif %}
+
+    {% render_field field placeholder=field.label class="form-control formpanel__form-control" %}
+
+    {% if field.help_text %}
+  </span>
+  {% endif %}
+</div>
+{% endif %}
+{% endfor %}

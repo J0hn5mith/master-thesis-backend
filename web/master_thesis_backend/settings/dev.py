@@ -17,7 +17,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = os.environ.get( 'EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-print(EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
 
 #: Run celery tasks synchronously
 CELERY_ALWAYS_EAGER = True

@@ -41,16 +41,17 @@
   padding-right: 20px;
 }
 
-.form__panel{
+.form-panel{
   background-color: $darken;
-  padding: 125px;
+  padding: 50px;
+  width: 500px;
 
   padding-top: 25px;
   padding-bottom: 25px;
   @include screen(med){
-    padding: 100px;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding: 50px;
+    padding-top: 75px;
+    padding-bottom: 75px;
   }
 
   @include screen(small){
@@ -63,18 +64,21 @@
     padding: 25px;
     padding-top: 25px;
     padding-bottom: 25px;
+    width: 300px;
   }
 }
 
-.formpanel__text{
-  width: 400px;
-  color: $white;
-}
 
 .btn-form{
   margin-left: 20px;
 }
 
-.formpanel__form-control{
-  width: 300px;
+.form-panel__form-control{
+  width: 100%;
+}
+
+.form-panel__text{
+  width: 400px;
+  color: $white;
+  padding-bottom: 10px;
 }

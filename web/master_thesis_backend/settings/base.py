@@ -25,7 +25,7 @@ ADMINS = (
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
@@ -34,13 +34,26 @@ INSTALLED_APPS = [
         'django.contrib.admin',
         'django.contrib.humanize',
         'django.contrib.sitemaps',
+        ]
 
+THIRD_PARTY_APPS = [
+        # 'registration',
+        'widget_tweaks',
+
+        'django_otp',
+        'django_otp.plugins.otp_static',
+        'django_otp.plugins.otp_totp',
+        'two_factor',
+        ]
+
+LOCAL_APPS = [
         'utils',
         'home',
         'dashboard',
-        'registration',
-        'widget_tweaks',
+        'login_registration',
         ]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE_CLASSES = [
         'django.middleware.security.SecurityMiddleware',
@@ -52,6 +65,8 @@ MIDDLEWARE_CLASSES = [
         'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+        'django_otp.middleware.OTPMiddleware',
         ]
 
 ROOT_URLCONF = 'master_thesis_backend.urls'
@@ -141,6 +156,10 @@ LOGGING = {
                 'level': 'ERROR',
                 'propagate': True,
                 },
+            'two_factor': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                }
             },
         'root': {
             'handlers': ['console', ],
@@ -225,3 +244,9 @@ ACCOUNT_ACTIVATION_DAYS = 1
 REGISTRATION_DEFAULT_FROM_EMAIL = "john-doe@example.com" #TODO
 REGISTRATION_EMAIL_HTML = True
 REGISTRATION_AUTO_LOGIN = True
+
+# Django Registration
+LOGIN_URL = 'two_factor:login'
+TWO_FACTOR_SMS_GATEWAY = 'two_factor.gateways.fake.Fake'
+TWO_FACTOR_CALL_GATEWAY = 'two_factor.gateways.fake.Fake'
+LOGIN_REDIRECT_URL = 'http://localhost:8000/dashboard'

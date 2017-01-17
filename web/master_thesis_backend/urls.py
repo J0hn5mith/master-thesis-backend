@@ -18,11 +18,17 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
-from registration.backends import * 
+from registration.backends import *
+
+from login_registration.views import LoginView
 
 urlpatterns = [
         url(r'^admin/', admin.site.urls),
         url(r'^', include('home.urls')),
         url(r'^dashboard/', include('dashboard.urls')),
-        url(r'^accounts/', include('registration.backends.default.urls')),
+        url(r'^login$', LoginView.as_view(), name="login"),
+
+# Third party
+        url(r'', include('two_factor.urls', 'two_factor')),
+        # url(r'^accounts/', include('registration.backends.default.urls')),
         ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
