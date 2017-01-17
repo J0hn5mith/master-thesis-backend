@@ -66,10 +66,15 @@
   }
 }
 
+.formpanel__text{
+  width: 400px;
+  color: $white;
+}
+
 .btn-form{
   margin-left: 20px;
 }
 
-.form-control{
+.formpanel__form-control{
   width: 300px;
 }

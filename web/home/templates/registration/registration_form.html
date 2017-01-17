@@ -1,7 +1,7 @@
-{% extends "register.html" %}
+{% extends "registration_base.html" %}
 {% load widget_tweaks i18n %}
 
-{% block form %}
+{% block panel_content %}
 <form class="form-horizontal" role="form" action="." method="post">
   {% csrf_token %}
   {% for field in form %}
@@ -11,7 +11,7 @@
     <span class="hint--right" aria-label="{{ field.help_text }}">
       {% endif %}
 
-      {% render_field field placeholder=field.label class="form-control" %}
+      {% render_field field placeholder=field.label class="form-control formpanel__form-control" %}
 
       {% if field.help_text %}
     </span>
@@ -29,7 +29,7 @@
     <span class="hint--right" aria-label="{{ field.help_text }}">
       {% endif %}
 
-      {% render_field field placeholder=field.label class="form-control" %}
+      {% render_field field placeholder=field.label class="form-control formpanel__form-control" %}
 
       {% if field.help_text %}
     </span>
@@ -42,32 +42,5 @@
   </div>
 </form>
 </form> {% csrf_token %}
-
-<!--{% if form.error_messages %}-->
-<!--{% for name, message in form.error_messages.items %}-->
-<!--<div class="alert alert-danger" role="alert">-->
-<!--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>-->
-<!--<span class="sr-only">Error:</span>-->
-<!--{{ message }}-->
-<!--</div>-->
-<!--{% endfor %}-->
-
-<!--{% endif %}-->
-<!--{% for name, data in form.fields.items %}-->
-<!--<div class="form-group">-->
-<!--{% if data.help_text  %}-->
-<!--<span class="hint--right" aria-label="{{ data.help_text }}">-->
-<!--{% endif %}-->
-<!--<input type="{{data.widget.input_type}}"-->
-<!--class="form-control"-->
-<!--id="email"-->
-<!--placeholder="{{ data.label }}"-->
-<!--data-toggle="tooltip" title="Hello">-->
-<!--{% if data.help_text  %}-->
-<!--</span>-->
-<!--{% endif %}-->
-<!--</input>-->
-<!--</div>-->
-<!--{% endfor %}-->
-{% endblock form %}
+{% endblock panel_content %}
 

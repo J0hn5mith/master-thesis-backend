@@ -1,1 +1,52 @@
-hello world html
+{% extends "base.html" %}
+
+{% load static i18n %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block content %}
+
+<div class="section section--fullscreen section--purple center-content">
+  <div class="form__panel">
+    <div class="align-horizontal">
+      <object class="home__banner" data="{% static "img/icon/logo.svg"%}" type="image/svg+xml"></object>
+      <h1 class="home__banner-heading">Pharos</h1>
+    </div>
+    <p class="formpanel__text">
+
+    {% blocktrans %}
+    Dear {{ user }},
+    {% endblocktrans %}
+    </p>
+
+    <p class="formpanel__text">
+    {% blocktrans %}
+    You fave successfully registered for Pharos. To complete your registration pleas clack at the activation link
+    below.
+    {% endblocktrans %}
+    </p>
+
+    <!--TODO: User reverse-->
+    <p><a class="btn btn-success" href="http://{{ site|default:"localhost:8000" }}/accounts/activate/{{ activation_key|default:"no-key-found" }}">
+      {% blocktrans %}
+      Activate
+      {% endblocktrans %}
+    </a></p>
+
+    <p class="formpanel__text">
+    {% blocktrans %}
+    We hope you will enjoy working with Phaors. If you have any questions please feel free to contact our support any time.
+    {% endblocktrans %}
+    </p>
+
+    <p class="formpanel__text">
+
+    {% blocktrans %}
+    Best wishes,<br>
+    Your Pharos Team
+    {% endblocktrans %}
+    </p>
+  </div>
+</div>
+{% endblock content %}
+{% block footer %}{% endblock footer %}

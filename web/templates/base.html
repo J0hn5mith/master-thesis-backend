@@ -25,9 +25,11 @@
       <section>
         {% block content %}{% endblock %}
       </section>
+      {% block footer %}
       <div class="footer">
         {% include "partials/footer.html" %}
       </div>
+      {% endblock footer %}
     </div>
     {% block extra-js %}{% endblock %}
   </body>

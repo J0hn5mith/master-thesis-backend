@@ -1,1 +1,5 @@
-Hello world subject
+{% load i18n %}
+
+{% blocktrans %}
+Activate your Pharos Account
+{% endblocktrans %}

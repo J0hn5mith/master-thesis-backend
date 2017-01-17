@@ -1,1 +1,21 @@
-hello world html
+{% load i18n %}
+
+{% blocktrans %}
+Dear {{ user }},
+{% endblocktrans %}
+
+{% blocktrans %}
+You fave successfully registered for Pharos. To complete your registration pleas clack at the activation link
+below.
+{% endblocktrans %}
+
+{{ site }}
+
+{% blocktrans %}
+We hope you will enjoy working with Phaors. If you have any questions please feel free to contact our support any time.
+{% endblocktrans %}
+
+{% blocktrans %}
+Best wishes,
+     Your Pharos Team
+{% endblocktrans %}
