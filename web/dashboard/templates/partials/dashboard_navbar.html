@@ -1,24 +1,31 @@
-<img src="https://dummyimage.com/50x1:1"></img>
-Pharos
-<ul>
-  <li>
-    <a>
-      Dashboard
-    </a>
-  </li>
-  <li>
-    <a>
-      Tags
-    </a>
-  </li>
-  <li>
-    <a>
-      Notifications
-    </a>
-  </li>
-  <li>
-    <a>
-      Settings
-    </a>
-  </li>
+{% load static %}
+<a class="dashboard__navbar-brand" href="{% url 'dashboard' %}">
+  <img class="dashboard__navbar-logo" src="{% static "img/icon/logo.svg"%}">
+  <span class="dashboard__navbar-title large-only">Pharos<span>
+</a>
+<ul class="dashboard__navbar-list">
+  <a class="dashboard__navbar-link" href="{% url 'dashboard' %}">
+    <li class="dashboard__navbar-item">
+      <img class="dashboard__navbar-icon" src="{% static "img/icons/dashboard--monochrome.svg" %}" >
+      <div class="large-only dashboard__navbar-text">Dashboard</div>
+    </li>
+  </a>
+  <a class="dashboard__navbar-link" href="{% url 'tags' %}">
+    <li class="dashboard__navbar-item">
+      <img class="dashboard__navbar-icon" src="{% static "img/icons/tag--monochrome.svg" %}" >
+      <div class="large-only dashboard__navbar-text">Tags</p>
+    </li>
+  </a>
+  <a class="dashboard__navbar-link" href="{% url 'notifications' %}">
+    <li class="dashboard__navbar-item">
+      <img class="dashboard__navbar-icon" src="{% static "img/icons/message--monochrome.svg" %}" >
+      <div class="dashboard__navbar-text large-only">Notifications</p>
+    </li>
+  </a>
+  <a class="dashboard__navbar-link" href="{% url 'settings' %}">
+    <li class="dashboard__navbar-item">
+      <img class="dashboard__navbar-icon" src="{% static "img/icons/settings--monochrome.svg" %}" >
+      <div class="dashboard__navbar-text large-only">Settings</p>
+    </li>
+  </a>
 </ul>

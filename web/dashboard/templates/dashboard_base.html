@@ -1,8 +1,24 @@
 {% extends "base.html" %}
 
 {% block navbar %}
-      {% include "partials/dashboard_navbar.html" %}
 {% endblock %}
-{% block content %}
 
+{% block content %}
+<div class="dashboard__layout">
+
+  <div class="dashboard__navbar">
+    {% block dashboard_navbar %}
+    {% include "partials/dashboard_navbar.html" %}
+    {% endblock %}
+  </div>
+
+  <section class="dashboard__content">
+    {% block dashboard_content %}
+    {% endblock %}
+  </section>
+
+</div>
+{% endblock %}
+
+{% block footer %}
 {% endblock %}

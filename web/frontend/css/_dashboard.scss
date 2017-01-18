@@ -1,0 +1,81 @@
+.dashboard__layout{
+  display: flex;
+}
+
+.dashboard__navbar{
+  background: $darkgrey;
+  height: 100vh;
+  min-width: 200px;
+  @include screen(med){
+    min-width: 60px;
+    max-width: 60px;
+  }
+  @include screen(small){
+    min-width: 60px;
+    max-width: 60px;
+  }
+}
+
+.dashboard__content{
+  background-color: green;
+  height: 100vh;
+  width: 100%;
+}
+
+.dashboard__navbar-icon{
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+.dashboard__navbar-text{
+  color: $lightgrey;
+  font-size: 20px;
+  height: 28px;
+  margin-left: 10px;
+}
+
+.dashboard__navbar-link{
+  &:hover{
+    text-decoration: none;
+    color: $lightgrey;
+  }
+}
+
+.dashboard__navbar-item{
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  &:hover{
+    background: $grey;
+  }
+}
+
+.dashboard__navbar-list{
+  padding: 0px;
+  margin-top: 100px;
+}
+
+.dashboard__navbar-brand{
+  display: flex;
+  padding-left: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+.dashboard__navbar-logo{
+  width: 50px;
+  height: 50px;
+}
+
+.dashboard__navbar-title{
+  font-size: 36px;
+  color: $white;
+  vertical-align: center;
+  margin-left: 5px;
+}
