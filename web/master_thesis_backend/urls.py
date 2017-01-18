@@ -30,5 +30,5 @@ urlpatterns = [
 
 # Third party
         url(r'', include('two_factor.urls', 'two_factor')),
-        # url(r'^accounts/', include('registration.backends.default.urls')),
+        url(r'^reg/', include('registration.backends.default.urls')),
         ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

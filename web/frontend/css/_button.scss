@@ -5,3 +5,14 @@
 .btn-success{
   background-color: $green !important;
 }
+
+.btn-form{
+  margin-left: 20px;
+}
+
+.btn-navbar{
+  margin-top: 15px;
+  @include screen(med){
+  margin-top: 5px;
+  }
+}

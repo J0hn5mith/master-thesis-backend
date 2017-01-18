@@ -1,4 +1,4 @@
-{% extends "registration_base.html" %}
+{% extends "base_login_registration.html" %}
 
 {% load i18n %}
 
@@ -6,8 +6,8 @@
 <!--<meta http-equiv="refresh" content="10; url=http://localhost:8000/" />-->
 {% endblock %}
 
-{% block panel_content %}
+{% block focus_content %}
 {% blocktrans %}
-<p class="formpanel__text">Your account has been activated.</p>
+<p class="form-panel__text">Your account has been activated.</p>
 {% endblocktrans %}
-{% endblock panel_content %}
+{% endblock focus_content %}

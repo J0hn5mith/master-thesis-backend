@@ -17,7 +17,7 @@
   <span class="hint--right" aria-label="{{ field.help_text }}">
     {% endif %}
 
-    {% render_field field placeholder=field.label class="form-control formpanel__form-control" %}
+    {% render_field field placeholder=field.label class="form-control form-panel__form-control" %}
 
     {% if field.help_text %}
   </span>
@@ -30,15 +30,15 @@
 
 </div>
 {% else %}
-<div class="form-group">
+<div class="form-group form-group--full-width">
   {% if field.help_text %}
-  <span class="hint--right" aria-label="{{ field.help_text }}">
+  <div class="hint--right hint--full-width" aria-label="{{ field.help_text }}">
     {% endif %}
 
-    {% render_field field placeholder=field.label class="form-control formpanel__form-control" %}
+    {% render_field field placeholder=field.label class="form-control form-panel__form-control" %}
 
     {% if field.help_text %}
-  </span>
+  </div>
   {% endif %}
 </div>
 {% endif %}

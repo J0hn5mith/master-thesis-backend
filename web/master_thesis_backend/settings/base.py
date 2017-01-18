@@ -37,7 +37,10 @@ DJANGO_APPS = [
         ]
 
 THIRD_PARTY_APPS = [
-        # 'registration',
+        # Local but has to stand before registration. Otherwise templates are not found.
+        'login_registration',
+
+        'registration',
         'widget_tweaks',
 
         'django_otp',
@@ -50,7 +53,7 @@ LOCAL_APPS = [
         'utils',
         'home',
         'dashboard',
-        'login_registration',
+
         ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

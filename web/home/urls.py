@@ -10,7 +10,7 @@ urlpatterns = [
 
             # ),
         url(
-            r'^register$',
+            r'^tmp-register$',
             TemplateView.as_view(template_name='register.html'),
             name="register"
             ),

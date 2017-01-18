@@ -1,6 +1,11 @@
 .form-control{
-  border: none;
   border-radius: 0px !important;
+  border-color: none !important;
+  border-style: none !important;
+}
+
+.form-control--shadow{
+  box-shadow: 2px 2px 5px $darken;
 }
 
 .form__buttons{
@@ -68,17 +73,28 @@
   }
 }
 
-
-.btn-form{
-  margin-left: 20px;
-}
-
-.form-panel__form-control{
-  width: 100%;
+.form-panel__heading{
+  padding: 0px;
+  margin-right:0px;
+  padding-bottom: 30px;
+  font-size: 60px
 }
 
 .form-panel__text{
   width: 400px;
   color: $white;
   padding-bottom: 10px;
+}
+
+.form-group{
+  margin: 0px !important;
+  margin-bottom: 15px !important;
+}
+
+.form-group--full-width{
+  width: 100%;
+}
+
+.form-group--navbar{
+  margin: 0px !important;
 }

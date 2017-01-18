@@ -19,21 +19,25 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-right large-only">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Email or Username">
-          <input type="password" class="form-control" placeholder="Password">
+      <form class="navbar-form navbar-right large-only" action="{% url 'login' %}" method="post">
+
+        {% csrf_token %}
+
+        <input id="id_login_view-current_step" name="login_view-current_step" type="hidden" value="auth">
+        <div class="form-group form-group--navbar">
+          <input type="text" class="form-control" id="id_auth-username" placeholder="Username" name="auth-username">
+          <input type="password" class="form-control" id="id_auth-password" placeholder="Password" name="auth-password">
         </div>
         <button type="Login" class="btn btn-success">Login</button>
         <a  class="btn btn-info" href="{% url 'register' %}">Register</a>
       </form>
       <div class="navbar-right med-only">
-        <a type="Login" class="btn btn-success" href="">Login</a>
-        <a  class="btn btn-info" href="{% url 'register' %}">Register</a>
+        <a type="Login" class="btn btn-success btn-navbar" href="{% url 'login' %}">Login</a>
+        <a  class="btn btn-info btn-navbar" href="{% url 'register' %}">Register</a>
       </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'technology' %}">Technology</a></li>
-        <li><a href="{% url 'support' %}">Support</a></li>
+      <ul class="nav navbar-nav navbar-right navbar__list">
+        <li><a class="navbar__link" href="{% url 'technology' %}">Technology</a></li>
+        <li><a class="navbar__link" href="{% url 'support' %}">Support</a></li>
         <li class="small-only"><a href="{% url 'login' %}">Login</a></li>
         <li class="small-only"><a href="{% url 'register' %}">Register</a></li>
       </ul>

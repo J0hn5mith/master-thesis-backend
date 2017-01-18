@@ -34,8 +34,6 @@
   border-color: transparent !important;
 }
 
-
-
 .navbar-toggle{
   border-width: 2px;
   border-color: $white !important;
@@ -43,6 +41,15 @@
     background-color: $white !important;
   }
 }
+
 .navbar__logo-title{
   font-size: 36px;
+}
+
+.navbar__link{
+  font-height: 0px;
+}
+
+.navbar__list{
+  padding-top: 0px;
 }

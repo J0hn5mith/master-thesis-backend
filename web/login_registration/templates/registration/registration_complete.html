@@ -1,0 +1,13 @@
+{% extends "base_login_registration.html" %}
+
+{% load i18n %}
+
+{% block extra-meta %}
+<meta http-equiv="refresh" content="10; url=http://localhost:8000/" />
+{% endblock %}
+
+{% block focus_content %}
+{% blocktrans %}
+<p class="form-panel__text">You Successfully registered for Pharos. We have sent you a mail with the activation link.</p>
+{% endblocktrans %}
+{% endblock focus_content %}

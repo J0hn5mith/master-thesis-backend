@@ -8,14 +8,16 @@
     <object class="home__banner" data="{% static "img/icon/logo.svg"%}" type="image/svg+xml"></object>
     <h1 class="home__banner-heading">Pharos</h1>
   </div>
-  <form class="home__login-form">
-
+  <form class="home__login-form" action="{% url 'login' %}" method="post">
+  {% csrf_token %}
+    <!--Hack with id for quicker protyping-->
+    <input id="id_login_view-current_step" name="login_view-current_step" type="hidden" value="auth">
     <div class="home__login-form-fields">
       <div class="form-group">
-        <input type="text" class="form-control" id="userName" placeholder="Email">
+        <input type="text" class="form-control form-control--shadow" id="id_auth-username" placeholder="Username" name="auth-username">
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" id="password" placeholder="Password">
+        <input type="password" class="form-control form-control--shadow" id="id_auth-password" placeholder="Password" name="auth-password">
       </div>
     </div>
     <div class="home__login-form-buttons">
