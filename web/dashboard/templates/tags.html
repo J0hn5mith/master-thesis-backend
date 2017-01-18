@@ -1,54 +1,57 @@
 {% extends "dashboard_base.html" %}
 
 
-{% block content %}
-<img src="https://dummyimage.com/600x3:1"></img>
-<div>
-  <h2>Your Tags</h2>
-  <input type="text" placeholder="Filter"></input>
-  <ul>
-    <li>
-      <img src="https://dummyimage.com/75x1:1"></img>
-      Tag 1
-      Shared With:
-      <img src="https://dummyimage.com/25x1:1"></img>
-      <img src="https://dummyimage.com/25x1:1"></img>
-      Last Updated: 16:00
-      Active
-    </li>
-    <li>
-      <img src="https://dummyimage.com/75x1:1"></img>
-      Tag 2
-      Shared With:
-      <img src="https://dummyimage.com/25x1:1"></img>
-      Last Updated: 16:37
-      Active
-    </li>
-  </ul>
-</div>
+{% block dashboard_content %}
+<div class="dashboard__content-background dashboard__content-background--purple center-content--horizontal">
+  <div class="dashboard__content-panel">
+    <img src="https://dummyimage.com/600x3:1"></img>
+    <div>
+      <h2>Your Tags</h2>
+      <input type="text" placeholder="Filter"></input>
+      <ul>
+        <li>
+          <img src="https://dummyimage.com/75x1:1"></img>
+          Tag 1
+          Shared With:
+          <img src="https://dummyimage.com/25x1:1"></img>
+          <img src="https://dummyimage.com/25x1:1"></img>
+          Last Updated: 16:00
+          Active
+        </li>
+        <li>
+          <img src="https://dummyimage.com/75x1:1"></img>
+          Tag 2
+          Shared With:
+          <img src="https://dummyimage.com/25x1:1"></img>
+          Last Updated: 16:37
+          Active
+        </li>
+      </ul>
+    </div>
 
-<div>
-  <h2>Shared Tags</h2>
-  <input type="text" placeholder="Filter"></input>
-  <ul>
-    <li>
-      <img src="https://dummyimage.com/75x1:1"></img>
-      Tag 1
-      Owner:
-      <img src="https://dummyimage.com/25x1:1"></img>
-      Last Updated: 16:00
-      Active
-    </li>
-    <li>
-      <img src="https://dummyimage.com/75x1:1"></img>
-      Tag 2
-      Owner:
-      <img src="https://dummyimage.com/25x1:1"></img>
-      Last Updated: 16:37
-      Disabled
-    </li>
-  </ul>
-</div>
+    <div>
+      <h2>Shared Tags</h2>
+      <input type="text" placeholder="Filter"></input>
+      <ul>
+        <li>
+          <img src="https://dummyimage.com/75x1:1"></img>
+          Tag 1
+          Owner:
+          <img src="https://dummyimage.com/25x1:1"></img>
+          Last Updated: 16:00
+          Active
+        </li>
+        <li>
+          <img src="https://dummyimage.com/75x1:1"></img>
+          Tag 2
+          Owner:
+          <img src="https://dummyimage.com/25x1:1"></img>
+          Last Updated: 16:37
+          Disabled
+        </li>
+      </ul>
+    </div>
 
+  </div>
 </div>
-{% endblock %}:w
+{% endblock %}

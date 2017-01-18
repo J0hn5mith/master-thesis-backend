@@ -4,28 +4,18 @@
   <span class="dashboard__navbar-title large-only">Pharos<span>
 </a>
 <ul class="dashboard__navbar-list">
-  <a class="dashboard__navbar-link" href="{% url 'dashboard' %}">
-    <li class="dashboard__navbar-item">
-      <img class="dashboard__navbar-icon" src="{% static "img/icons/dashboard--monochrome.svg" %}" >
-      <div class="large-only dashboard__navbar-text">Dashboard</div>
-    </li>
+
+  {% for item in dashboard_items %}
+  <a class="dashboard__navbar-link" href="{% url item.view_name %}">
+    {% if item.active %}
+    <li class="dashboard__navbar-item dashboard__navbar-item--active hover-apear__container">
+      {% else %}
+      <li class="dashboard__navbar-item hover-apear__container">
+        {% endif %}
+        <img class="dashboard__navbar-icon" src="{% static item.icon_monochrome %}" >
+        <img class="dashboard__navbar-icon hover-apear" src="{% static item.icon %}" >
+        <div class="large-only dashboard__navbar-text">{{ item.label }}</div>
+      </li>
   </a>
-  <a class="dashboard__navbar-link" href="{% url 'tags' %}">
-    <li class="dashboard__navbar-item">
-      <img class="dashboard__navbar-icon" src="{% static "img/icons/tag--monochrome.svg" %}" >
-      <div class="large-only dashboard__navbar-text">Tags</p>
-    </li>
-  </a>
-  <a class="dashboard__navbar-link" href="{% url 'notifications' %}">
-    <li class="dashboard__navbar-item">
-      <img class="dashboard__navbar-icon" src="{% static "img/icons/message--monochrome.svg" %}" >
-      <div class="dashboard__navbar-text large-only">Notifications</p>
-    </li>
-  </a>
-  <a class="dashboard__navbar-link" href="{% url 'settings' %}">
-    <li class="dashboard__navbar-item">
-      <img class="dashboard__navbar-icon" src="{% static "img/icons/settings--monochrome.svg" %}" >
-      <div class="dashboard__navbar-text large-only">Settings</p>
-    </li>
-  </a>
+  {% endfor %}
 </ul>

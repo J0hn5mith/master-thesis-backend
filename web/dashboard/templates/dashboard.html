@@ -1,44 +1,93 @@
 {% extends "dashboard_base.html" %}
+{% load static utils %}
 
 
 {% block dashboard_content %}
-<img src="https://dummyimage.com/600x3:1"></img>
+<div class="dashboard__content-background dashboard__content-background--orange center-content--horizontal">
+  <div class="dashboard__content-panel">
+    <div class="map"></div>
 
-<div>
-  <ul>
-    <li>Tag 1</li>
-    <li>Tag 2</li>
-    <li>Tag 3</li>
-    <li>Tag 4</li>
-    <li>Add Tag</li>
-  </ul>
-</div>
+    <div class="tile-layout__2x2">
+      <div class="dashboard__list-wrapper">
+        {% if True %}
+        <ul class="dashboard__list">
+          {% for i in 1|range:10 %}
+          <li class="list-entry__tag">
+            <img class="list-entry__image" src="{% static "img/icons/tag.svg" %}"></img>
+            <div>Tag {{ i }}</div>
+          </li>
+          {% endfor %}
+          <li class="list-entry__tag">
+            <img class="list-entry__image--small" src="{% static "img/icons/plus.svg" %}"></img>
+          </li>
+        </ul>
+        {% else %}
+        <div class="dashboard__list dashboard__list--empty">
+          <div class="list-entry__empty">
+            <p>No tag available</p>
+            <a class="btn btn-success">Add tag</a>
+          </div>
+        </div>
+        {% endif %}
+      </div>
 
-<div>
-  <ul>
-    <li>Alert 1</li>
-    <li>Alert 2</li>
-    <li>Alert 3</li>
-    <li>Alert 4</li>
-  </ul>
-</div>
+      <div class="dashboard__list-wrapper">
+        {% if False %}
+        <ul class="dashboard__list">
+          {% for i in 1|range:10 %}
+          <li class="list-entry__tag">
+            <img class="list-entry__image" src="{% static "img/icons/alert.svg" %}"></img>
+            <div>Alert {{ i }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <div class="dashboard__list dashboard__list--empty">
+          <div class="list-entry__empty">
+            <p>No alert pending</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
 
-<div>
-  <ul>
-    <li>Shared Tag 1</li>
-    <li>Shared Tag 2</li>
-    <li>Shared Tag 3</li>
-    <li>Shared Tag 4</li>
-  </ul>
-</div>
+      <div class="dashboard__list-wrapper">
+        {% if False %}
+        <ul class="dashboard__list">
+          {% for i in 1|range:10 %}
+          <li class="list-entry__tag">
+            <img class="list-entry__image" src="{% static "img/icons/tag.svg" %}"></img>
+            <div>S. Tag {{ i }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <div class="dashboard__list dashboard__list--empty">
+          <div class="list-entry__empty">
+            <p>No shared tags</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
 
-<div>
-  <ul>
-    <li>Notification 1</li>
-    <li>Notification 2</li>
-    <li>Notification 3</li>
-    <li>Notification 4</li>
-  </ul>
-</div>
-{% endblock dashboard_content %}
+      <div class="dashboard__list-wrapper">
+        {% if True %}
+        <ul class="dashboard__list">
+          {% for i in 1|range:10 %}
+          <li class="list-entry__tag">
+            <img class="list-entry__image" src="{% static "img/icons/message.svg" %}"></img>
+            <div>Message {{ i }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <div class="dashboard__list dashboard__list--empty">
+          <div class="list-entry__empty">
+            <p>No shared tags</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endblock dashboard_content %}
 

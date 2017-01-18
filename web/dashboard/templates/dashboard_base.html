@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load dashboard %}
 
 {% block navbar %}
 {% endblock %}
@@ -8,7 +9,7 @@
 
   <div class="dashboard__navbar">
     {% block dashboard_navbar %}
-    {% include "partials/dashboard_navbar.html" %}
+    {% dashboard_navbar %}
     {% endblock %}
   </div>
 

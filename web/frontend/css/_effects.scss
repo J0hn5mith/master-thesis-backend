@@ -45,3 +45,16 @@
 .hint--full-width{
   width: 100%;
 }
+
+.hover-apear__container{
+  &:hover{
+    >.hover-apear{
+      opacity: 1;
+    }
+  }
+}
+
+.hover-apear{
+  opacity: 0;
+  position: fixed;
+}

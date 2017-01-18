@@ -97,6 +97,12 @@ $breakpoint-med: 1175px;
     align-items: center;
 }
 
+.center-content--horizontal{
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+    flex-direction: column;
+}
 .center-content{
     display: flex;
     align-items: center;
@@ -136,4 +142,11 @@ $breakpoint-med: 1175px;
             width: 100%
         }
     }
+}
+
+.tile-layout__2x2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 25px;
 }

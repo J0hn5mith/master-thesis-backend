@@ -22,11 +22,43 @@ $lightgrey: #b4b4b4;
 $white: white;
 
 $blue: #1380D5;
+$lightblue: #85D0ED;
+$darkblue: #006FC6;
+@mixin gradientblue() {
+  @include gradient($darkblue, $blue, $lightblue)
+}
 
 $green: #53B70F;
 
 $red: #D51313;
 $lightred: #DC3A3A;
+
+$orange: #F99D3C;
+$darkorange: #f76c1d;
+
+@mixin gradientred() {
+  @include gradient($red, $orange, $yellow)
+}
+
+@mixin gradientorange() {
+  @include gradient($darkorange, $yellow)
+}
+
+$purple: #653DBC;
+$purple--dark: #3023AE;
+$purple--light: #C86DD7;
+
+@mixin gradient--purple() {
+  @include gradient($purple--dark, $purple, $purple--light)
+}
+
+$pink: #C86DD7;
+$pink--dark: #C34FCC;
+$pink--light: #CCA5BF;
+@mixin gradient--pink() {
+  @include gradient($pink--dark, $pink, $pink--light)
+}
+
 
 $black: black;
 

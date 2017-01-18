@@ -1,52 +1,57 @@
 {% extends "dashboard_base.html" %}
 
-{% block content %}
+{% block dashboard_content %}
+<div class="dashboard__content-background dashboard__content-background--blue center-content--horizontal">
+  <div class="dashboard__content-panel">
 
-<div>
-  <img src="https://dummyimage.com/200x1:1"></img>
-  <a class="btn btn-info">Edit</a>
-  <h1>John Doe</h1>
-  <p>Drofstrasse 23, 8000, Zürich</p>
-  <p>john-dow@example.com</p>
-  <p>079 123 45 67</p>
-  <p type="password">••••••••••</p>
-</div>
-<div>
-  <h2>Notrification</h2>
-  <p>How would you like to be informed about alarms?</p>
-  <form action="settings_submit" method="get" accept-charset="utf-8">
-    <div class="form-group">
-      <input type="checkbox" name="email" value="true" id="email">
-      <label for="email">Email</label>
+    <div>
+      <img src="https://dummyimage.com/200x1:1"></img>
+      <a class="btn btn-info">Edit</a>
+      <h1>John Doe</h1>
+      <p>Drofstrasse 23, 8000, Zürich</p>
+      <p>john-dow@example.com</p>
+      <p>079 123 45 67</p>
+      <p type="password">••••••••••</p>
     </div>
-    <div class="form-group">
-      <input type="checkbox" name="pushNotification" value="" id="pushNotification">
-      <label for="pushNotification">Push Notification</label>
+    <div>
+      <h2>Notrification</h2>
+      <p>How would you like to be informed about alarms?</p>
+      <form action="settings_submit" method="get" accept-charset="utf-8">
+        <div class="form-group">
+          <input type="checkbox" name="email" value="true" id="email">
+          <label for="email">Email</label>
+        </div>
+        <div class="form-group">
+          <input type="checkbox" name="pushNotification" value="" id="pushNotification">
+          <label for="pushNotification">Push Notification</label>
+        </div>
+        <div class="form-group">
+          <input type="checkbox" name="sms" value="" id="sms">
+          <label for="SMS">SMS</label>
+        </div>
+        <p><input class="btn btn-success" type="submit" value="Continue"></p>
+      </form>
     </div>
-    <div class="form-group">
-      <input type="checkbox" name="sms" value="" id="sms">
-      <label for="SMS">SMS</label>
+    <div>
+      <h2>Mobile Devices</h2>
+      <table class="table table-bordered">
+        <thead>
+          <th>Device Name</th>
+          <th>Last Login</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Name 1</th>
+            <td>1.2.17</td>
+          </tr>
+          <tr>
+            <th>Name 2</th>
+            <td>2.2.17</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <p><input class="btn btn-success" type="submit" value="Continue"></p>
-  </form>
+
+  </div>
 </div>
-<div>
-  <h2>Mobile Devices</h2>
-  <table class="table table-bordered">
-    <thead>
-      <th>Device Name</th>
-      <th>Last Login</th>
-    </thead>
-    <tbody>
-      <tr>
-        <th>Name 1</th>
-        <td>1.2.17</td>
-      </tr>
-      <tr>
-        <th>Name 2</th>
-        <td>2.2.17</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-{% endblock content %}
+{% endblock dashboard_content %}
