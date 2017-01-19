@@ -1,57 +1,98 @@
 {% extends "dashboard_base.html" %}
+{% load static %}
 
 
 {% block dashboard_content %}
 <div class="dashboard__content-background dashboard__content-background--purple center-content--horizontal">
-  <div class="dashboard__content-panel">
-    <img src="https://dummyimage.com/600x3:1"></img>
-    <div>
+  <div class="dashboard__content-panel tag-overview__panel">
+    <div class =tag-overview__section>
       <h2>Your Tags</h2>
+      <div class="tag-overview__filter-container">
       <input type="text" placeholder="Filter"></input>
-      <ul>
-        <li>
-          <img src="https://dummyimage.com/75x1:1"></img>
-          Tag 1
-          Shared With:
-          <img src="https://dummyimage.com/25x1:1"></img>
-          <img src="https://dummyimage.com/25x1:1"></img>
-          Last Updated: 16:00
-          Active
+      </div>
+      <ul class="tag-overview__list">
+        <li class="tag-overview__list-item tag-overview__list-item--normal">
+          <div class="tag-overview__info">
+            <img class="tag-overview__icon" src="{% static "img/icons/tag.svg" %}"></img>
+            <p class="tag-overview__list-label">Tag 1</p>
+            <div class="tag-overview__status">
+              <span>
+                Shared With:
+                <img src="https://dummyimage.com/25x1:1"></img>
+                <img src="https://dummyimage.com/25x1:1"></img>
+              </span>
+              <p>Last Updated: 16:00</p>
+            </div>
+          </div>
+          <div class="tag-overview__state tag-overview__state--active">
+            Active
+          </div>
         </li>
-        <li>
-          <img src="https://dummyimage.com/75x1:1"></img>
-          Tag 2
-          Shared With:
-          <img src="https://dummyimage.com/25x1:1"></img>
-          Last Updated: 16:37
-          Active
+        <li class="tag-overview__list-item tag-overview__list-item--alert">
+          <div class="tag-overview__info">
+            <img class="tag-overview__icon" src="{% static "img/icons/tag.svg" %}"></img>
+            <p class="tag-overview__list-label">Tag 2</p>
+            <div class="tag-overview__status">
+              <span>
+                Shared With:
+                <img src="https://dummyimage.com/25x1:1"></img>
+                <img src="https://dummyimage.com/25x1:1"></img>
+              </span>
+              <p>Last Updated: 16:37</p>
+            </div>
+          </div>
+          <div class="tag-overview__state tag-overview__state--disabled">
+            Disabled
+          </div>
+        </li>
+        <li class="tag-overview__add-entry">
+            <img class="list-entry__image--small" src="{% static "img/icons/plus.svg" %}"></img>
         </li>
       </ul>
     </div>
 
-    <div>
+    <div class =tag-overview__section>
       <h2>Shared Tags</h2>
+      <div class="tag-overview__filter-container">
       <input type="text" placeholder="Filter"></input>
-      <ul>
-        <li>
-          <img src="https://dummyimage.com/75x1:1"></img>
-          Tag 1
-          Owner:
-          <img src="https://dummyimage.com/25x1:1"></img>
-          Last Updated: 16:00
-          Active
+      </div>
+      <ul class="tag-overview__list">
+        <li class="tag-overview__list-item tag-overview__list-item--normal">
+          <div class="tag-overview__info">
+            <img class="tag-overview__icon" src="{% static "img/icons/tag.svg" %}"></img>
+            <p class="tag-overview__list-label">Tag 1</p>
+            <div class="tag-overview__status">
+              <span>
+                Shared With:
+                <img src="https://dummyimage.com/25x1:1"></img>
+                <img src="https://dummyimage.com/25x1:1"></img>
+              </span>
+              <p>Last Updated: 16:00</p>
+            </div>
+          </div>
+          <div class="tag-overview__state tag-overview__state--active">
+            Active
+          </div>
         </li>
-        <li>
-          <img src="https://dummyimage.com/75x1:1"></img>
-          Tag 2
-          Owner:
-          <img src="https://dummyimage.com/25x1:1"></img>
-          Last Updated: 16:37
-          Disabled
+        <li class="tag-overview__list-item tag-overview__list-item--alert">
+          <div class="tag-overview__info">
+            <img class="tag-overview__icon" src="{% static "img/icons/tag.svg" %}"></img>
+            <p class="tag-overview__list-label">Tag 2</p>
+            <div class="tag-overview__status">
+              <span>
+                Shared With:
+                <img src="https://dummyimage.com/25x1:1"></img>
+                <img src="https://dummyimage.com/25x1:1"></img>
+              </span>
+              <p>Last Updated: 16:37</p>
+            </div>
+          </div>
+          <div class="tag-overview__state tag-overview__state--disabled">
+            Disabled
+          </div>
         </li>
       </ul>
     </div>
-
   </div>
 </div>
 {% endblock %}
