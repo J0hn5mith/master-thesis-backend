@@ -1,9 +1,15 @@
 .btn{
   font-size: 18px;
+  border-style: none;
 }
 
 .btn-success{
   background-color: $green !important;
+}
+
+.btn-info{
+  background-color: $blue !important;
+  border-style: none;
 }
 
 .btn-form{

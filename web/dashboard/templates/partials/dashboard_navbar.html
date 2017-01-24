@@ -1,21 +1,48 @@
 {% load static %}
-<a class="dashboard__navbar-brand" href="{% url 'dashboard' %}">
-  <img class="dashboard__navbar-logo" src="{% static "img/icon/logo.svg"%}">
-  <span class="dashboard__navbar-title large-only">Pharos<span>
-</a>
-<ul class="dashboard__navbar-list">
-
-  {% for item in dashboard_items %}
-  <a class="dashboard__navbar-link" href="{% url item.view_name %}">
-    {% if item.active %}
-    <li class="dashboard__navbar-item dashboard__navbar-item--active hover-apear__container">
-      {% else %}
-      <li class="dashboard__navbar-item hover-apear__container">
-        {% endif %}
-        <img class="dashboard__navbar-icon" src="{% static item.icon_monochrome %}" >
-        <img class="dashboard__navbar-icon hover-apear" src="{% static item.icon %}" >
-        <div class="large-only dashboard__navbar-text">{{ item.label }}</div>
-      </li>
+<!--Normal-->
+<div class="dashboard__navbar--normal">
+  <a class="dashboard__navbar-brand" href="{% url 'dashboard' %}">
+    <img class="dashboard__navbar-logo" src="{% static "img/icon/logo.svg"%}">
+    <span class="dashboard__navbar-title large-only">Pharos<span>
   </a>
-  {% endfor %}
-</ul>
+
+  <ul class="dashboard__navbar-list">
+    {% for item in dashboard_items %}
+    <a class="dashboard__navbar-link" href="{% url item.view_name %}">
+      {% if item.active %}
+      <li class="dashboard__navbar-item dashboard__navbar-item--active hover-apear__container">
+        {% else %}
+        <li class="dashboard__navbar-item hover-apear__container">
+          {% endif %}
+          <img class="dashboard__navbar-icon" src="{% static item.icon_monochrome %}" >
+          <img class="dashboard__navbar-icon hover-apear" src="{% static item.icon %}" >
+          <div class="large-only dashboard__navbar-text">{{ item.label }}</div>
+        </li>
+    </a>
+    {% endfor %}
+</div>
+
+<!--Mobile-->
+<div class="dashboard__navbar--mobile">
+  <div class="dashboard__mobile-navbar--collapsed">
+    <img src="{% static "img/icons/menu.svg" %}" alt=""/>
+  </div>
+  <div class="dashboard__mobile-navbar--expanded">
+    <ul>
+      {% for item in dashboard_items %}
+      <a class="dashboard__navbar-link" href="{% url item.view_name %}">
+        {% if item.active %}
+        <li class="dashboard__navbar-item dashboard__navbar-item--active hover-apear__container">
+          {% else %}
+          <li class="dashboard__navbar-item hover-apear__container">
+            {% endif %}
+            <img class="dashboard__navbar-icon" src="{% static item.icon_monochrome %}" >
+            <img class="dashboard__navbar-icon hover-apear" src="{% static item.icon %}" >
+            <div class="large-only dashboard__navbar-text">{{ item.label }}</div>
+          </li>
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+

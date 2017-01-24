@@ -58,3 +58,15 @@
   opacity: 0;
   position: fixed;
 }
+
+.hexagon-clip {
+  clip-path: polygon(0 50%, 25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+  >img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.shadow {
+  box-shadow: 1px 1px 25px $green;
+}

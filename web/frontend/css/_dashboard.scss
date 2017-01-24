@@ -3,17 +3,82 @@
 }
 
 .dashboard__navbar{
-  background: $darkgrey;
   height: 100vh;
   min-width: 200px;
+
   @include screen(med){
     min-width: 60px;
     max-width: 60px;
   }
+
   @include screen(small){
     min-width: 60px;
     max-width: 60px;
   }
+
+  @include screen(mobile){
+    position: absolute;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+
+    >.dashboard__navbar--normal{
+      visibility: hidden;
+    }
+
+    >.dashboard__navbar--mobile{
+      visibility: visible;
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.dashboard__navbar--normal{
+  background-color: $darkgrey;
+  height: 100%;
+  width: 100%;
+}
+
+.dashboard__navbar--mobile{
+  top:0;
+  right:0;
+
+  position: absolute;
+  visibility: hidden;
+  overflow: hidden;
+
+  width: 0px;
+  height: 0px;
+  margin: 5px;
+
+  transition: all 1s;
+  -webkit-transition: all 1s;
+
+  &:hover, &:active{
+  margin: 0px;
+    >.dashboard__mobile-navbar--collapsed{
+      visibility: hidden;
+    }
+    >.dashboard__mobile-navbar--expanded{
+      visibility: visible;
+    }
+    background-color: $darken;
+    width: 100vw;
+    height: 50vh;
+  }
+}
+
+.dashboard__mobile-navbar--collapsed{
+  position: absolute;
+  visibility: visible;
+
+}
+
+.dashboard__mobile-navbar--expanded{
+  position: relative;
+  visibility: hidden;
+  overflow: scroll;
 }
 
 .dashboard__content{
@@ -117,6 +182,14 @@
 .dashboard__list-wrapper{
   padding: 10px;
   width: 50%;
+  @include screen(small){
+    width: unset;
+  };
+
+  @include screen(mobile){
+    width: unset;
+    background: blue;
+  };
 }
 
 .dashboard__list{
@@ -277,4 +350,79 @@
   flex-direction: row-reverse;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.notifications__panel {
+  padding: 20px;
+  height: 600px;
+}
+
+.notifications__heading {
+  font-color: $black;
+  color: $black;
+  font-size: 60px;
+}
+
+.notifications__table-header {
+  border-style: none;
+  border-bottom-width: 0px !important;
+}
+
+.notifications__table {
+  margin-top: 50px;
+  box-shadow: 0px 0px 25px $darken;
+  max-height: 100%;
+
+  thead {
+    background: $blue;
+    color: $white;
+  }
+}
+
+.notifications__row--new {
+  font-weight: 700 !important;
+}
+
+.settings__panel{
+  padding: 20px;
+}
+
+.settings__avatar{
+  width: 160px;
+  height: 150px;
+}
+
+.settings__section{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 100px;
+}
+
+.settings__section-title{
+  width: 30%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.settings__section-content{
+  width: 70%;
+  padding-left: 30px;
+}
+
+.settings__heading{
+  font-color: $black;
+  color: $black;
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.settings__heading-2{
+  padding: 0px;
+  margin: 0px;
+}
+
+.btn-settings{
+  margin-top: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
 }

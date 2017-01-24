@@ -148,5 +148,12 @@ $breakpoint-med: 1175px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 25px;
+    padding: 10px;
+
+    @include screen(small){
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-itmes: stretch;
+        justify-content: space-between;
+    }
 }

@@ -1,45 +1,38 @@
 {% extends "dashboard_base.html" %}
+{% load utils %}
 
 {% block dashboard_content %}
 <div class="dashboard__content-background dashboard__content-background--pink center-content--horizontal">
   <div class="dashboard__content-panel">
 
-    <div>
-      <h2>Unread</h2>
-      <table class="table">
+    <div class="notifications__panel">
+      <h1 class="notifications__heading">Notifications</h1>
+      <table class="table notifications__table">
         <thead>
           <tr>
-            <th>Subject</th>
-            <th>Date</th>
+            <th class="notifications__table-header">Subject</th>
+            <th class="notifications__table-header">Sender</th>
+            <th class="notifications__table-header">Date</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>Mark</th>
-            <td>10.11.17</td>
-          </tr>
+          {% for i in 1|range:10 %}
+          {% if i == 1 %}
+          <tr class="notifications__row notifications__row--new">
+            {% else %}
+            <tr class="notifications__row notifications__row--read">
+
+
+              {% endif %}
+              <td>Message {{i}}</td>
+              <td>Tag: Cat</th>
+              <td>10.11.17</td>
+            </tr>
+
+            {% endfor %}
         </tbody>
       </table>
     </div>
-
-    <div>
-      <h2>Archive</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Subject</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Mark</th>
-            <td>10.11.17</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
   </div>
 </div>
 
