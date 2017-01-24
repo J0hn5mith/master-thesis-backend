@@ -7,31 +7,33 @@
 
     <div class="notifications__panel">
       <h1 class="notifications__heading">Notifications</h1>
-      <table class="table notifications__table">
-        <thead>
-          <tr>
-            <th class="notifications__table-header">Subject</th>
-            <th class="notifications__table-header">Sender</th>
-            <th class="notifications__table-header">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for i in 1|range:10 %}
-          {% if i == 1 %}
-          <tr class="notifications__row notifications__row--new">
-            {% else %}
-            <tr class="notifications__row notifications__row--read">
-
-
-              {% endif %}
-              <td>Message {{i}}</td>
-              <td>Tag: Cat</th>
-              <td>10.11.17</td>
+      <div class="notifications__table-wrapper">
+        <table class="table notifications__table">
+          <thead>
+            <tr>
+              <th class="notifications__table-header">Subject</th>
+              <th class="notifications__table-header">Sender</th>
+              <th class="notifications__table-header">Date</th>
             </tr>
+          </thead>
+          <tbody>
+            {% for i in 1|range:20 %}
+            {% if i == 1 %}
+            <tr class="notifications__row notifications__row--new">
+              {% else %}
+              <tr class="notifications__row notifications__row--read">
 
-            {% endfor %}
-        </tbody>
-      </table>
+
+                {% endif %}
+                <td>Message {{i}}</td>
+                <td>Tag: Cat</th>
+                <td>10.11.17</td>
+              </tr>
+
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

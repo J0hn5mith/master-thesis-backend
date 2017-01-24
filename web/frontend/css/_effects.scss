@@ -61,6 +61,7 @@
 
 .hexagon-clip {
   clip-path: polygon(0 50%, 25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+  z-index: -0;
   >img{
     width: 100%;
     height: 100%;

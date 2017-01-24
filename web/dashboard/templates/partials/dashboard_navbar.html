@@ -28,7 +28,7 @@
     <img src="{% static "img/icons/menu.svg" %}" alt=""/>
   </div>
   <div class="dashboard__mobile-navbar--expanded">
-    <ul>
+    <ul class="dashboard__navbar-list">
       {% for item in dashboard_items %}
       <a class="dashboard__navbar-link" href="{% url item.view_name %}">
         {% if item.active %}
@@ -38,7 +38,7 @@
             {% endif %}
             <img class="dashboard__navbar-icon" src="{% static item.icon_monochrome %}" >
             <img class="dashboard__navbar-icon hover-apear" src="{% static item.icon %}" >
-            <div class="large-only dashboard__navbar-text">{{ item.label }}</div>
+            <div class="dashboard__navbar-text">{{ item.label }}</div>
           </li>
       </a>
       {% endfor %}

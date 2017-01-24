@@ -156,4 +156,10 @@ $breakpoint-med: 1175px;
         align-itmes: stretch;
         justify-content: space-between;
     }
+
+    @include screen(mobile){
+        flex-direction: row;
+        overflow-x: scroll;
+        padding: 0px;
+    };
 }
