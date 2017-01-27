@@ -11,3 +11,4 @@ dealer==2.0.5
 django-configurations==2.0
 django-registration-redux==1.4
 django-two-factor-auth==1.5.0
+django-widget-tweaks==1.4.1
