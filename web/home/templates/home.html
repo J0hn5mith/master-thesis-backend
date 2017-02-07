@@ -3,28 +3,31 @@
 {% load static %}
 
 {% block content %}
-<div class="section section--fullscreen section--purple center-content">
-  <div class="align-horizontal">
-    <object class="home__banner" data="{% static "img/icon/logo.svg"%}" type="image/svg+xml"></object>
-    <h1 class="home__banner-heading">Pharos</h1>
+
+<div class="section section--fullscreen section--blue center-content">
+  <div class="overlay-panel">
+    <div class="align-horizontal">
+      <h1 class="logo__heading logo__heading--large">Pharos</h1>
+      <object class="home__logo" data="{% static "img/icons/tower--new.svg"%}" type="image/svg+xml"></object>
+    </div>
+    <form class="home__login-form" action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      <!--Hack with id for quicker protyping-->
+      <input id="id_login_view-current_step" name="login_view-current_step" type="hidden" value="auth">
+      <div class="home__login-form-fields">
+        <div class="form-group home__form-group">
+          <input type="text" class="form-control form-control--shadow-inset" id="id_auth-username" placeholder="Username" name="auth-username">
+        </div>
+        <div class="form-group home__form-group">
+          <input type="password" class="form-control form-control--shadow-inset" id="id_auth-password" placeholder="Password" name="auth-password">
+        </div>
+      </div>
+      <div class="home__login-form-buttons">
+        <a class="home__login-form-register" href="{% url 'register' %}">Register</a>
+        <button type="submit" class="btn btn-success btn-lg">Login</button>
+      </div>
+    </form>
   </div>
-  <form class="home__login-form" action="{% url 'login' %}" method="post">
-  {% csrf_token %}
-    <!--Hack with id for quicker protyping-->
-    <input id="id_login_view-current_step" name="login_view-current_step" type="hidden" value="auth">
-    <div class="home__login-form-fields">
-      <div class="form-group">
-        <input type="text" class="form-control form-control--shadow" id="id_auth-username" placeholder="Username" name="auth-username">
-      </div>
-      <div class="form-group">
-        <input type="password" class="form-control form-control--shadow" id="id_auth-password" placeholder="Password" name="auth-password">
-      </div>
-    </div>
-    <div class="home__login-form-buttons">
-      <a class="home__login-form-register" href="{% url 'register' %}">Register</a>
-      <button type="submit" class="btn btn-success btn-lg">Login</button>
-    </div>
-  </form>
 </div>
 
 <div class="section">
@@ -33,7 +36,7 @@
       <img src="{% static "./img/map.png" %}"></img>
     </div>
   </div>
-  <div class="columns__1-1--reverse">
+  <div class="columns__1-1--reverse shadow--inset">
     <div class="home__text-block">
       <h2 class="font__inverted home__heading">Keep Track of your Things!</h2>
       <p class="font__inverted">{% lorem %}</p>

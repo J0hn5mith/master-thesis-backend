@@ -1,3 +1,4 @@
+
 {% load static %}
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -12,35 +13,22 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="{% url 'home' %}">
-        <object class="navbar__logo" data="{% static "img/icon/logo.svg"%}" type="image/svg+xml"></object>
+        <object class="navbar__logo" data="{% static "img/icons/tower--new.svg"%}" type="image/svg+xml"></object>
         <h1 class="navbar__logo-title">Pharos</h1>
       </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-right large-only" action="{% url 'login' %}" method="post">
+      {% include "partials/navbar_login.html" %}
 
-        {% csrf_token %}
-
-        <input id="id_login_view-current_step" name="login_view-current_step" type="hidden" value="auth">
-        <div class="form-group form-group--navbar">
-          <input type="text" class="form-control" id="id_auth-username" placeholder="Username" name="auth-username">
-          <input type="password" class="form-control" id="id_auth-password" placeholder="Password" name="auth-password">
-        </div>
-        <button type="Login" class="btn btn-success">Login</button>
-        <a  class="btn btn-info" href="{% url 'register' %}">Register</a>
-      </form>
-      <div class="navbar-right med-only">
-        <a type="Login" class="btn btn-success btn-navbar" href="{% url 'login' %}">Login</a>
-        <a  class="btn btn-info btn-navbar" href="{% url 'register' %}">Register</a>
-      </div>
       <ul class="nav navbar-nav navbar-right navbar__list">
         <li><a class="navbar__link" href="{% url 'technology' %}">Technology</a></li>
         <li><a class="navbar__link" href="{% url 'support' %}">Support</a></li>
         <li class="small-only"><a href="{% url 'login' %}">Login</a></li>
         <li class="small-only"><a href="{% url 'register' %}">Register</a></li>
       </ul>
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

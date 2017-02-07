@@ -1,3 +1,5 @@
+$heading-font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$link-font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 h1 {
   font-size: 80px;
   padding: 0px;
@@ -27,4 +29,26 @@ p {
 ul {
   padding: 10px;
   list-style-type: none;
+}
+
+.logo__heading{
+  font-family: "Brush Script MT", cursive;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+}
+
+.logo__heading--large{
+  font-size: 160px;
+
+  @include screen(med){
+    font-size: 135px;
+  }
+  @include screen(small){
+    font-size: 100px;
+  }
+  @include screen(mobile){
+    font-size: 70px;
+  }
 }

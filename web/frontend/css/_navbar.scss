@@ -40,16 +40,100 @@
   span{
     background-color: $white !important;
   }
+
+  &:hover{
+    background-color: $darken--light !important;
+  }
+}
+
+.navbar-collapse{
+  @include screen(small){
+    background-color: $darken--strong;
+  }
 }
 
 .navbar__logo-title{
-  font-size: 36px;
+  font-family: "Brush Script MT", cursive;
+  font-size: 42px;
 }
 
 .navbar__link{
-  font-height: 0px;
+  font-family: $link-font;
 }
 
 .navbar__list{
   padding-top: 0px;
+}
+
+.navbar__avatar-border{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50.0px;
+  width: 50.0px;
+  overflow: hidden;
+  clip-path: polygon(0 50%, 25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+  background: $white;
+}
+
+.navbar__user{
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  @include screen(small){
+    margin: 0px;
+    margin-top: 10px;
+  }
+}
+
+.navbar__user-font{
+
+  color: $white;
+  margin: 0px;
+  font-size: 16px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  margin-left: 5px;
+
+  @include screen(small){
+    font-size: 22px;
+  }
+
+}
+
+.navbar__avatar{
+  //display: inline;
+  height: 49px;
+  width: 47px;
+  overflow: hidden;
+  clip-path: polygon(0 50%, 25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+  z-index: -0;
+  border-width: 5px;
+  border-color: pink;
+  >img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.dropdown-toggle{
+  text-decoration: none !important;
+}
+
+.dropdown-menu{
+  border-radius: 0;
+  background-color: $darken--light;
+  margin: 0px;
+  border: none;
+  font-size: 16px;
+  font-family: $link-font;
+
+  a:hover{
+    background-color: $darken !important;
+  }
+}
+
+.dropdown-menu--icon{
+  width: 50px;
+  height: 20px;
 }

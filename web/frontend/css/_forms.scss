@@ -5,7 +5,11 @@
 }
 
 .form-control--shadow{
-  box-shadow: 2px 2px 5px $darken;
+  @include shadow();
+}
+
+.form-control--shadow-inset{
+  @include shadow--inset-small();
 }
 
 .form__buttons{
@@ -47,38 +51,32 @@
 }
 
 .form-panel{
-  background-color: $darken;
-  padding: 50px;
-  width: 500px;
 
-  padding-top: 25px;
-  padding-bottom: 25px;
-  @include screen(med){
-    padding: 50px;
-    padding-top: 75px;
-    padding-bottom: 75px;
-  }
+  //@include screen(med){
+    //padding: 50px;
+    //padding-top: 75px;
+    //padding-bottom: 75px;
+  //}
 
-  @include screen(small){
-    padding: 75px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-  }
+  //@include screen(small){
+    //padding: 75px;
+    //padding-top: 25px;
+    //padding-bottom: 25px;
+  //}
 
-  @include screen(mobile){
-    padding: 25px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    width: 300px;
-  }
-
-  box-shadow: 5px 5px 15px $darken-strong;
+  //@include screen(mobile){
+    //padding: 25px;
+    //padding-top: 25px;
+    //padding-bottom: 25px;
+    //width: 300px;
+  //}
 }
 
 .form-panel__heading{
   padding: 0px;
   margin-right:0px;
   padding-bottom: 30px;
+  font-family: $heading-font;
   font-size: 60px
 }
 

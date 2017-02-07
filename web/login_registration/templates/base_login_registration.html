@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="section section--fullscreen section--purple center-content">
+<div class="section section--fullscreen section--blue center-content">
   <div class="align-horizontal">
-    <div class="form-panel">
-      {% block focus_content %}{% endblock focus_content %}
+    <div class="overlay-panel">
+      <div class="form-panel">
+        <h1 class="form-panel__heading">Login</h1>
+        {% block focus_content %}{% endblock focus_content %}
+      </div>
     </div>
   </div>
 </div>

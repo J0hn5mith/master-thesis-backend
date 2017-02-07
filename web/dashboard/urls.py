@@ -1,25 +1,26 @@
 from django.views.generic import TemplateView
 from django.conf.urls import url
+from dashboard.views import DashboardView, TagsView, NotificationsView, SettingsView
 
 urlpatterns = [
         url(
             r'^$',
-            TemplateView.as_view(template_name='dashboard.html'),
+            DashboardView.as_view(),
             name='dashboard'
             ),
         url(
             r'tags$',
-            TemplateView.as_view(template_name='tags.html'),
+            TagsView.as_view(),
             name='tags'
             ),
         url(
             r'^notifications$',
-            TemplateView.as_view(template_name='notifications.html'),
+            NotificationsView.as_view(),
             name='notifications'
             ),
         url(
             r'^settings$',
-            TemplateView.as_view(template_name='settings.html'),
+            SettingsView.as_view(),
             name='settings'
             ),
         ]

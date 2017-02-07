@@ -68,6 +68,10 @@
   }
 }
 
-.shadow {
+.shadow{
   box-shadow: 1px 1px 25px $green;
+}
+
+.shadow--inset{
+  @include shadow--inset();
 }

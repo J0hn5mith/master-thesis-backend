@@ -26,9 +26,9 @@ urlpatterns = [
         url(r'^admin/', admin.site.urls),
         url(r'^', include('home.urls')),
         url(r'^dashboard/', include('dashboard.urls')),
-        url(r'^login$', LoginView.as_view(), name="login"),
+        url(r'^login$', LoginView.as_view(), name='login'),
 
 # Third party
         url(r'', include('two_factor.urls', 'two_factor')),
-        url(r'^reg/', include('registration.backends.default.urls')),
+        url(r'^register/', include('registration.backends.default.urls')),
         ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

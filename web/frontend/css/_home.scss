@@ -1,3 +1,18 @@
+.home__logo{
+  width: 150px;
+  margin-left: 50px;
+  @include screen(med){
+    width: 100px;
+  }
+  @include screen(small){
+    margin-left: 25px;
+    width: 100px;
+  }
+  @include screen(mobile){
+    width: 70px;
+  }
+}
+
 .home__banner{
   width: 200px;
 
@@ -21,13 +36,25 @@
 
 .home__login-form-fields{
   display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+
   .form-group{
-    padding: 10px;
-    width: 300px;
+    width: 48%!important;
+
+    //todo: WTF find better solution for That
+    @include screen(small){
+      width: 210% !important;
+    }
+
+    @include screen(mobile){
+      width: 210% !important;
+    }
   }
 
   @include screen(small){
     flex-direction: column;
+    width: 48%!important;
   }
 
 }
@@ -75,6 +102,7 @@
   overflow-y: hidden;
   height:40%;
   z-index:-1;
+  @include shadow--inset();
 }
 
 .home__section-background{
@@ -111,4 +139,38 @@
   @include screen(small){
     font-size: 28px;
   }
+}
+
+.overlay-panel{
+  background: $darken;
+  padding: 40px;
+  @include shadow();
+  width: 700px;
+  height: 400px;
+
+  @include screen(med){
+    padding: 50px;
+    //padding-top: 75px;
+    //padding-bottom: 75px;
+    width: 600px;
+  }
+
+  @include screen(small){
+    padding: 75px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 500px;
+  }
+
+  @include screen(mobile){
+    padding: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.home__form-group{
+  padding: 0px !important;
 }
