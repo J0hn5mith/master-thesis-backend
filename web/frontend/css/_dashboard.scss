@@ -515,15 +515,6 @@
   height: 100%;
 }
 
-.settings__avatar{
-  width: 160px;
-  height: 150px;
-
-  @include screen(mobile){
-    width: 120px;
-    height: 110px;
-  }
-}
 
 .settings__section{
   display: flex;
@@ -592,4 +583,17 @@
   margin-top: 100px;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.dashboard-navbar__container{
+  display: flex;
+  height: 100vh;
+}
+
+.dashboard-navbar__color-indicator{
+  display: static;
+  height: 100vh;
+  min-width: 5px;
+  @include gradientblue--ultra-light();
+  opacity: 1.00;
 }

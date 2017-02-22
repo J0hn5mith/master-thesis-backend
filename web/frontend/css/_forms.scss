@@ -4,6 +4,14 @@
   border-style: none !important;
 }
 
+.form-control--light{
+  border-width: 0 !important;
+}
+
+.form-group--min{
+  width: 300px;
+}
+
 .form-control--shadow{
   @include shadow();
 }
@@ -97,4 +105,8 @@
 
 .form-group--navbar{
   margin: 0px !important;
+}
+
+.form-group__double{
+  display: flex;
 }

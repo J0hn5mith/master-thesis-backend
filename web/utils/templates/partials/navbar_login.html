@@ -21,8 +21,12 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                                                            aria-expanded="false">
     <div class="navbar__user">
-      <div class="navbar__avatar-border">
-        <img class="navbar__avatar" src="http://lorempixel.com/500/500/cats" />
+      <div class="avatar__border">
+        {% if request.user.conf %}
+        <img class="avatar avatar--small" src="{{ request.user.conf.avatar.url }}" />
+        {% else %}
+            <img class="navbar__avatar" src="http://lorempixel.com/500/500/cats" />
+        {% endif %}
       </div>
       <p class="navbar__user-font">Hello {{ request.user }}</p>
       <span class="caret"></span>

@@ -1,0 +1,47 @@
+.avatar{
+  clip-path: polygon(0 50%, 25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+  overflow: hidden;
+  z-index: -0;
+
+  >img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.avatar--small{
+  //display: inline;
+  height: 49px;
+  width: 47px;
+}
+
+.avatar--large{
+  width: 160px;
+  height: 150px;
+
+  @include screen(mobile){
+    width: 120px;
+    height: 110px;
+  }
+}
+
+.avatar__border{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //height: 50.0px;
+  //width: 50.0px;
+  overflow: hidden;
+  clip-path: polygon(0 50%, 25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+  background: $white;
+}
+
+.avatar__border--blue{
+  background: $blue;
+}
+
+.avatar__border--large{
+
+  width: 169px;
+  height: 157px;
+}

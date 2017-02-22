@@ -1,70 +1,77 @@
 {% extends "dashboard_base.html" %}
 
 {% block dashboard_content %}
-<div class="dashboard__content-background dashboard__content-background--blue center-content--horizontal">
-  <div class="dashboard__content-panel">
+<div class="dashboard__content-panel">
 
-    <div class="settings__panel">
+  <div class="settings__panel">
+    <form>
       <div class="settings__section settings__section--first">
         <div class="settings__section-title settings__section-title--first">
-          <div class="settings__avatar hexagon-clip shadow">
-            <img src="http://lorempixel.com/500/500/cats" />
+          <div class="avatar__border avatar__border--blue avatar__border--large">
+            <img class="avatar avatar--large" src="{{ request.user.conf.avatar.url }}" />
           </div>
+          <form>
+            <input type="file" onchange="previewFile()"></input>
+          </form>
           <a class="btn btn-info btn-settings">Edit</a>
         </div>
         <div class="settings__section-content">
-          <h1 class="settings__heading">John Doe</h1>
-          <p>Drofstrasse 23</p>
-          <p>8000, Zürich</p>
-          <p>john-dow@example.com</p>
+          <div class="form-group__double">
+            <div class="form-group form-group--min">
+              <input type="text" class="form-conrol form-control--min form-control--light heading-1" value="{{ request.user.first_name }} "></input>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-conrol form-control--light heading-1" value="{{ request.user.last_name }}"></input>
+            </div>
+          </div>
+          <p>{{ request.user.email }}</p>
           <p>079 123 45 67</p>
           <p type="password">••••••••••</p>
         </div>
       </div>
+    </form>
 
-      <div class="settings__section">
-        <div class="settings__section-title">
-          <h2 class="settings__heading-2">Notification</h2>
-        </div>
-        <div class="settings__section-content">
-          <p>How would you like to be informed about alarms?</p>
-          <form action="settings_submit" method="get" accept-charset="utf-8">
-            <div class="form-group">
-              <input type="checkbox" name="email" value="true" id="email">
-              <label for="email">Email</label>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" name="pushNotification" value="" id="pushNotification">
-              <label for="pushNotification">Push Notification</label>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" name="sms" value="" id="sms">
-              <label for="SMS">SMS</label>
-            </div>
-          </form>
-        </div>
+    <div class="settings__section">
+      <div class="settings__section-title">
+        <h2 class="settings__heading-2">Notification</h2>
       </div>
-      <div>
-        <h2>Mobile Devices</h2>
-        <table class="table table-bordered">
-          <thead>
-            <th>Device Name</th>
-            <th>Last Login</th>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Name 1</th>
-              <td>1.2.17</td>
-            </tr>
-            <tr>
-              <th>Name 2</th>
-              <td>2.2.17</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="settings__section-content">
+        <p>How would you like to be informed about alarms?</p>
+        <form action="settings_submit" method="get" accept-charset="utf-8">
+          <div class="form-group">
+            <input type="checkbox" name="email" value="true" id="email">
+            <label for="email">Email</label>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="pushNotification" value="" id="pushNotification">
+            <label for="pushNotification">Push Notification</label>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="sms" value="" id="sms">
+            <label for="SMS">SMS</label>
+          </div>
+        </form>
       </div>
     </div>
-
+    <div>
+      <h2>Mobile Devices</h2>
+      <table class="table table-bordered">
+        <thead>
+          <th>Device Name</th>
+          <th>Last Login</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Name 1</th>
+            <td>1.2.17</td>
+          </tr>
+          <tr>
+            <th>Name 2</th>
+            <td>2.2.17</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 {% endblock dashboard_content %}

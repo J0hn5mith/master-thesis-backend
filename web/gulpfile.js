@@ -6,6 +6,7 @@ var webpack = require('webpack-stream');
 var useref = require('gulp-useref');
 var browserSync = require('browser-sync').create();
 var exec = require('child_process').exec;
+var child_process = require('child_process');
 
 var uglify = require('gulp-uglify');
 var usemin = require('gulp-usemin');
@@ -13,12 +14,13 @@ var minifyCss = require('gulp-minify-css');
 var rimraf = require('gulp-rimraf');
 var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
+//var notify = require("gulp-notify");
 
 var input_css = './frontend/css/**/*.scss';
 var output_css = './static/css';
 
-var input_js = './frontend/js/main.js';
-var input_folder_js = './frontend/js/*';
+var input_js = './frontend/js/src/main.js';
+var input_folder_js = './frontend/js/src/*';
 var output_js = './static/js/';
 
 var input_html = '**/templates/**/*.html';
@@ -29,11 +31,10 @@ var fonts_input = './node_modules/bootstrap/fonts/*'
 var fonts_output = './static/fonts/'
 
 
+
 function swallowError(error) {
-
-    console.log(error.toString())
-
-    this.emit('end')
+    console.log(error.toString());
+    this.emit('end');
 }
 
 gulp.task('sass', function() {
@@ -83,16 +84,14 @@ gulp.task('libs-clean', function() {
 gulp.task('webpack', function() {
     return gulp.src(input_js)
         .pipe(webpack( require('./webpack.config.js')))
-        .pipe(webpack({
-            output: {
-                filename: "main.js"
-            }
-        }))
+        //.pipe(webpack({
+            //output: {
+                //filename: "main.js"
+            //}
+        //}))
     //.on('error', swallowError)
         .pipe(gulp.dest(output_js))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+        .pipe(browserSync.reload({ stream: true }))
 });
 
 gulp.task('watch', ['browserSync'], function() {
@@ -114,16 +113,26 @@ gulp.task('watch', ['browserSync'], function() {
         });
 });
 
-gulp.task('browserSync', ['runserver'], function() {
+//gulp.task('browserSync', ['runserver'], function() {
+gulp.task('browserSync', [], function() {
     return browserSync.init({
-        notify: false,
+        notify: true,
         port: 8000,
         proxy: 'localhost:8000'
     })
 });
 
-gulp.task('runserver', function() {
-    var proc = exec('python manage.py runserver');
+gulp.task('runserver', function(cb) {
+    var cons = console;
+    ls = child_process.exec('./manage.py runserver -v 3 --no-color', function (error, stdout, stderr) {
+        if (error) {
+            console.log(error.stack);
+            console.log('Error code: '+error.code);
+            console.log('Signal received: '+error.signal);
+        }
+        console.log('Child Process STDOUT: '+stdout);
+        console.log('Child Process STDERR: '+stderr);
+    });
 });
 
 gulp.task('clean',['libs-clean'], function() {
@@ -131,3 +140,4 @@ gulp.task('clean',['libs-clean'], function() {
     return gulp.src(generated)
         .pipe(rimraf());
 });
+
