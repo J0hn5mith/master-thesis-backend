@@ -16,14 +16,17 @@
 
 $gray: #676767;
 $grey: #676767;
-$darkgrey: #4A4A4A;
+$darkgrey: #4A4A4A; // TODO: Remove
 $grey--dark: #4A4A4A;
-$lightgrey: #b4b4b4;
+$lightgrey: #b4b4b4; // TODO: Remove
+$grey--light: #b4b4b4;
 
 $white: white;
 
 $blue: #1380D5;
-$lightblue: #85D0ED;
+$lightblue: #85D0ED; // TODO: Remove
+$blue--light: #85D0ED;
+$blue--ultra-light: #C8E5F0;
 $darkblue: #006FC6;
 
 @mixin gradientblue() {
@@ -98,4 +101,5 @@ $darken--strong: rgba(0,0,0,0.75);
 }
 
 $font-color: $grey--dark;
+$font-color--light: $grey--light;
 $font-color--inverted:white;

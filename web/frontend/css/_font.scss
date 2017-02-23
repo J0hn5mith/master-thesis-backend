@@ -1,5 +1,13 @@
-$heading-font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-$link-font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$font:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$font--light:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$heading-font: $font--light;
+$link-font:  $font--light;
+
+$font-weight--light: 100;
+
+$font-size--large: 24px;
+$font-size: 20px;
+$font-size--small: 16px;
 
 h1 {
   //font-size: 80px;
@@ -24,10 +32,6 @@ h3 {
   padding:0px;
   margin:0px;
   margin-bottom: 10px;
-}
-
-p {
-  font-size: 18px;
 }
 
 .font__inverted{

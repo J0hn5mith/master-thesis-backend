@@ -1,0 +1,47 @@
+{% load static utils %}
+
+<div class="table__actions">
+  <input type="text" class="form-control table__filter" placeholder="Search"></input>
+</div>
+
+<table class="table table-striped">
+  <thead class="table__head">
+    <th class="table__header"></th>
+    <th class="table__header">Name</th>
+    <th class="table__header">Status</th>
+    <th class="table__header">Last Update</th>
+    <th class="table__header">Charge</th>
+    <th class="table__header">Toggle</th>
+  </thead>
+  {% for tag in request.user.tags.all %}
+  <tr class="table__row">
+    <td class="table__cell">
+      <img class="table__icon" src="{% static "img/icons/tag.svg" %}"></img>
+    </td>
+    <td class="table__cell">
+      <p class="table__cell-text">{{ tag.name }}</p>
+    </td>
+    <td class="table__cell">
+      <p class="table__cell-text">{{ tag.get_status }}</p>
+    </td>
+    <td class="table__cell">
+      <p class="table__cell-text table__cell-text--small">
+      {{ tag.last_update |default:"Unknown" }}
+      </p>
+    </td>
+    <td class="table__cell">
+      <p class="table__cell-text">
+      {{ tag.charge_status |default:"Unknown" }}
+      </p>
+    </td>
+    <td class="table__cell">
+      {% if tag.active %}
+      <a class="btn btn-success">On</a>
+      {% else %}
+      <p type="button" class="btn btn-outline btn-outline-danger">Off</p>
+      {% endif %}
+    </td>
+
+  </tr>
+  {% endfor %}
+</table>

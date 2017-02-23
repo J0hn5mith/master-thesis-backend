@@ -1,7 +1,9 @@
 .form-control{
-  border-radius: 0px !important;
-  border-color: none !important;
-  border-style: none !important;
+  font-family: $font;
+  font-size: $font-size--small;
+  border-radius: 0px;
+  border-color: none;
+  border-style: none;
 }
 
 .form-control--light{

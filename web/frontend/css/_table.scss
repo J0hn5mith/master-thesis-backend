@@ -1,0 +1,50 @@
+.table__actions{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table__filter{
+  margin: 0px;
+  width: 200px;
+  border-style: solid!important;
+  border-width: 0.5px!important;
+  border-color: $grey--light;
+  margin-bottom: 10px;
+
+}
+
+.table__header{
+  color: $font-color--light;
+  font-family: $font--light;
+  font-weight: $font-weight--light;
+  font-size: $font-size;
+  border-width: 0px!important;
+}
+
+.table__row{
+
+}
+
+.table__cell{
+  display: table-cell;
+  height: 100%;
+  border-width: 0px!important;
+}
+
+.table__cell-text{
+  font-family: $font--light;
+  font-size: $font-size;
+
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.table__cell-text--small{
+  font-size: $font-size--small;
+}
+
+.table__icon{
+  width: 50px;
+  height:50px;
+}
