@@ -1,40 +1,17 @@
-module = {
-  loaders: [
-    {
-      test: /\.js$/,
-      exclude: /(node_modules|bower_components)/,
-      loader: 'babel-loader',
-      babelrc: false,
-      query: {
-        presets: ['es2015']
+var path = require('path');
+module.exports = {
+  entry: "./frontend/js/src/main.js",
+  output: {
+    path: __dirname,
+    //filename: "./static/js/bundle.js"
+    filename: "./bundle.js"
+  },
+  module: {
+    loaders: [
+      {
+        test: path.join(__dirname, 'frontend/js/src'),
+        loader: 'babel-loader',
       }
-    }
-  ],
-  exports: {
-    context: __dirname + "/frontend/js/src/",
-    entry: "./main.js",
-    output: {
-      path: __dirname + "/frontend/js/",
-      filename: "./bundle.js"
-    }
+    ]
   }
-}
-
-//module.loaders = [
-//{
-//test: /\.js$/,
-//exclude: /(node_modules|bower_components)/,
-//loader: 'babel-loader',
-//query: {
-//presets: ['es2015']
-//}
-//}
-//]
-//module.exports = {
-//context: __dirname + "/frontend/js/src/",
-//entry: "./main.js",
-//output: {
-//path: __dirname + "/frontend/js/",
-//filename: "./bundle.js"
-//}
-//}
+};

@@ -2,7 +2,8 @@
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var webpack = require('webpack-stream');
+var webpack = require('webpack');
+var gulpWebpack = require('webpack-stream');
 var useref = require('gulp-useref');
 var browserSync = require('browser-sync').create();
 var exec = require('child_process').exec;
@@ -33,111 +34,104 @@ var fonts_output = './static/fonts/'
 
 
 function swallowError(error) {
-    console.log(error.toString());
-    this.emit('end');
+  console.log(error.toString());
+  this.emit('end');
 }
 
 gulp.task('sass', function() {
-    return gulp
-        .src(input_css)
-        .pipe(sass())
-        .on('error', swallowError)
-        .pipe(gulp.dest(output_css))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
-});
-
-gulp.task('html', function() {
-    gulp.src(input_html).pipe(browserSync.reload({
-        stream: true
+  return gulp
+    .src(input_css)
+    .pipe(sass())
+    .on('error', swallowError)
+    .pipe(gulp.dest(output_css))
+    .pipe(browserSync.reload({
+      stream: true
     }))
 });
 
+gulp.task('html', function() {
+  gulp.src(input_html).pipe(browserSync.reload({
+    stream: true
+  }))
+});
+
 gulp.task('libs',  function(callback){
-    runSequence('libs-compile',  'coppy-fonts' ,'libs-clean', callback);
+  runSequence('libs-compile',  'coppy-fonts' ,'libs-clean', callback);
 });
 
 gulp.task('libs-compile', function() {
-    return gulp.src('templates/partials/*.html')
-        .pipe(usemin({
-            assetsDir: './',
-            js: [uglify(), 'concat'],
-            css: [minifyCss(), 'concat'],
-        }))
-        .pipe(gulp.dest(libs_output))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+  return gulp.src('templates/partials/*.html')
+    .pipe(usemin({
+      assetsDir: './',
+      js: [uglify(), 'concat'],
+      css: [minifyCss(), 'concat'],
+    }))
+    .pipe(gulp.dest(libs_output))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
 gulp.task('coppy-fonts', function() {
-    return gulp.src(fonts_input).pipe(gulp.dest(fonts_output));
+  return gulp.src(fonts_input).pipe(gulp.dest(fonts_output));
 });
 
 gulp.task('libs-clean', function() {
-    var generated = ['./static/*.html'];
-    return gulp.src(generated)
-        .pipe(clean());
+  var generated = ['./static/*.html'];
+  return gulp.src(generated)
+    .pipe(clean());
 });
 
 gulp.task('webpack', function() {
-    return gulp.src(input_js)
-        .pipe(webpack( require('./webpack.config.js')))
-        //.pipe(webpack({
-            //output: {
-                //filename: "main.js"
-            //}
-        //}))
-    //.on('error', swallowError)
-        .pipe(gulp.dest(output_js))
-        .pipe(browserSync.reload({ stream: true }))
+  return gulp.src(input_js)
+    .pipe(gulpWebpack(require('./webpack.config.js'), webpack))
+    .pipe(gulp.dest(output_js))
+    .pipe(browserSync.reload({ stream: true }))
 });
 
 gulp.task('watch', ['browserSync'], function() {
-    gulp.watch(input_folder_js, ['webpack'])
-        .on('change', function(event) {
-            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-        });
-    gulp.watch(input_css, ['sass'])
-        .on('change', function(event) {
-            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-        });
-    gulp.watch(input_html, ['html'])
-        .on('change', function(event) {
-            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-        });
-    gulp.watch(input_libs, ['libs'])
-        .on('change', function(event) {
-            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-        });
-});
-
-//gulp.task('browserSync', ['runserver'], function() {
-gulp.task('browserSync', [], function() {
-    return browserSync.init({
-        notify: true,
-        port: 8000,
-        proxy: 'localhost:8000'
-    })
-});
-
-gulp.task('runserver', function(cb) {
-    var cons = console;
-    ls = child_process.exec('./manage.py runserver -v 3 --no-color', function (error, stdout, stderr) {
-        if (error) {
-            console.log(error.stack);
-            console.log('Error code: '+error.code);
-            console.log('Signal received: '+error.signal);
-        }
-        console.log('Child Process STDOUT: '+stdout);
-        console.log('Child Process STDERR: '+stderr);
+  gulp.watch(input_folder_js, ['webpack'])
+    .on('change', function(event) {
+      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    });
+  gulp.watch(input_css, ['sass'])
+    .on('change', function(event) {
+      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    });
+  gulp.watch(input_html, ['html'])
+    .on('change', function(event) {
+      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    });
+  gulp.watch(input_libs, ['libs'])
+    .on('change', function(event) {
+      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 });
 
+gulp.task('browserSync', [], function() {
+  return browserSync.init({
+    notify: true,
+    port: 8000,
+    proxy: 'localhost:8000'
+  })
+});
+
+gulp.task('runserver', function(cb) {
+  var cons = console;
+  ls = child_process.exec('./manage.py runserver -v 3 --no-color', function (error, stdout, stderr) {
+    if (error) {
+      console.log(error.stack);
+      console.log('Error code: '+error.code);
+      console.log('Signal received: '+error.signal);
+    }
+    console.log('Child Process STDOUT: '+stdout);
+    console.log('Child Process STDERR: '+stderr);
+  });
+});
+
 gulp.task('clean',['libs-clean'], function() {
-    var generated = ['static/js/libs.js', 'static/css/libs.css'];
-    return gulp.src(generated)
-        .pipe(rimraf());
+  var generated = ['static/js/libs.js', 'static/css/libs.css'];
+  return gulp.src(generated)
+    .pipe(rimraf());
 });
 
