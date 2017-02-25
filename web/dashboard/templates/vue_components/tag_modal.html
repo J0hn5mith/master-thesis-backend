@@ -1,0 +1,20 @@
+{% extends "vue_components/vue_component_base.html" %}
+{% load utils %}
+
+{% block id %}tag-modal{% endblock id %}
+
+{% block content %}
+<div class="modal-mask">
+  <transition name="modal">
+  <div class="modal-mask">
+    <div class="modal-container">
+      <input class="tag-detail__name" v-model="tag.name"></input>
+      <button class="btn btn-success" v-if="edited" @click="save">Save</button>
+      <tag-toggle v-bind:tag="tag"></tag-toggle>
+      <p>{% vue_variable "tag.uid" %}</p>
+    <tag-charge-bar v-bind:tag="tag"></tag-charge-bar>
+    </div>
+  </div>
+  </transition>
+</div>
+{% endblock content %}

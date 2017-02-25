@@ -1,9 +1,12 @@
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import status
 
 from tags.serializers import TagSerializer
 from tags.models import Tag
+
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
@@ -11,3 +14,17 @@ class TagViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return self.request.user.tags.all().order_by('pk')
+
+    def update(self, request, pk, format=None):
+        """
+        Custom implementation to deal with image.
+        """
+        tag = self.get_object()
+        serializer = TagSerializer(tag, data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
+        except:
+            print(serializer.errors);
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

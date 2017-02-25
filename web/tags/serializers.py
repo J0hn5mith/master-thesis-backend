@@ -10,5 +10,6 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         model = Tag
         fields = (
             'pk', 'name', 'charge_status', 'get_status', 'last_update',
-            'active', 'avatar',
+            'active', 'avatar', 'uid',
         )
+        read_only_fields = ('avatar', 'uid', 'last_update', 'charge_status' )

@@ -1,4 +1,10 @@
 {% load static utils %}
+
+{% include "vue_components/tag_list_item.html" %}
+{% include "vue_components/tag_modal.html" %}
+{% include "vue_components/tag_toggle.html" %}
+{% include "vue_components/tag_charge_bar.html" %}
+
 <div>
   <div class="table__actions">
     <input type="text" class="form-control table__filter" placeholder="Search"></input>
@@ -20,6 +26,4 @@
       <tag-list-item v-for="tag in tags" v-bind:tag="tag"></tag-list-item>
     </div>
   </table>
-
-  {% block extra-js %}
-  {% endblock %}
+</div>
