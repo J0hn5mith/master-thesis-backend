@@ -85,6 +85,7 @@ gulp.task('libs-clean', function() {
 gulp.task('webpack', function() {
   return gulp.src(input_js)
     .pipe(gulpWebpack(require('./webpack.config.js'), webpack))
+    .on('error', swallowError)
     .pipe(gulp.dest(output_js))
     .pipe(browserSync.reload({ stream: true }))
 });

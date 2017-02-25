@@ -1,3 +1,7 @@
+.table {
+  display: table!important;
+}
+
 .table__actions{
   display: flex;
   justify-content: flex-end;
@@ -13,6 +17,12 @@
 
 }
 
+.table__head{
+}
+
+.table__body{
+}
+
 .table__header{
   color: $font-color--light;
   font-family: $font--light;
@@ -22,13 +32,16 @@
 }
 
 .table__row{
-
+  padding-top: 30px!important;
 }
 
 .table__cell{
   display: table-cell;
   height: 100%;
   border-width: 0px!important;
+  &:not(:first-child) {
+    padding-top: 30px!important;
+  }
 }
 
 .table__cell-text{
@@ -47,4 +60,8 @@
 .table__icon{
   width: 50px;
   height:50px;
+}
+
+.table__icon--hexagon{
+  @include hexagon-clip();
 }

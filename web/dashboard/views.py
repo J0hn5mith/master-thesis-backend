@@ -1,6 +1,8 @@
 from braces.views import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
+import json
+
 
 class DashboardBaseMixin(LoginRequiredMixin):
     login_url = reverse_lazy('login')
@@ -15,8 +17,8 @@ class TagsView(DashboardBaseMixin, TemplateView):
 
 
 class NotificationsView(DashboardBaseMixin, TemplateView):
-    template_name='notifications.html'
+    template_name = 'notifications.html'
 
 
 class SettingsView(DashboardBaseMixin, TemplateView):
-    template_name='settings.html'
+    template_name = 'settings.html'

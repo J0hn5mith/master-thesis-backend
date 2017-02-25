@@ -12,8 +12,6 @@
     <!--CSS-->
     {% include "partials/css.html" %}
 
-    <!--JS-->
-    {% include "partials/js.html" %}
 
     {% block extra-css %}{% endblock %}
   </head>
@@ -33,4 +31,9 @@
     </div>
     {% block extra-js %}{% endblock %}
   </body>
+    <!--JS-->
+    {% include "partials/js.html" %}
+    <script type="text/javascript" charset="utf-8">
+        var csrfToken = "{{ request.COOKIES.csrftoken }}"; //TODO: Security risk
+    </script>
 </html>

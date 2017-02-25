@@ -10,3 +10,12 @@ DEDENT_CLOSING_BRACKETS = true
 https://www.python.org/dev/peps/pep-0008/#indentation
 https://github.com/google/yapf
 
+# Webpack and Vue
+https://pagekit.com/docs/developer/vuejs-and-webpack
+
+
+# JS Libraries
+* axios -> Dealing with clientside AJAX
+
+# JS Libraries
+* Django REST Framework -> http://www.django-rest-framework.org/api-guide/routers/

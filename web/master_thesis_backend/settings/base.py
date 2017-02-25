@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = [
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'two_factor',
+    'rest_framework',
 ]
 
 LOCAL_APPS = [
@@ -254,3 +255,14 @@ LOGIN_URL = 'two_factor:login'
 TWO_FACTOR_SMS_GATEWAY = 'two_factor.gateways.fake.Fake'
 TWO_FACTOR_CALL_GATEWAY = 'two_factor.gateways.fake.Fake'
 LOGIN_REDIRECT_URL = 'http://localhost:8000/dashboard'
+
+# Django REST framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':
+    ('rest_framework.authentication.SessionAuthentication', ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  #TODO: Change that!!
+    ],
+    'PAGE_SIZE':
+    20
+}

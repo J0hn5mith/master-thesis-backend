@@ -43,8 +43,14 @@ class Tag(models.Model):
     # Null values mean, that the charge status is unknown
     charge_status = models.DecimalField(
         null=True,
-        max_digits=3,
+        max_digits=6,
         decimal_places=3,
+        blank=True,
+    )
+
+    avatar = models.ImageField(
+        verbose_name=u"Avatar",
+        null=True,
         blank=True,
     )
 
@@ -52,10 +58,13 @@ class Tag(models.Model):
         return 0
 
     def user_with_avatar(self):
-        return format_html(
-            '<a href="{url}"><img src="{0}" width="{size}" height="{size} title="{1}"></img></a>',
-            self.user.conf.avatar.url,
-            self.user,
-            size=25,
-            url=self.user.conf.get_admin_url(),
-        )
+        if self.user:
+            return format_html(
+                '<a href="{url}"><img src="{0}" width="{size}" height="{size} title="{1}"></img></a>',
+                self.user.conf.avatar.url,
+                self.user,
+                size=25,
+                url=self.user.conf.get_admin_url(),
+            )
+        else:
+            return format_html('None')

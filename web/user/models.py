@@ -21,7 +21,6 @@ class UserConfiguration(models.Model):
     @classmethod
     def create(cls):
         user_config = cls()
-        print("Create")
         return user_config
 
     def save(self, *args, **kwargs):

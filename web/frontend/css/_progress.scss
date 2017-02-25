@@ -1,0 +1,27 @@
+.progress{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    box-shadow: unset;
+}
+
+.progress--red{
+    background-color: $red;
+}
+
+.progress-bar{
+    box-shadow: unset;
+    height: 2.5px;
+}
+
+.progress-bar-info{
+    background-color: $blue;
+}
+
+.progress-bar-danger{
+    background-color: $red;
+}
+
+.progress-bar-disabled{
+    background-color: $grey;
+}
