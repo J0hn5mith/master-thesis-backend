@@ -2,12 +2,13 @@ web:
   restart: always
   build: ./web
   expose:
-    - "8000"
+  - "8000"
   links:
-    - postgres:postgres
+  #- postgres:postgres
+  - postgis:postgis
   volumes:
-    - /usr/src/app
-    - /usr/src/app/static
+  - /usr/src/app
+  - /usr/src/app/static
   env_file: .env
   environment:
     DEBUG: 'true'
@@ -17,18 +18,31 @@ nginx:
   restart: always
   build: ./nginx/
   ports:
-    - "80:80"
+  - "80:80"
   volumes:
-    - pgdata:/var/lib/postgresql/data/
+  - pgdata:/var/lib/postgresql/data/
+  - pgisdata:/var/lib/postgis/data/
   volumes_from:
-    - web
+  - web
   links:
-    - web:web
+  - web:web
 
-postgres:
+#postgres:
+  #restart: always
+  #image: postgres:latest
+  #ports:
+  #- "5432:5432"
+  #volumes:
+  #- pgdata:/var/lib/postgresql/data
+
+postgis:
   restart: always
-  image: postgres:latest
+  image: kartoza/postgis:latest
   ports:
-    - "5432:5432"
+  - "5432:5432"
+  #environment:
+    #POSTGRES_USER: 'postgres'
+    #POSTGRES_PASS: 'postgres'
+    #POSTGRES_DBNAME: 'postgres'
   volumes:
-      - pgdata:/var/lib/postgresql/data
+  - pgisdata:/var/lib/postgis/data/

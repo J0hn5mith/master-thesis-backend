@@ -26,6 +26,7 @@ urlpatterns = [
         url(r'^admin/', admin.site.urls),
         url(r'^', include('home.urls')),
         url(r'^tags/', include('tags.urls'), name='tags'),
+        url(r'^sensor-data/', include('sensor_data.urls'), name='tags'),
         url(r'^dashboard/', include('dashboard.urls')),
         url(r'^login$', LoginView.as_view(), name='login'),
 

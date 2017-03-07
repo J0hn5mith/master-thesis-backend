@@ -1,4 +1,3 @@
-from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -13,7 +12,9 @@ class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
 
     def get_queryset(self):
-        return self.request.user.tags.all().order_by('pk')
+        if hasattr(self.request.user, 'tags'):
+            return self.request.user.tags.all().order_by('pk')
+        return []
 
     def update(self, request, pk, format=None):
         """

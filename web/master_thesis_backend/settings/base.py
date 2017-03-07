@@ -33,6 +33,7 @@ DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
+    'django.contrib.gis',
 ]
 
 THIRD_PARTY_APPS = [
@@ -45,6 +46,7 @@ THIRD_PARTY_APPS = [
     'django_otp.plugins.otp_totp',
     'two_factor',
     'rest_framework',
+    'rest_framework_gis', # Has to be after rest_framework
 ]
 
 LOCAL_APPS = [
@@ -53,6 +55,7 @@ LOCAL_APPS = [
     'dashboard',
     'user',
     'tags',
+    'sensor_data',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -103,14 +106,22 @@ WSGI_APPLICATION = 'master_thesis_backend.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    # 'NAME': os.environ['DB_NAME'],
+    # 'USER': os.environ['DB_USER'],
+    # 'PASSWORD': os.environ['DB_PASS'],
+    # 'HOST': os.environ['DB_SERVICE'],
+    # 'PORT': os.environ['DB_PORT']
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': os.environ['DB_NAME'],
         'USER': os.environ['DB_USER'],
         'PASSWORD': os.environ['DB_PASS'],
         'HOST': os.environ['DB_SERVICE'],
         'PORT': os.environ['DB_PORT']
-    }
+    },
 }
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.

@@ -1,0 +1,6 @@
+.map{
+  background: lightblue;
+  height: 600px!important;
+  overflow: hidden!important;
+  @include shadow();
+}

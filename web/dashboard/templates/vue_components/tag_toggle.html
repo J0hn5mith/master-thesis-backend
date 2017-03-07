@@ -5,7 +5,8 @@
 
 {% block content %}
 <div>
-  <a v-if="tag.active" class="btn btn-success" v-on:click="toggle">On</a>
-  <a v-else type="button" class="btn btn-outline btn-outline-danger" v-on:click="toggle">Off</a>
+  <a v-if="tag.active" class="btn btn-success" v-on:click.stop="toggle">On</a>
+
+  <a v-else type="button" class="btn btn-outline btn-outline-danger" v-on:click.stop="toggle">Off</a>
 </div>
 {% endblock content %}
