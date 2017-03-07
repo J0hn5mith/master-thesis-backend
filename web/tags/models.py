@@ -4,6 +4,10 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.db import models
 from django.utils.html import format_html
 from django.utils.translation import ugettext as _
+import random
+from sensor_data.models import PositionMeasurement
+from sensor_data.serializers import PositionMeasurementSerializer
+from colorful.fields import RGBColorField
 
 
 class Tag(models.Model):
@@ -54,8 +58,17 @@ class Tag(models.Model):
         blank=True,
     )
 
+    color = RGBColorField(default="#{:06x}".format(random.randint(0, 0xFFFFFF)))
+
     def get_status(self):
         return 0
+
+    def current_position(self):
+        sensor_data = PositionMeasurement.objects.filter(
+            uid=self.uid
+        ).order_by('time_stamp').first()
+
+        return sensor_data
 
     def user_with_avatar(self):
         if self.user:

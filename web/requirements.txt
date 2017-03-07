@@ -16,3 +16,4 @@ django-braces==1.11.0
 Pillow==4.0.0
 djangorestframework==3.5.4
 djangorestframework-gis==0.11
+django-colorful==1.2

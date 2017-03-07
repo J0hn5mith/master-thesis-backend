@@ -3,13 +3,9 @@
 
 
 {% block dashboard_content %}
-<div class="map" id="map">
-  <v-map :zoom=12 :center="[47.413220, 8.519482]">
-    <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" @click="sayHello"></v-tilelayer>
-    <v-circle :lat-lng="circleCenter" :radius="circleRadius" v-on:l-click="sayHello"></v-circle>
-    <!--<v-marker :draggable="true" :lat-lng="[47.413220, 8.519482]" v-on:drag="sayHello"></v-marker>-->
-    <v-marker :draggable="true" :lat-lng="circleCenter" v-on:l-click="sayHello" v-on:l-drag="sayHello">></v-marker>
-  </v-map>
+<div id="vue">
+  {% include "vue_components/tag_overview_map.html" %}
+  <v-tag-overview-map></v-tag-overview-map>
 </div>
 
 <div class="dashboard__element">

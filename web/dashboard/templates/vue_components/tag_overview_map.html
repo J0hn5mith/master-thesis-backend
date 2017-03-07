@@ -1,0 +1,18 @@
+{% extends "vue_components/vue_component_base.html" %}
+{% load utils %}
+
+{% block id %}tag-overview-map{% endblock id %}
+
+{% block content %}
+<div class="map" id="map">
+  <v-map :zoom=12 :center="[47.413220, 8.519482]" :tags="tags">
+    <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" @click="sayHello"></v-tilelayer>
+    <!--<div v-for="tag_i in tags"></div>-->
+    <v-circle v-for="tagi in tags" v-if="tagi.current_position" :lat-lng="tagi.current_position.geometry.coordinates"
+      :radius="circleRadius" v-on:l-click="sayHello" :color="tagi.color"></v-circle>
+    <!--<v-marker :draggable="true" :lat-lng="[47.413220, 8.519482]" v-on:drag="sayHello"></v-marker>-->
+    <!--<v-marker :draggable="true" :lat-lng="circleCenter" v-on:l-click="sayHello" v-on:l-drag="sayHello"></v-marker>-->
+  </v-map>
+</div>
+{% endblock content %}
+

@@ -12,7 +12,6 @@ Vue.component('tag-toggle', {
   methods: {
     toggle: function (event) {
       this.tag.active = !this.tag.active;
-      console.log(this.tag);
       axios.put('/tags/rest/tags/' + this.tag.pk + '/', this.tag, {headers: {"X-CSRFToken": csrfToken}})
         .then(function (response) {
         })
