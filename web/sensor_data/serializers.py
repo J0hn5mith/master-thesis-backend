@@ -1,13 +1,11 @@
 from rest_framework import serializers
-from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from sensor_data.models import PositionMeasurement
 
 
-class PositionMeasurementSerializer(GeoFeatureModelSerializer):
+class PositionMeasurementSerializer(serializers.HyperlinkedModelSerializer):
     lookup_fieled = 'pk'
 
     class Meta:
         model = PositionMeasurement
-        geo_field = 'position'
-        fields = ('uid', 'time_stamp', 'position')
+        fields = ('uid', 'time_stamp', 'position', 'coordinates' )
         read_only_fields = ('uid', 'time_stamp', 'position')

@@ -30,6 +30,8 @@ var input_libs = './templates/partials/*.html';
 var libs_output = './static/';
 var fonts_input = './node_modules/bootstrap/fonts/*'
 var fonts_output = './static/fonts/'
+var img_input = ['./node_modules/leaflet/dist/images/*',]
+var img_output = './static/img/'
 
 
 
@@ -56,7 +58,7 @@ gulp.task('html', function() {
 });
 
 gulp.task('libs',  function(callback){
-  runSequence('libs-compile',  'coppy-fonts' ,'libs-clean', callback);
+  runSequence('libs-compile',  'copy-fonts', 'copy-img', 'libs-clean', callback);
 });
 
 gulp.task('libs-compile', function() {
@@ -72,8 +74,12 @@ gulp.task('libs-compile', function() {
     }));
 });
 
-gulp.task('coppy-fonts', function() {
+gulp.task('copy-fonts', function() {
   return gulp.src(fonts_input).pipe(gulp.dest(fonts_output));
+});
+
+gulp.task('copy-img', function() {
+  return gulp.src(img_input).pipe(gulp.dest(img_output));
 });
 
 gulp.task('libs-clean', function() {

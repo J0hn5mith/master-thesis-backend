@@ -4,8 +4,11 @@
 
 {% block dashboard_content %}
 <div id="vue">
-  {% include "vue_components/tag_overview_map.html" %}
-  <v-tag-overview-map></v-tag-overview-map>
+{% include "vue_components/tag_overview_map.html" %}
+{% include "vue_components/tag_detail_map.html" %}
+{% include "vue_components/tag_marker.html" %}
+  <!--<v-tag-overview-map></v-tag-overview-map>-->
+  <v-tag-detail-map></v-tag-detail-map>
 </div>
 
 <div class="dashboard__element">

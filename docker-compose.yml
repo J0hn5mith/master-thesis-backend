@@ -27,22 +27,10 @@ nginx:
   links:
   - web:web
 
-#postgres:
-  #restart: always
-  #image: postgres:latest
-  #ports:
-  #- "5432:5432"
-  #volumes:
-  #- pgdata:/var/lib/postgresql/data
-
 postgis:
   restart: always
   image: kartoza/postgis:latest
   ports:
   - "5432:5432"
-  #environment:
-    #POSTGRES_USER: 'postgres'
-    #POSTGRES_PASS: 'postgres'
-    #POSTGRES_DBNAME: 'postgres'
   volumes:
   - pgisdata:/var/lib/postgis/data/
