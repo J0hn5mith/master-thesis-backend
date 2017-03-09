@@ -46,7 +46,7 @@ THIRD_PARTY_APPS = [
     'django_otp.plugins.otp_totp',
     'two_factor',
     'rest_framework',
-    'rest_framework_gis', # Has to be after rest_framework
+    'rest_framework_gis',  # Has to be after rest_framework
 ]
 
 LOCAL_APPS = [
@@ -274,6 +274,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',  #TODO: Change that!!
     ],
+    'DEFAULT_FILTER_BACKENDS':
+    ('django_filters.rest_framework.DjangoFilterBackend', ),
     'PAGE_SIZE':
-    20
+    200
 }

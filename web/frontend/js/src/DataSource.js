@@ -7,7 +7,9 @@ class DataSource {
   }
 
   getTagData(id) {
-    return axios.get('/sensor-data/rest/position_measurements/', { })
+    var url = '/sensor-data/rest/position_measurements/?uid=' + id;
+    console.log(url);
+    return axios.get( url, { })
   }
 }
 

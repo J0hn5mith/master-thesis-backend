@@ -1,9 +1,9 @@
-import * as Vue from 'vue'
 import * as Vue2Leaflet from 'vue2-leaflet'
-import DataSource from '../DataSource.js'
+import DataSource from './../../src/DataSource.js'
 
 var TagDetailMap = {
   template: '#tag-detail-map',
+  props: ['tag'],
   components: {
     'v-map': Vue2Leaflet.Map,
     'v-tilelayer' :Vue2Leaflet.TileLayer,
@@ -18,13 +18,13 @@ var TagDetailMap = {
       positions: [],
     }
   },
-  beforeCreate: function(){
+  created: function(){
     var instance = this;
-    var dataSource = new DataSource();
-    dataSource.getTagData(1).then(function (response) {
-      instance.measurements = response.data.results;
-      console.log(instance.measurements);
 
+    var dataSource = new DataSource();
+
+    dataSource.getTagData(instance.tag.uid).then(function (response) {
+      instance.measurements = response.data.results;
       var coords = [];
       for (var i = 0; i < instance.measurements.length; i++){
         coords.push(instance.measurements[i].coordinates);

@@ -1,16 +1,10 @@
-{% extends "vue_components/vue_component_base.html" %}
-{% load utils %}
-
-{% block id %}tag-charge-bar{% endblock id %}
-
-{% block content %}
 <div v-if="tag.charge_status" >
   <span class="hint--top" :aria-label="'Charge level: ' + tag.charge_status + '%'">
     <div class="progress">
       <div class="progress-bar progress-bar-info" role="progressbar" v-bind:style="'width:' + tag.charge_status + '%'"></div>
       <div class="progress-bar progress-bar-danger" role="progressbar" v-bind:style="'width:' + (100 - tag.charge_status) + '%'"></div>
     </div>
-    <span>
+  </span>
 </div>
 <div v-else>
   <span class="hint--top" :aria-label="'Charge level: Unknown'">
@@ -18,5 +12,5 @@
       <div class="progress-bar progress-bar-info" role="progressbar" v-bind:style="'width:' + tag.charge_status + '%'"></div>
       <div class="progress-bar progress-bar-disabled" role="progressbar" style="width:100%"></div>
     </div>
+  </span>
 </div>
-{% endblock content %}

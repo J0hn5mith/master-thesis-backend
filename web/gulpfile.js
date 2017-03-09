@@ -20,8 +20,8 @@ var runSequence = require('run-sequence');
 var input_css = './frontend/css/**/*.scss';
 var output_css = './static/css';
 
-var input_js = './frontend/js/src/main.js';
-var input_folder_js = './frontend/js/src/**';
+var input_js = './frontend/js/main.js';
+var input_folder_js = './frontend/js/**/*.+(js|vue)';
 var output_js = './static/js/';
 
 var input_html = '**/templates/**/*.html';

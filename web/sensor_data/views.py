@@ -11,3 +11,9 @@ class PositionMeasurementViewSet(viewsets.ModelViewSet):
     queryset = PositionMeasurement.objects.all()
     serializer_class = PositionMeasurementSerializer
 
+    def get_queryset(self):
+        print("TODO: Check access rights!");
+        if 'uid' in self.request.GET:
+            return PositionMeasurement.objects.all().filter(uid=self.request.GET['uid'])
+        else:
+            return PositionMeasurement.objects.all()

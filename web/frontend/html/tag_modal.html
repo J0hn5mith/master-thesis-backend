@@ -1,0 +1,14 @@
+<div class="modal-mask">
+  <transition name="modal">
+  <div class="modal-mask">
+    <div class="modal-container">
+    <v-tag-detail-map :tag="tag"></v-tag-detail-map>
+      <input class="tag-detail__name" v-model="tag.name"></input>
+      <button class="btn btn-success" v-if="edited" @click="save">Save</button>
+      <v-tag-toggle v-bind:tag="tag"></v-tag-toggle>
+      <p>{{ tag.uid }}</p>
+      <v-tag-charge-bar v-bind:tag="tag"></v-tag-charge-bar>
+    </div>
+  </div>
+  </transition>
+</div>

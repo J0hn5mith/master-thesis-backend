@@ -1,13 +1,6 @@
-{% extends "vue_components/vue_component_base.html" %}
-{% load utils %}
-
-{% block id %}tag-list-item{% endblock id %}
-
-{% block content %}
-
 <tr class="table__row" @click="toggleModal" >
   <td class="table__cell" style="display: hidden;">
-    <tag-modal v-if="showModal" v-bind:tag="tag">></tag-modal>
+    <v-tag-modal v-if="showModal" v-bind:tag="tag"></v-tag-modal>
   </td>
   <td class="table__cell">
     <img v-if="tag.avatar" class="table__icon table__icon--hexagon" :src="tag.avatar"></img>
@@ -15,25 +8,24 @@
   </td>
   <td class="table__cell">
     <p class="table__cell-text">
-    {% vue_variable "tag.name" %}
+    {{ tag.name }}
     </p>
   </td>
   <td class="table__cell">
-    <p class="table__cell-text">{% vue_variable  "tag.get_status" %}</p>
+    <p class="table__cell-text">{{ tag.get_status }}</p>
   </td>
   <td class="table__cell">
     <p v-if="tag.last_update" class="table__cell-text table__cell-text--small">
-    {% vue_variable  "tag.last_update" %}
+    {{ tag.last_update }}
     </p>
     <p v-else class="table__cell-text table__cell-text--small">
     Unknown
     </p>
   </td>
   <td class="table__cell">
-    <tag-charge-bar v-bind:tag="tag"></tag-charge-bar>
+    <v-tag-charge-bar v-bind:tag="tag"></v-tag-charge-bar>
   </td>
   <td class="table__cell">
-    <tag-toggle v-bind:tag="tag"></tag-toggle>
+    <v-tag-toggle v-bind:tag="tag"></v-tag-toggle>
   </td>
 </tr>
-{% endblock content %}
