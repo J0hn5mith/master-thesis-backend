@@ -1,6 +1,3 @@
-DOCKER_MACHINE_NAME=dev
-VENV_NAME=venv-master_thesis
-
 install: install-back-end install-front-end
 	echo "Done"
 
@@ -18,7 +15,3 @@ clean-back-end:
 
 clean-front-end:
 	rm -r ./node_modules
-
-local:
-	eval $(docker-machine env ${DOCKER_MACHINE_NAME})
-	gulp watch
