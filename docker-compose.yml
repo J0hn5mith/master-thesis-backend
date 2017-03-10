@@ -4,7 +4,6 @@ web:
   expose:
   - "8000"
   links:
-  #- postgres:postgres
   - postgis:postgis
   volumes:
   - /usr/src/app

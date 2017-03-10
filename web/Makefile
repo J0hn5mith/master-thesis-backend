@@ -7,6 +7,18 @@ install-back-end:
 install-front-end:
 	yarn install
 
+update: run-migrations
+	echo "Done"
+
+migrate: make-migrations run-migrations
+	echo "Done"
+
+run-migrations:
+	./manage.py migrate
+
+make-migrations:
+	./manage.py makemigrations
+
 clean: clean-back-end clean-front-end
 	echo "Done"
 

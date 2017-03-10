@@ -9,6 +9,9 @@ from sensor_data.models import PositionMeasurement
 from sensor_data.serializers import PositionMeasurementSerializer
 from colorful.fields import RGBColorField
 
+def get_default_color():
+    return "#{:06x}".format(random.randint(0, 0xFFFFFF))
+
 
 class Tag(models.Model):
 
@@ -58,7 +61,9 @@ class Tag(models.Model):
         blank=True,
     )
 
-    color = RGBColorField(default="#{:06x}".format(random.randint(0, 0xFFFFFF)))
+    color = RGBColorField(
+            default=get_default_color
+            )
 
     def get_status(self):
         return 0

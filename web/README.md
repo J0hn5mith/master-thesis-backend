@@ -9,6 +9,7 @@ are built with Vue.js
 * Install [`virtualenv-wrapper`](http://virtualenvwrapper.readthedocs.io/en/latest/)
 * Create a new *virtualenv*. (Make sure you are using python 3.x)
 * Run `make install` (if you don't have make installed use brew to do so: `brew install make`)
+* Run `make update`
 
 
 # Run
