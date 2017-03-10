@@ -1,5 +1,7 @@
 import TagTableEntry from '../tag_table_entry.vue'
 import axios from 'axios'
+
+
 var TagTable = {
   components: {
      'v-tag-table-entry': TagTableEntry,

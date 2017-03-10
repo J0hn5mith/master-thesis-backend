@@ -1,4 +1,3 @@
-import * as Vue from 'vue/dist/vue.common.js' // Required for using with external templates
 import * as Vue2Leaflet from 'vue2-leaflet'
 
 var TagMarker = {
@@ -8,7 +7,6 @@ var TagMarker = {
   },
   data () {
     return {
-      hello: "world"
     }
   }
 }

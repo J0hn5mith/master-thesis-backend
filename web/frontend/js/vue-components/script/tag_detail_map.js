@@ -1,5 +1,5 @@
 import * as Vue2Leaflet from 'vue2-leaflet'
-import DataSource from './../../src/DataSource.js'
+import RESTClient from './../../src/RESTClient.js'
 
 var TagDetailMap = {
   template: '#tag-detail-map',
@@ -21,9 +21,8 @@ var TagDetailMap = {
   created: function(){
     var instance = this;
 
-    var dataSource = new DataSource();
-
-    dataSource.getTagData(instance.tag.uid).then(function (response) {
+    var restClient = new RESTClient();
+    restClient.getTagData(instance.tag.uid).then(function (response) {
       instance.measurements = response.data.results;
       var coords = [];
       for (var i = 0; i < instance.measurements.length; i++){

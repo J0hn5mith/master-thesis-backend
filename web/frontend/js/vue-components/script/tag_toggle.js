@@ -1,13 +1,12 @@
-import axios from 'axios'
+import RESTClient from './../../src/RESTClient.js'
 
 var TagToggle = {
   props: ['tag'],
   methods: {
     toggle: function (event) {
       this.tag.active = !this.tag.active;
-      axios.put('/tags/rest/tags/' + this.tag.pk + '/', this.tag, {headers: {"X-CSRFToken": csrfToken}})
-        .then(function (response) {
-        })
+      var restClient = new RESTClient();
+      restClient.updateTag(this.tag).then(function(response){})
         .catch(function (error) {
           console.log(error);
         });

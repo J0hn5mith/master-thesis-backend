@@ -1,11 +1,23 @@
 DOCKER_MACHINE_NAME=dev
 VENV_NAME=venv-master_thesis
 
-setup:
+install: install-back-end install-front-end
+	echo "Done"
+
+install-back-end:
 	pip install -r requirements.txt
 
-clean:
+install-front-end:
+	yarn install
+
+clean: clean-back-end clean-front-end
+	echo "Done"
+
+clean-back-end:
 	/usr/bin/yes | pip uninstall -r requirements.txt
+
+clean-front-end:
+	rm -r ./node_modules
 
 local:
 	eval $(docker-machine env ${DOCKER_MACHINE_NAME})

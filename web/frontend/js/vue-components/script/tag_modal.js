@@ -5,11 +5,13 @@ import TagDetailMap from '../tag_detail_map.vue'
 
 //https://vuejs.org/v2/examples/modal.html
 var TagModal = {
-  props: ['tag'],
+  props: {
+    tag: Object,
+  },
   components: {
-     'v-tag-charge-bar': TagChargeBar,
-     'v-tag-toggle': TagToggle,
-     'v-tag-detail-map': TagDetailMap,
+    'v-tag-charge-bar': TagChargeBar,
+    'v-tag-toggle': TagToggle,
+    'v-tag-detail-map': TagDetailMap,
   },
   created: function(){
   },

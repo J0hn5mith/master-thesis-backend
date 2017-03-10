@@ -1,6 +1,5 @@
 import * as Vue from 'vue/dist/vue.common.js' // Required for using with external templates
-import TagOverviewMap from './src/components/TagOverviewMap.js'
-import DataSource from './src/DataSource.js'
+import TagOverviewMap from './vue-components/tag_overview_map.vue'
 import TagTable from './vue-components/tag_table.vue'
 
 

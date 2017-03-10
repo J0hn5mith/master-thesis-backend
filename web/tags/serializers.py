@@ -5,7 +5,7 @@ from sensor_data.serializers import PositionMeasurementSerializer
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
     lookup_fieled = 'pk'
-    current_position = PositionMeasurementSerializer()
+    current_position = PositionMeasurementSerializer(read_only=True)
 
     class Meta:
         model = Tag
@@ -14,6 +14,6 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
             'active', 'avatar', 'uid', 'current_position', 'color',
         )
         read_only_fields = (
-            'avatar', 'uid', 'last_update', 'charge_status', 'current_position',
-            'color'
+            'pk', 'charge_status', 'get_status', 'last_update', 'avatar',
+            'uid', 'current_position', 'color',
         )

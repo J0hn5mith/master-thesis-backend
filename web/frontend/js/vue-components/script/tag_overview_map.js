@@ -1,11 +1,10 @@
 import * as Vue from 'vue'
 import * as Vue2Leaflet from 'vue2-leaflet'
-import TagMarker  from './TagMarker.js'
-import DataSource from '../DataSource.js'
+import TagMarker  from './../tag_marker.vue'
+import RESTClient from './../../src/RESTClient.js'
 
 
 var TagOverviewMap = {
-  template: '#tag-overview-map',
   components: {
     'v-map': Vue2Leaflet.Map,
     'v-tilelayer' :Vue2Leaflet.TileLayer,
@@ -27,8 +26,8 @@ var TagOverviewMap = {
   },
   beforeCreate: function(){
     var instance = this;
-    var dataSource = new DataSource();
-    dataSource.getTags().then(function (response) {
+    var restClient = new RESTClient();
+    restClient.getTags().then(function (response) {
       instance.tags = response.data.results;
     }).catch(function (error) {
         console.log(error);
