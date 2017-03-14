@@ -9,8 +9,6 @@ var TagOverviewMap = {
     'v-map': Vue2Leaflet.Map,
     'v-tilelayer' :Vue2Leaflet.TileLayer,
     'v-marker': Vue2Leaflet.Marker,
-    //'v-tag-marker': TagMarker,
-    'v-circle': Vue2Leaflet.LCircle,
   },
   data: function(){
     return {

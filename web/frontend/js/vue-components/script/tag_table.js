@@ -4,7 +4,7 @@ import axios from 'axios'
 
 var TagTable = {
   components: {
-     'v-tag-table-entry': TagTableEntry,
+    'v-tag-table-entry': TagTableEntry,
   },
   data: function(){
     return{
@@ -14,7 +14,10 @@ var TagTable = {
   created: function(){
     var instance = this;
     axios.get('/tags/rest/tags', { })
-      .then(function (response) { instance.tags = response.data.results; })
+      .then(function (response) {
+        instance.tags = response.data.results;
+        console.log(instance.tags[0]);
+      })
       .catch(function (error) { console.log(error); });
   }
 }

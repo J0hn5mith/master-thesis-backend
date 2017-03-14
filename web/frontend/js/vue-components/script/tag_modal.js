@@ -37,6 +37,11 @@ var TagModal = {
     }
   },
   methods: {
+    setCenterToCurrentPosition: function(){
+      if (this.tag.current_position && this.tag.alarm_config.area){
+        this.tag.alarm_config.area.center.coordinates = this.tag.current_position.position.coordinates;
+      }
+    },
     save: function (event) {
       axios.put('/tags/rest/tags/' + this.tag.pk + '/', this.tag, {headers: {"X-CSRFToken": csrfToken}})
         .then(function (response) {
@@ -53,7 +58,27 @@ var TagModal = {
     },
     'tag.name': function (value, oldValue) {
       this.edited = true;
-    }
+    },
+    'tag.alarm_config.area.center.coordinates': function(value, oldValue){
+      var instance = this;
+      axios.put(this.tag.alarm_config.area.url, this.tag.alarm_config.area, {headers: {"X-CSRFToken": csrfToken}})
+        .then(function (response) {
+        })
+        .catch(function (error) {
+          instance.alarm_config.area.center.coordinates = oldValue;
+          console.log(error);
+        });
+    },
+    'tag.alarm_config.area.radius': function(value, oldValue){
+      var instance = this;
+      axios.put(this.tag.alarm_config.area.url, this.tag.alarm_config.area, {headers: {"X-CSRFToken": csrfToken}})
+        .then(function (response) {
+        })
+        .catch(function (error) {
+          instance.alarm_config.area.center.radius = oldValue;
+          console.log(error);
+        });
+    },
   },
 }
 
