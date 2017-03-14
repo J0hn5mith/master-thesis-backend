@@ -25,9 +25,19 @@
   }
 }
 
+
 .btn-outline{
   border-style: solid;
   border-width: 0.5px;
+}
+
+.btn-outline-info{
+  border-color: $blue;
+  color: $blue;
+
+  &:hover{
+    color: $blue;
+  }
 }
 
 .btn-outline-danger{

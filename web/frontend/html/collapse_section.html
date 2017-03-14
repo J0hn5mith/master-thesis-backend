@@ -1,0 +1,15 @@
+<div class="collapse_section">
+  <div class="collapse_section__indicator">
+    <div v-if="collapsed" class="btn btn-info" @click="toggle">Show Data</div>
+    <div v-else class="btn btn-outline btn-outline-info"@click="toggle"> Hide Data</div>
+  </div>
+  <!--<div v-bind:class="[collapse_section__content, >-->
+  <div v-bind:class="[{ collapsed: collapsed }, 'collapse_section__content']">
+    <slot>
+    Content goes here
+    </slot>
+    <div class="btn btn-info" @click="toggle">Hide Data</div>
+  </div>
+  </div>
+</div>
+</div>

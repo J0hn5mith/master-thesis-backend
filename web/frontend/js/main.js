@@ -25,4 +25,9 @@ var vue = new Vue({
   },
   methods: {
   },
+  filters: {
+    coordinates: function (coordinates) {
+      return coordinates.lat + " | " + coordinates.lng;
+    }
+  },
 })

@@ -1,0 +1,17 @@
+<div>
+  <div class="table__actions">
+    <input type="text" class="form-control table__filter" placeholder="Search"></input>
+    <div @click="deleteTag" class="btn btn-danger">Delete</div>
+  </div>
+
+  <table class="table table-striped table-striped--dark">
+    <thead class="table__head table__head--dark">
+      <th class="table__header table__header--dark">Time</th>
+      <th class="table__header table__header--dark">Position</th>
+      <th class="table__header table__header--dark">Actions</th>
+    </thead>
+    <tbody>
+      <v-pm-table-entry v-if="measurements" v-for="mes in measurements" :mes="mes" :l="measurements"></v-pm-table-entry>
+    </tbody>
+  </table>
+</div>

@@ -7,5 +7,5 @@ class PositionMeasurementSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = PositionMeasurement
-        fields = ('uid', 'time_stamp', 'position', 'coordinates' )
-        read_only_fields = ('uid', 'time_stamp', 'position', 'coordinates')
+        fields = ('pk', 'uid', 'time_stamp', 'position', 'coordinates' )
+        read_only_fields = ('pk', 'uid', 'time_stamp', 'position', 'coordinates')

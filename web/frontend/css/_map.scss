@@ -2,5 +2,12 @@
   background: lightblue;
   height: 600px!important;
   overflow: hidden!important;
+}
+
+.map--shawod{
   @include shadow();
+}
+
+.map--small{
+  height: 400px!important;
 }

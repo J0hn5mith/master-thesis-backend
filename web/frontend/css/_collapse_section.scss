@@ -1,0 +1,27 @@
+.collapse_section{
+  overflow: hidden;
+}
+
+.collapse_section__indicator{
+  padding: 10px;
+}
+
+.collapse_section__content{
+  padding: 20px;
+  background: $grey--dark;
+  @include shadow--inset();
+  transition: max-height 1.0s, padding 1.0s;
+  max-height: 600px;
+  overflow: scroll;
+}
+
+.collapse_section__content--collapsed{
+  height: 100px;
+}
+
+.collapsed{ // required for vue which can't deal with -- syntax
+  height: auto;
+  max-height: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}

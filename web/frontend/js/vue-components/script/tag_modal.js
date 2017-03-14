@@ -2,6 +2,8 @@ import axios from 'axios'
 import TagChargeBar from '../tag_charge_bar.vue'
 import TagToggle from '../tag_toggle.vue'
 import TagDetailMap from '../tag_detail_map.vue'
+import PositionMeasurements from '../position_measurements.vue'
+import CollapseSection from '../collapse_section.vue'
 
 //https://vuejs.org/v2/examples/modal.html
 var TagModal = {
@@ -12,6 +14,8 @@ var TagModal = {
     'v-tag-charge-bar': TagChargeBar,
     'v-tag-toggle': TagToggle,
     'v-tag-detail-map': TagDetailMap,
+    'v-position-measurements': PositionMeasurements,
+    'v-collapse-section': CollapseSection,
   },
   created: function(){
   },

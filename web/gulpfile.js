@@ -21,7 +21,7 @@ var input_css = './frontend/css/**/*.scss';
 var output_css = './static/css';
 
 var input_js = './frontend/js/main.js';
-var input_folder_js = './frontend/js/**/*.+(js|vue)';
+var input_folder_js = './frontend/**/*.+(js|vue|html)';
 var output_js = './static/js/';
 
 var input_html = '**/templates/**/*.html';

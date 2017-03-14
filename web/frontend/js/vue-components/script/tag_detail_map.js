@@ -20,7 +20,6 @@ var TagDetailMap = {
   },
   created: function(){
     var instance = this;
-
     var restClient = new RESTClient();
     restClient.getTagData(instance.tag.uid).then(function (response) {
       instance.measurements = response.data.results;

@@ -2,6 +2,15 @@
   display: table!important;
 }
 
+.table-striped--dark{
+  >tbody>tr:nth-of-type(even) {
+    background-color: $grey--light;
+  }
+  >tbody>tr:nth-of-type(odd) {
+    background-color: $grey;
+  }
+}
+
 .table__actions{
   display: flex;
   justify-content: flex-end;
@@ -20,7 +29,12 @@
 .table__head{
 }
 
+.table__head--dark{
+  background-color: $grey;
+}
+
 .table__body{
+
 }
 
 .table__header{
@@ -29,19 +43,25 @@
   font-weight: $font-weight--light;
   font-size: $font-size;
   border-width: 0px!important;
+  padding: 8px;
 }
+
+.table__header--dark{
+  color: $font-color !important;
+}
+
 
 .table__row{
   padding-top: 30px!important;
+}
+.table__row--dark{
+  background-color: green;
 }
 
 .table__cell{
   display: table-cell;
   height: 100%;
   border-width: 0px!important;
-  &:not(:first-child) {
-    padding-top: 30px!important;
-  }
 }
 
 .table__cell-text{
