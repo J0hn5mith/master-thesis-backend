@@ -10,7 +10,7 @@
   padding: 20px;
   background: $grey--dark;
   @include shadow--inset();
-  transition: max-height 1.0s, padding 1.0s;
+  transition: all 0.6s;
   max-height: 600px;
   overflow: scroll;
 }

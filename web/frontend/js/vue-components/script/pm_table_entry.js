@@ -19,10 +19,7 @@ var PMTableEntry = {
       var instance = this;
       restClient.deletePositionMeasurement(this.mes.pk).then(function (response) {
         for (var i = 0; i < instance.l.length; i++) {
-          console.log(instance.l);
-          console.log(instance.l[0]);
           if (instance.mes == instance.l[i]){
-            console.log("Remove");
             instance.l.splice(i,1);
           }
         }

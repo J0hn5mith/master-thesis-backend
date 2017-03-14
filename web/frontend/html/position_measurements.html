@@ -1,7 +1,6 @@
 <div>
   <div class="table__actions">
     <input type="text" class="form-control table__filter" placeholder="Search"></input>
-    <div @click="deleteTag" class="btn btn-danger">Delete</div>
   </div>
 
   <table class="table table-striped table-striped--dark">
@@ -11,7 +10,7 @@
       <th class="table__header table__header--dark">Actions</th>
     </thead>
     <tbody>
-      <v-pm-table-entry v-if="measurements" v-for="mes in measurements" :mes="mes" :l="measurements"></v-pm-table-entry>
+      <v-pm-table-entry v-if="posMes" v-for="mes in posMes" :mes="mes" :l="posMes"></v-pm-table-entry>
     </tbody>
   </table>
 </div>

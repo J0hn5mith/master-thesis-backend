@@ -1,9 +1,10 @@
 import * as Vue2Leaflet from 'vue2-leaflet'
-import RESTClient from './../../src/RESTClient.js'
 
 var TagDetailMap = {
-  template: '#tag-detail-map',
-  props: ['tag'],
+  props: {
+    tag: Object,
+    posMes: Array,
+  },
   components: {
     'v-map': Vue2Leaflet.Map,
     'v-tilelayer' :Vue2Leaflet.TileLayer,
@@ -15,22 +16,18 @@ var TagDetailMap = {
       center:[47.413220, 8.519482],
       circleCenter: L.latLng(47.413220, 8.519482),
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-      positions: [],
     }
   },
-  created: function(){
-    var instance = this;
-    var restClient = new RESTClient();
-    restClient.getTagData(instance.tag.uid).then(function (response) {
-      instance.measurements = response.data.results;
+  computed: {
+    positions: function(){
       var coords = [];
-      for (var i = 0; i < instance.measurements.length; i++){
-        coords.push(instance.measurements[i].coordinates);
+      if (this.posMes){
+        for (var i = 0; i < this.posMes.length; i++){
+          coords.push(this.posMes[i].coordinates);
+        }
       }
-      instance.positions = coords;
-    }).catch(function (error) {
-      console.log(error);
-    });
+      return coords;
+    },
   },
 }
 

@@ -3,9 +3,9 @@
   <div class="modal-mask">
     <div class="modal-container" @click.stop="" >
       <div class="modal__header">
-        <v-tag-detail-map :tag="tag"></v-tag-detail-map>
+        <v-tag-detail-map :tag="tag" :posMes="posMes"></v-tag-detail-map>
       <v-collapse-section>
-        <v-position-measurements :tag="tag"></v-position-measurements>
+        <v-position-measurements :tag="tag" :posMes="posMes"></v-position-measurements>
       </v-collapse-section>
       </div>
       <div class="modal__body">
