@@ -12,11 +12,14 @@
     </p>
   </td>
   <td class="table__cell">
-    <p v-if="tag.alarm" class="table__cell-text">
-    <img class="table__icon table__icon--small" src="/static/img/icons/alert.svg"></img>
-    <!--{{ tag.alarm.state }}-->
-    </p>
-    <p v-else class="table__cell-text">Ok</p>
+    <span class="hint--top" v-bind:aria-label="alertStatusHint">
+      <p v-if="tag.alarm" class="table__cell-text">
+      <img class="table__icon table__icon--small" src="/static/img/icons/alert.svg"></img>
+      </p>
+      <p v-else class="table__cell-text">
+      <img class="table__icon table__icon--small" src="/static/img/icons/check.svg"></img>
+      </p>
+    </span>
   </td>
   <td class="table__cell">
     <p v-if="tag.last_update" class="table__cell-text table__cell-text--small">

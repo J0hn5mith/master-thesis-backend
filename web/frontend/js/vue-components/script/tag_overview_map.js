@@ -18,25 +18,16 @@ var TagOverviewMap = {
       circleRadius: 200,
       url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      tags: [
-      ]
+      tags: []
     }
   },
   beforeCreate: function(){
     var instance = this;
     var restClient = new RESTClient();
-    restClient.getTags().then(function (response) {
-      instance.tags = response.data.results;
-    }).catch(function (error) {
-        console.log(error);
-      });
-  },
-  methods: {
-    sayHello: function(event) {
-      var distance = event.latlng.lng - event.oldLatLng.lng;
-      console.log(this.circleRadius);
-      this.circleRadius += this.zoom * distance;
-    },
+    restClient.getTags(
+      function (results) { instance.tags = results;},
+      function (error) { console.log(error);}
+    );
   },
 }
 

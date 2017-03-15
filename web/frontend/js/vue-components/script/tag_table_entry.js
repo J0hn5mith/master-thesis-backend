@@ -20,6 +20,17 @@ var TagTableEntry = {
             showModal: false,
         }
     },
+    computed: {
+        alertStatusHint: function(){
+            if(this.tag.alarm){
+                return "Alert triggered at {0}".format(
+                    formater.date(this.tag.alarm.start_time)
+                );
+            } else {
+                return "No alert";
+            }
+        }
+    },
     methods: {
         toggleModal: function (event) {
             this.showModal = !this.showModal; //TODO:

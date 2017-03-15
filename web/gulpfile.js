@@ -120,6 +120,10 @@ gulp.task('watch', ['browserSync'], function() {
     .on('change', function(event) {
       console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
+  gulp.watch(input_img, ['img'])
+    .on('change', function(event) {
+      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    });
   gulp.watch(input_libs, ['libs'])
     .on('change', function(event) {
       console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');

@@ -23,5 +23,5 @@ class AlarmSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Alarm
-        fields = ('state',)
-        read_only_fields = ('state',)
+        fields = ('state', 'start_time')
+        read_only_fields = ('state', 'start_time')

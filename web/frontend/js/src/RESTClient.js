@@ -7,21 +7,47 @@ var URL_CONFIG = {
 
 class RESTClient {
 
-  getTags() {
-    return axios.get(URL_CONFIG.tags, { })
+  /**
+   * Sends an delete request to the REST server.
+   * @param{instance} Instance which has to be deleted.
+   * @param{success} Success callback function.
+   * @param{success} error callback function.
+   */
+  remove(instance, success, error) {
+    axios.delete(instance.url, {headers: {"X-CSRFToken": csrfToken}})
+      .then(function (response) { if(success){success(response)}})
+      .catch(function (error) {
+        if(error){ console.log(error); }
+      });
   }
 
-  updateTag(tag) {
-    console.log(csrfToken);
-    return axios.put(URL_CONFIG.tags+ tag.pk + '/', tag, {headers: {"X-CSRFToken": csrfToken}})
+  update(instance, success, error) {
+    axios.put(instance.url, instance, {headers: {"X-CSRFToken": csrfToken}})
+      .then(function (response) { if(success){success(response)}})
+      .catch(function (error) {
+        if(error){
+          console.log(error);
+        }
+      });
   }
 
-  getTagData(id) {
+  get(url, success, error) {
+    axios.get(url, {})
+      .then(function(response){
+        if(success){
+          var data = response.data.results;
+          success(data);
+        }
+      })
+      .catch(function (e) {if(error){console.log(e.stack);}});
+  }
+
+  getTags(success, error) {
+    this.get(URL_CONFIG.tags, success, error)
+  }
+
+  getSensorData(id) {
     return axios.get( URL_CONFIG.tagData + '?uid=' + id, { })
-  }
-
-  deletePositionMeasurement(pk) {
-    return axios.delete(URL_CONFIG.tagData + pk, {headers: {"X-CSRFToken": csrfToken}})
   }
 }
 

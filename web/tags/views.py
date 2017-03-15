@@ -13,7 +13,6 @@ class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
 
     def get_queryset(self):
-        print(self.request.user)
         if hasattr(self.request.user, 'tags'):
             return self.request.user.tags.all().order_by('pk')
         return []
@@ -23,10 +22,17 @@ class TagViewSet(viewsets.ModelViewSet):
         Custom implementation to deal with image.
         """
         tag = self.get_object()
-        serializer = TagSerializer(tag, data=request.data)
+        serializer = TagSerializer(
+            tag,
+            data=request.data,
+            context={'request': request},
+        )
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data)
         except Exception as e:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            print(e)
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )

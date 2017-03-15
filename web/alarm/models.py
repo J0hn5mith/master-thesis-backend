@@ -65,7 +65,7 @@ class Alarm(models.Model):
         on_delete=models.CASCADE,
     )
     start_position = models.PointField()
-    trigger_time = models.DateTimeField(auto_now_add=True)
+    start_time = models.DateTimeField(auto_now_add=True)
     activate_time = models.DateTimeField()
     state = models.IntegerField(
         default=0,

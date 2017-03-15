@@ -17,15 +17,13 @@ var PMTableEntry = {
     deleteTag: function(){
       var restClient = new RESTClient();
       var instance = this;
-      restClient.deletePositionMeasurement(this.mes.pk).then(function (response) {
+      restClient.remove(this.mes, function(){
         for (var i = 0; i < instance.l.length; i++) {
           if (instance.mes == instance.l[i]){
             instance.l.splice(i,1);
           }
         }
-      }).catch(function (error) {
-        console.log(error);
-      });
+      })
     }
   }
 }

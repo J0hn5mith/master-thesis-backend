@@ -1,4 +1,3 @@
-import axios from 'axios'
 import TagChargeBar from '../tag_charge_bar.vue'
 import TagToggle from '../tag_toggle.vue'
 import TagDetailMap from '../tag_detail_map.vue'
@@ -32,7 +31,6 @@ var TagModal = {
   },
   data: function(){
     return{
-      edited: false,
       posMes: [],
     }
   },
@@ -43,12 +41,8 @@ var TagModal = {
       }
     },
     save: function (event) {
-      axios.put('/tags/rest/tags/' + this.tag.pk + '/', this.tag, {headers: {"X-CSRFToken": csrfToken}})
-        .then(function (response) {
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      var restClient = new RESTClient();
+      restClient.update(this.tag);
     },
   },
   watch: {
@@ -57,27 +51,23 @@ var TagModal = {
       console.log(value);
     },
     'tag.name': function (value, oldValue) {
-      this.edited = true;
+      this.save();
     },
     'tag.alarm_config.area.center.coordinates': function(value, oldValue){
       var instance = this;
-      axios.put(this.tag.alarm_config.area.url, this.tag.alarm_config.area, {headers: {"X-CSRFToken": csrfToken}})
-        .then(function (response) {
-        })
-        .catch(function (error) {
-          instance.alarm_config.area.center.coordinates = oldValue;
-          console.log(error);
-        });
+      var restClient = new RESTClient();
+      restClient.update(this.tag, null, function(){
+        instance.alarm_config.area.center.coordinates = oldValue;
+        console.log(error);
+      });
     },
     'tag.alarm_config.area.radius': function(value, oldValue){
       var instance = this;
-      axios.put(this.tag.alarm_config.area.url, this.tag.alarm_config.area, {headers: {"X-CSRFToken": csrfToken}})
-        .then(function (response) {
-        })
-        .catch(function (error) {
-          instance.alarm_config.area.center.radius = oldValue;
-          console.log(error);
-        });
+      var restClient = new RESTClient();
+      restClient.update(this.tag, null, function(){
+        instance.alarm_config.area.center.radius = oldValue;
+        console.log(error);
+      });
     },
   },
 }

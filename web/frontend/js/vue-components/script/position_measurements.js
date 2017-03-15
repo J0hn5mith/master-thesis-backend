@@ -9,10 +9,6 @@ var PositionMeasurements = {
   components: {
     'v-pm-table-entry': PMTableEntry,
   },
-  data: function(){
-    return {
-      Tmeasurements: [],
-    }
-  },
+  data: function(){return {}},
 }
 export default PositionMeasurements;
