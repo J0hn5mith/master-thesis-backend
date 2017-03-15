@@ -24,6 +24,9 @@ var input_js = './frontend/js/main.js';
 var input_folder_js = './frontend/**/*.+(js|vue|html)';
 var output_js = './static/js/';
 
+var input_img = './frontend/img/**/*'
+var output_img = './static/img/';
+
 var input_html = '**/templates/**/*.html';
 
 var input_libs = './templates/partials/*.html';
@@ -55,6 +58,14 @@ gulp.task('html', function() {
   gulp.src(input_html).pipe(browserSync.reload({
     stream: true
   }))
+});
+
+gulp.task('img', function() {
+  return gulp.src(input_img)
+    .pipe(gulp.dest(output_img))
+    .pipe(browserSync.reload({
+      stream: true
+    }))
 });
 
 gulp.task('libs',  function(callback){
@@ -113,6 +124,10 @@ gulp.task('watch', ['browserSync'], function() {
     .on('change', function(event) {
       console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
+});
+
+gulp.task('build', function(callback) {
+  return runSequence('img',  'webpack', 'sass', 'libs');
 });
 
 gulp.task('browserSync', [], function() {

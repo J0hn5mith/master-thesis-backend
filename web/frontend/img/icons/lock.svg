@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="218px" height="194px" viewBox="0 0 218 194" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.2 (33826) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/lock</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="200 87 150 173.60254 50 173.60254 0 87 50 0.397459622 150 0.397459622"></polygon>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="1.5" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.292742301 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-4">
+            <stop stop-color="#85D0ED" offset="0%"></stop>
+            <stop stop-color="#44A1DA" offset="40.4061439%"></stop>
+            <stop stop-color="#006FC6" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-5" points="150 173.60254 50 173.60254 0 87 50 0.397459622 150 0.397459622 200 87"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-45.000000, -517.000000)">
+            <g id="Icons-/-Lock" transform="translate(52.000000, 512.000000)">
+                <g transform="translate(0.000000, 13.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Polygon" fill-opacity="1" fill="black">
+                        <use filter="url(#filter-3)" xlink:href="#path-1"></use>
+                    </g>
+                    <mask id="mask-6" fill="white">
+                        <use xlink:href="#path-5"></use>
+                    </mask>
+                    <use id="Polygon" fill="url(#linearGradient-4)" xlink:href="#path-5"></use>
+                    <g id="Lock" mask="url(#mask-6)">
+                        <g transform="translate(56.140351, 28.325536)" id="Shape">
+                            <path d="M75.041734,109.161793 L13.0674278,109.161793 C5.85086791,109.161793 0,103.306943 0,96.0854701 L0,55.0616284 C0,47.8401559 5.85086791,41.9853051 13.0674278,41.9853051 L75.041734,41.9853051 C82.2582939,41.9853051 88.1091618,47.8401559 88.1091618,55.0616284 L88.1091618,96.0854701 C88.1091618,103.306943 82.2582939,109.161793 75.041734,109.161793 L75.041734,109.161793 Z" fill="#C7CAC7"></path>
+                            <path d="M75.041734,41.9853051 L44.0545809,41.9853051 L44.0545809,109.161793 L75.041734,109.161793 C82.2582939,109.161793 88.1091618,103.306943 88.1091618,96.0854701 L88.1091618,55.0616284 C88.1091618,47.8401559 82.2582939,41.9853051 75.041734,41.9853051 L75.041734,41.9853051 Z" fill="#E7ECED"></path>
+                            <path d="M44.0545809,83.9706103 L44.0545809,83.9706103 C40.5931495,83.9706103 37.7610693,81.1366022 37.7610693,77.6728145 L37.7610693,65.077223 C37.7610693,61.6134353 40.5931495,58.7794272 44.0545809,58.7794272 L44.0545809,58.7794272 C47.5160123,58.7794272 50.3480925,61.6134353 50.3480925,65.077223 L50.3480925,77.6728145 C50.3480925,81.1366022 47.5160123,83.9706103 44.0545809,83.9706103 L44.0545809,83.9706103 Z" fill="#4C4C4F"></path>
+                            <path d="M13.0674278,41.9853051 L20.9783719,41.9853051 L20.9783719,28.340081 C20.9783719,17.3441296 31.3311984,8.39706103 44.0545809,8.39706103 C56.7779634,8.39706103 67.1307899,17.3441296 67.1307899,28.340081 L67.1307899,41.9853051 L75.041734,41.9853051 C75.2032674,41.9853051 75.3606052,42.0041985 75.5221387,42.0083971 L75.5221387,28.340081 C75.5221387,12.7530364 61.3617377,0 44.0545809,0 C26.7474241,0 12.5870231,12.7530364 12.5870231,28.340081 L12.5870231,42.0083971 C12.7485566,42.0041985 12.9058944,41.9853051 13.0674278,41.9853051 L13.0674278,41.9853051 Z" fill="#546A79"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

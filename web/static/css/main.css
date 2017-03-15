@@ -472,7 +472,8 @@ ul {
   font-size: 20px;
   border-style: none;
   border-radius: 2px;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  transition: all 0.6s; }
 
 .btn-success {
   background-color: #53B70F !important; }
@@ -1130,6 +1131,9 @@ footer {
 .table__header--dark {
   color: #4A4A4A !important; }
 
+.table__header--hidden {
+  width: 0px; }
+
 .table__row {
   padding-top: 30px !important; }
 
@@ -1154,6 +1158,10 @@ footer {
 .table__icon {
   width: 50px;
   height: 50px; }
+
+.table__icon--small {
+  width: 30px;
+  height: 30px; }
 
 .table__icon--hexagon {
   clip-path: polygon(0 50%, 25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%); }
