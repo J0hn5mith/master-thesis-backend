@@ -18,3 +18,5 @@ djangorestframework==3.5.4
 djangorestframework-gis==0.11
 django-colorful==1.2
 django-filter==1.0.1
+avatar-generator==0.0.13
+randomavatar==0.5.1

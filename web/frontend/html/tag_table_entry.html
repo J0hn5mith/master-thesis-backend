@@ -12,11 +12,15 @@
     </p>
   </td>
   <td class="table__cell">
-    <p class="table__cell-text">{{ tag.get_status }}</p>
+    <p v-if="tag.alarm" class="table__cell-text">
+    <img class="table__icon table__icon--small" src="/static/img/icons/alert.svg"></img>
+    <!--{{ tag.alarm.state }}-->
+    </p>
+    <p v-else class="table__cell-text">Ok</p>
   </td>
   <td class="table__cell">
     <p v-if="tag.last_update" class="table__cell-text table__cell-text--small">
-    {{ tag.last_update }}
+    {{ tag.last_update | date }}
     </p>
     <p v-else class="table__cell-text table__cell-text--small">
     Unknown

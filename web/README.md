@@ -8,8 +8,19 @@ are built with Vue.js
 * Install [`virtualenv`](https://virtualenv.pypa.io/en/stable/)
 * Install [`virtualenv-wrapper`](http://virtualenvwrapper.readthedocs.io/en/latest/)
 * Create a new *virtualenv*. (Make sure you are using python 3.x)
+* Install libraries required by GeoDjango
+```
+$ brew install postgresql
+$ brew install postgis
+$ brew install gdal
+$ brew install libgeoip
+```
 * Run `make install` (if you don't have make installed use brew to do so: `brew install make`)
 * Run `make update`
+
+## Troubleshooting
+* Problem psycopg2 libraries not found
+    * Reinstall dependencies from `requirements.txt` file
 
 
 # Run

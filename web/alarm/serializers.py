@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from alarm.models import AlarmConfig, AlarmConfigArea
+from alarm.models import AlarmConfig, AlarmConfigArea, Alarm
 
 
 class AlarmConfigAreaSerializer(serializers.HyperlinkedModelSerializer):
@@ -16,5 +16,12 @@ class AlarmConfigSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = AlarmConfig
         fields = ('pk', 'tag', 'time_to_deactivate', 'area', 'url')
-        # fields = ('__all__')
         read_only_fields = ('pk', 'tag', 'area')
+
+class AlarmSerializer(serializers.HyperlinkedModelSerializer):
+    lookup_fieled = 'tag'
+
+    class Meta:
+        model = Alarm
+        fields = ('state',)
+        read_only_fields = ('state',)

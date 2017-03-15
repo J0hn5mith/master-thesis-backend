@@ -5,6 +5,7 @@ from django.contrib.gis.geos import Point
 from django.core.validators import MinValueValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import ugettext_lazy as _
 from tags.models import Tag
 
 
@@ -27,8 +28,6 @@ class AlarmConfig(models.Model):
     )
 
 
-
-
 def create_alert_config(sender, instance, created, **kwargs):
     if created:
         area = AlarmConfigArea.objects.create()
@@ -36,6 +35,7 @@ def create_alert_config(sender, instance, created, **kwargs):
             tag=instance,
             area=area,
         )
+
 
 post_save.connect(create_alert_config, Tag)
 
@@ -45,19 +45,29 @@ class AlarmConfigArea(models.Model):
     Test class only for circular areas.
     """
 
-    center = models.PointField(default=Point(0,0))
+    center = models.PointField(default=Point(0, 0))
     radius = models.FloatField(
         default=2,
         validators=(MinValueValidator(0), ),
     )
 
 
-# class Alarm(models.Model):
-# tag = models.OneToOneField(
-# to=Tag,
-# on_delete=models.CASCADE,
-# )
-# start_time = None
-# start_position = None
-# time_to_deactivate = None
-# state = None #Triggered, Pending, Active, Dismissed
+ALARM_STATES = (
+    (0, _('Triggered')), (1, _('Pending')), (2, _('Active')),
+    (3, _('Dismissed')),
+)
+
+
+class Alarm(models.Model):
+    tag = models.OneToOneField(
+        to=Tag,
+        related_name='alarm',
+        on_delete=models.CASCADE,
+    )
+    start_position = models.PointField()
+    trigger_time = models.DateTimeField(auto_now_add=True)
+    activate_time = models.DateTimeField()
+    state = models.IntegerField(
+        default=0,
+        choices=ALARM_STATES,
+    )

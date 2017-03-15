@@ -1,6 +1,8 @@
 import sys
+import random
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from tags.models import Tag
 
 User = get_user_model()
@@ -32,6 +34,8 @@ class Command(BaseCommand):
                         name="Tag " + str(j),
                         short_name="t_" + str(j),
                         user=user,
+                        charge_status=random.random()*100,
+                        last_update=timezone.now(),
                     )
 
     def delete_tags(self):

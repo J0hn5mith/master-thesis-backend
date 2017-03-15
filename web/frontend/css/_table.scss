@@ -50,6 +50,10 @@
   color: $font-color !important;
 }
 
+.table__header--hidden{
+  width: 0px;
+}
+
 
 .table__row{
   padding-top: 30px!important;
@@ -80,6 +84,11 @@
 .table__icon{
   width: 50px;
   height:50px;
+}
+
+.table__icon--small{
+  width: 30px;
+  height:30px;
 }
 
 .table__icon--hexagon{
