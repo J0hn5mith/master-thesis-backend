@@ -1,10 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse, reverse_lazy
 from rest_framework.test import APIClient
 from tags.models import Tag
 from rest_framework import status
 
-from django.contrib.auth import get_user_model
 User = get_user_model()
 
 

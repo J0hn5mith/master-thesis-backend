@@ -20,8 +20,11 @@ django-filter==1.0.1
 avatar-generator==0.0.13
 randomavatar==0.5.1
 
+celery==4.0.2
+redis==2.10.5
+django-sendsms==0.2.3
+
 # Develop
 django-debug-toolbar==1.4
 django-extensions==1.7.7
-celery==4.0.2
-redis==2.10.5
+twilio==5.7.0

@@ -9,7 +9,8 @@ INSTALLED_APPS += ('debug_toolbar', 'django_extensions',)
 INTERNAL_IPS = ('127.0.0.1', )
 
 #: Don't send emails, just print them on stdout
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
@@ -35,3 +36,7 @@ if 'test' in sys.argv:
     )
 
     LOGGING['root']['handlers'] = []
+
+# Django SendSMS
+SENDSMS_BACKEND = 'sendsms.backends.console.SmsBackend'
+SENDSMS_FROM_NUMBER = '+15005550006' # Magic number that passes everything
