@@ -44,7 +44,7 @@ THIRD_PARTY_APPS = [
     'django_otp',
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
-    'two_factor',
+    # 'two_factor',
     'rest_framework',
     'rest_framework_gis',  # Has to be after rest_framework
 ]
