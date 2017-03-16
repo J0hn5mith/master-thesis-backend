@@ -23,3 +23,5 @@ randomavatar==0.5.1
 # Develop
 django-debug-toolbar==1.4
 django-extensions==1.7.7
+celery==4.0.2
+redis==2.10.5

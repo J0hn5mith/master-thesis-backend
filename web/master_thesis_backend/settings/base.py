@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
-# TODO: Update with https://github.com/jpadilla/django-project-template/blob/master/project_name/settings.py
+# TODO: Update with https://github.com/jpadilla/
+# django-project-template/blob/master/project_name/settings.py
 import os
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -37,14 +38,15 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    # Local but has to stand before registration. Otherwise templates are not found.
+    # Local but has to stand before registration.
+    # Otherwise templates are not found.
     'login_registration',
     'registration',
     'widget_tweaks',
     'django_otp',
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
-    # 'two_factor',
+    'two_factor',
     'rest_framework',
     'rest_framework_gis',  # Has to be after rest_framework
 ]
@@ -117,11 +119,11 @@ DATABASES = {
     # },
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASS'],
-        'HOST': os.environ['DB_SERVICE'],
-        'PORT': os.environ['DB_PORT']
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': os.environ.get('DB_SERVICE'),
+        'PORT': os.environ.get('DB_PORT'),
     },
 }
 
@@ -198,7 +200,7 @@ LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'locale'), )
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'Europe/Zurich'
 
 USE_I18N = True
 
@@ -224,11 +226,14 @@ STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'), )
 # If using Celery, tell it to obey our logging configuration.
 CELERYD_HIJACK_ROOT_LOGGER = False
 
-# https://docs.djangoproject.com/en/1.9/topics/auth/passwords/#password-validation
+# https://docs.djangoproject.com/
+# en/1.9/topics/auth/passwords/#password-validation
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
-        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'django.contrib.auth.password_validation\
+                .UserAttributeSimilarityValidator',
     },
     {
         'NAME':
@@ -244,8 +249,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Make things more secure by default. Run "python manage.py check --deploy"
-# for even more suggestions that you might want to add to the settings, depending
+# Make things more secure by default. Run "python manage.py check --deploy" for
+# even more suggestions that you might want to add to the settings, depending
 # on how the site uses SSL.
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
@@ -258,7 +263,7 @@ X_FRAME_OPTIONS = 'DENY'
 
 # Django Registration
 ACCOUNT_ACTIVATION_DAYS = 1
-REGISTRATION_DEFAULT_FROM_EMAIL = "john-doe@example.com"  #TODO
+REGISTRATION_DEFAULT_FROM_EMAIL = "john-doe@example.com"  # TODO
 REGISTRATION_EMAIL_HTML = True
 REGISTRATION_AUTO_LOGIN = True
 
@@ -273,10 +278,23 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':
     ('rest_framework.authentication.SessionAuthentication', ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',  #TODO: Change that!!
+        'rest_framework.permissions.AllowAny',  # TODO: Change that!!
     ],
     'DEFAULT_FILTER_BACKENDS':
     ('django_filters.rest_framework.DjangoFilterBackend', ),
     'PAGE_SIZE':
     200
 }
+
+# Celery
+BROKER_URL = 'redis://{url}:{port}'.format(
+    url=os.environ.get('REDIS_SERVICE'),
+    port=os.environ.get('REDIS_PORT'),
+)
+BROKER_TRANSPORT = BROKER_URL
+CELERY_BROKER_URL = BROKER_URL
+CELERY_RESULT_BACKEND = BROKER_URL
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE

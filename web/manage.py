@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import os
 import sys
-
 from master_thesis_backend import load_env
 
 load_env.load_env()

@@ -1,9 +1,6 @@
 from django.core.management.base import BaseCommand
 from alarm.models import AlarmConfig, Alarm
-from datetime import timedelta, datetime
-from django.utils import timezone
-
-from django.contrib.gis import geos
+from alarm.utils import check_trigger_alarm, create_alarm
 
 
 class Command(BaseCommand):
@@ -17,19 +14,10 @@ class Command(BaseCommand):
         """
 
         self.delete_alarms()
-        for a in AlarmConfig.objects.all():
-            circle = a.area.center.buffer(a.area.radius)
-            if circle.disjoint(a.tag.current_position().position):
-                self.create_alert(a)
+        for alarm_config in AlarmConfig.objects.all():
+            if check_trigger_alarm(alarm_config):
+                create_alarm(alarm_config)
 
     def delete_alarms(self):
         for alarm in Alarm.objects.all():
             alarm.delete()
-
-    def create_alert(self, a):
-        alarm = Alarm.objects.get_or_create(
-                tag=a.tag,
-                start_position=(a.tag.current_position().position),
-                activate_time=timezone.now() +
-                timedelta(seconds=a.tag.alarm_config.time_to_deactivate)
-                )
