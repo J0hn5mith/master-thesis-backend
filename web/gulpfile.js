@@ -8,6 +8,7 @@ var useref = require('gulp-useref');
 var browserSync = require('browser-sync').create();
 var exec = require('child_process').exec;
 var child_process = require('child_process');
+var jscs = require('gulp-jscs');
 
 var uglify = require('gulp-uglify');
 var usemin = require('gulp-usemin');
@@ -24,17 +25,17 @@ var input_js = './frontend/js/main.js';
 var input_folder_js = './frontend/**/*.+(js|vue|html)';
 var output_js = './static/js/';
 
-var input_img = './frontend/img/**/*'
+var input_img = './frontend/img/**/*';
 var output_img = './static/img/';
 
 var input_html = '**/templates/**/*.html';
 
 var input_libs = './templates/partials/*.html';
 var libs_output = './static/';
-var fonts_input = './node_modules/bootstrap/fonts/*'
-var fonts_output = './static/fonts/'
-var img_input = ['./node_modules/leaflet/dist/images/*',]
-var img_output = './static/img/'
+var fonts_input = './node_modules/bootstrap/fonts/*';
+var fonts_output = './static/fonts/';
+var img_input = ['./node_modules/leaflet/dist/images/*',];
+var img_output = './static/img/';
 
 
 
@@ -51,13 +52,13 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(output_css))
     .pipe(browserSync.reload({
       stream: true
-    }))
+    }));
 });
 
 gulp.task('html', function() {
   gulp.src(input_html).pipe(browserSync.reload({
     stream: true
-  }))
+  }));
 });
 
 gulp.task('img', function() {
@@ -65,7 +66,7 @@ gulp.task('img', function() {
     .pipe(gulp.dest(output_img))
     .pipe(browserSync.reload({
       stream: true
-    }))
+    }));
 });
 
 gulp.task('libs',  function(callback){
@@ -104,7 +105,7 @@ gulp.task('webpack', function() {
     .pipe(gulpWebpack(require('./webpack.config.js'), webpack))
     .on('error', swallowError)
     .pipe(gulp.dest(output_js))
-    .pipe(browserSync.reload({ stream: true }))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 gulp.task('watch', ['browserSync'], function() {
@@ -139,7 +140,7 @@ gulp.task('browserSync', [], function() {
     notify: true,
     port: 8000,
     proxy: 'localhost:8000'
-  })
+  });
 });
 
 gulp.task('runserver', function(cb) {
@@ -160,4 +161,3 @@ gulp.task('clean',['libs-clean'], function() {
   return gulp.src(generated)
     .pipe(rimraf());
 });
-

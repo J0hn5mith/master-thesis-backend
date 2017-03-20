@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from 'axios';
 
 var URL_CONFIG = {
   tags: '/tags/rest/tags/',
   tagData: '/sensor-data/rest/position_measurements/',
-  currentUser: '/user/rest/current-user/'
-}
+  currentUser: '/user/rest/current-user/',
+};
 
 class RESTClient {
 
@@ -14,19 +14,23 @@ class RESTClient {
    * @param{success} Success callback function.
    * @param{success} error callback function.
    */
-  remove(instance, success, error) {
-    axios.delete(instance.url, {headers: {"X-CSRFToken": csrfToken}})
-      .then(function (response) { if(success){success(response)}})
+  remove(instance, success, error_handler) {
+    axios.delete(instance.url, {headers: {'X-CSRFToken': csrfToken}})
+      .then(function (response) {if(success){success(response);}})
       .catch(function (error) {
-        if(error){ console.log(error); }
+        if(error_handler){
+          error_handler(error);
+        } else { console.log(error); }
       });
   }
 
-  update(instance, success, error) {
-    axios.put(instance.url, instance, {headers: {"X-CSRFToken": csrfToken}})
-      .then(function (response) { if(success){success(response)}})
+  update(instance, success, error_handler) {
+    axios.put(instance.url, instance, {headers: {'X-CSRFToken': csrfToken}})
+      .then(function (response) { if(success){success(response);}})
       .catch(function (error) {
-        if(error){
+        if(error_handler) {
+          error_handler(error_handler);
+        } else {
           console.log(error);
         }
       });
@@ -49,15 +53,15 @@ class RESTClient {
   }
 
   getTags(success, error) {
-    this.get(URL_CONFIG.tags, success, error)
+    this.get(URL_CONFIG.tags, success, error);
   }
 
   getSensorData(id) {
-    return axios.get(URL_CONFIG.tagData + '?uid=' + id, { })
+    return axios.get(URL_CONFIG.tagData + '?uid=' + id, { });
   }
 
   getCurrentUser(success, error) {
-    this.get(URL_CONFIG.currentUser, success, error)
+    this.get(URL_CONFIG.currentUser, success, error);
   }
 }
 
