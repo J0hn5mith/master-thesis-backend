@@ -257,6 +257,13 @@ SECURE_BROWSER_XSS_FILTER = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 
+
+##################################################
+# Local Apps
+##################################################
+NOTIFICATION_FROM_EMAIL = 'notification@jan-meier.ch'
+
+
 ##################################################
 # Third Party
 ##################################################

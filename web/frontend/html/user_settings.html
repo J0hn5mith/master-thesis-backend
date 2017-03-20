@@ -19,9 +19,9 @@
           </div>
         </span>
       </fieldset>
-      <fieldset v-if="user && user.conf.has_active_sms">
+      <fieldset v-if="user && user.conf.has_active_phone">
         <div class="form-group">
-          <input type="checkbox" name="sms" :value="user.conf.notify_by_sms" id="sms">
+          <input type="checkbox" name="sms" v-model="user.conf.notify_by_sms" id="sms">
           <label for="SMS">SMS</label>
         </div>
       </fieldset>

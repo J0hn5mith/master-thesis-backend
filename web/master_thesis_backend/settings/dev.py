@@ -4,13 +4,12 @@ from master_thesis_backend.settings.base import *  # noqa
 
 DEBUG = True
 
-INSTALLED_APPS += ('debug_toolbar', 'django_extensions',)
+INSTALLED_APPS += ('debug_toolbar', 'django_extensions', )
 
 INTERNAL_IPS = ('127.0.0.1', )
 
 #: Don't send emails, just print them on stdout
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
@@ -38,7 +37,7 @@ if 'test' in sys.argv:
     LOGGING['root']['handlers'] = []
 
 # Django SendSMS
-SENDSMS_BACKEND = 'sendsms.backends.console.SmsBackend'
-SENDSMS_FROM_NUMBER = '+15005550006'
-# ACCOUNT_SID = "AC8c157f3981c2d3c3d9cd8f8dcbd3fb2c"
-# AUTH_TOKEN = "6925d887df65c472217021a657ab912f"
+SENDSMS_BACKEND = 'sendsms.backends.twiliorest.SmsBackend'
+SENDSMS_FROM_NUMBER = '+41798074786'
+SENDSMS_TWILIO_ACCOUNT_SID = 'AC8c157f3981c2d3c3d9cd8f8dcbd3fb2c'
+SENDSMS_TWILIO_AUTH_TOKEN = '6925d887df65c472217021a657ab912f'

@@ -1,4 +1,4 @@
-import RESTClient from './../../src/RESTClient.js'
+import RESTClient from './../../src/RESTClient.js';
 
 var UserSettings = {
   props: ['user'],
@@ -6,15 +6,20 @@ var UserSettings = {
     return{
       emailDisabledInfo: "Set and activated a email address.",
       smsDisabledInfo: "Set and activated a mobile device.",
-    }
+    };
   },
   mounted: function(){
   },
   watch: {
     'user.conf.notify_by_email': function(oldVal, newVal){
-        var restClient = new RESTClient();
-        restClient.update(this.user.conf);
-    }
+      var restClient = new RESTClient();
+      restClient.update(this.user.conf);
+    },
+    'user.conf.notify_by_sms': function(oldVal, newVal){
+      var restClient = new RESTClient();
+      restClient.update(this.user.conf);
+    },
   }
-}
+};
+
 export default UserSettings;
