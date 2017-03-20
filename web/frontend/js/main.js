@@ -1,6 +1,8 @@
 import * as Vue from 'vue/dist/vue.common.js' // Required for using with external templates
 import TagOverviewMap from './vue-components/tag_overview_map.vue'
 import TagTable from './vue-components/tag_table.vue'
+import UserSettings from './vue-components/user_settings.vue'
+import RESTClient from './src/RESTClient.js'
 
 
 ////////////////////////////////////////
@@ -34,6 +36,18 @@ var vue = new Vue({
     'v-tag-overview-map': TagOverviewMap,
     //'v-tag-detail-map': TagDetailMap,
     'v-tag-table': TagTable,
+    'v-user-settings': UserSettings,
+  },
+  data: {
+    //function() {return {user: {}};},
+    user: false,
+  },
+  beforeCreate: function(){
+    var restClient = new RESTClient();
+
+    restClient.getCurrentUser(function(data){
+      this.user = data;
+    }.bind(this));
   },
   created: function(){
   },

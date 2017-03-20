@@ -31,28 +31,10 @@
       </div>
     </form>
 
-    <div class="settings__section">
-      <div class="settings__section-title">
-        <h2 class="settings__heading-2">Notification</h2>
-      </div>
-      <div class="settings__section-content">
-        <p>How would you like to be informed about alarms?</p>
-        <form action="settings_submit" method="get" accept-charset="utf-8">
-          <div class="form-group">
-            <input type="checkbox" name="email" value="true" id="email">
-            <label for="email">Email</label>
-          </div>
-          <div class="form-group">
-            <input type="checkbox" name="pushNotification" value="" id="pushNotification">
-            <label for="pushNotification">Push Notification</label>
-          </div>
-          <div class="form-group">
-            <input type="checkbox" name="sms" value="" id="sms">
-            <label for="SMS">SMS</label>
-          </div>
-        </form>
-      </div>
+    <div id="vue">
+      <v-user-settings :user="user"></v-user-settings>
     </div>
+
     <div>
       <h2>Mobile Devices</h2>
       <table class="table table-bordered">

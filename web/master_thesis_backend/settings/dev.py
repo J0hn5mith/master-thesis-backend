@@ -39,4 +39,6 @@ if 'test' in sys.argv:
 
 # Django SendSMS
 SENDSMS_BACKEND = 'sendsms.backends.console.SmsBackend'
-SENDSMS_FROM_NUMBER = '+15005550006' # Magic number that passes everything
+SENDSMS_FROM_NUMBER = '+15005550006'
+# ACCOUNT_SID = "AC8c157f3981c2d3c3d9cd8f8dcbd3fb2c"
+# AUTH_TOKEN = "6925d887df65c472217021a657ab912f"

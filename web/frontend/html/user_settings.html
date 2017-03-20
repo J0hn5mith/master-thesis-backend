@@ -1,0 +1,38 @@
+<div class="settings__section">
+  <div class="settings__section-title">
+    <h2 class="settings__heading-2">Notification</h2>
+  </div>
+  <div class="settings__section-content">
+    <p>How would you like to be informed about alarms?</p>
+    <form action="settings_submit" method="get" accept-charset="utf-8">
+      <fieldset v-if="user && user.conf.has_active_email">
+        <div class="form-group">
+          <input type="checkbox" name="email" v-model="user.conf.notify_by_email" id="email">
+          <label for="email">Email</label>
+        </div>
+      </fieldset>
+      <fieldset v-else disabled>
+        <span class="hint--top" :aria-label="emailDisabledInfo">
+          <div class="form-group">
+            <input type="checkbox" name="email" value="false" checked="" id="email">
+            <label class="form-group__label--disabled" for="email">Email</label>
+          </div>
+        </span>
+      </fieldset>
+      <fieldset v-if="user && user.conf.has_active_sms">
+        <div class="form-group">
+          <input type="checkbox" name="sms" :value="user.conf.notify_by_sms" id="sms">
+          <label for="SMS">SMS</label>
+        </div>
+      </fieldset>
+      <fieldset v-else disabled>
+        <span class="hint--top" :aria-label="smsDisabledInfo">
+          <div class="form-group">
+            <input type="checkbox" name="sms" value="" id="sms" disabled>
+            <label class="form-group__label--disabled" for="SMS">SMS</label>
+          </div>
+        </span>
+      </fieldset>
+    </form>
+  </div>
+</div>

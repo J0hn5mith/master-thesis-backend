@@ -3,6 +3,7 @@ import axios from 'axios'
 var URL_CONFIG = {
   tags: '/tags/rest/tags/',
   tagData: '/sensor-data/rest/position_measurements/',
+  currentUser: '/user/rest/current-user/'
 }
 
 class RESTClient {
@@ -35,7 +36,12 @@ class RESTClient {
     axios.get(url, {})
       .then(function(response){
         if(success){
-          var data = response.data.results;
+          var data = null;
+          if(response.data.results){
+            data = response.data.results;
+          } else{
+            data = response.data;
+          }
           success(data);
         }
       })
@@ -47,7 +53,11 @@ class RESTClient {
   }
 
   getSensorData(id) {
-    return axios.get( URL_CONFIG.tagData + '?uid=' + id, { })
+    return axios.get(URL_CONFIG.tagData + '?uid=' + id, { })
+  }
+
+  getCurrentUser(success, error) {
+    this.get(URL_CONFIG.currentUser, success, error)
   }
 }
 

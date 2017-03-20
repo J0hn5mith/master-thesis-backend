@@ -3,11 +3,15 @@ from django.core.mail import send_mail
 from sendsms.api import send_sms
 
 
-def notify_user(user):
-    pass
+def notify(user):
+    if user.notify_by_email:
+        notify_by_email()
+
+    if user.notify_by_sms:
+        notify_by_sms()
 
 
-def notify_user_mail():
+def notify_by_email(user):
     send_mail(
         'Subject here',
         'Here is the message.',
@@ -17,7 +21,7 @@ def notify_user_mail():
     )
 
 
-def notify_user_sms():
+def notify_by_sms(user):
     send_sms(
         body='I can haz txt',
         from_phone=settings.SENDSMS_FROM_NUMBER,

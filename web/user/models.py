@@ -3,6 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core import urlresolvers
 from django.db import models
 from django.db.models.signals import post_save
+from avatar_generator import Avatar
 
 
 class UserConfiguration(models.Model):
@@ -19,7 +20,7 @@ class UserConfiguration(models.Model):
         blank=True,
     )
 
-    notify_by_email = models.BooleanField(default=True)
+    notify_by_email = models.BooleanField(default=False)
 
     notify_by_sms = models.BooleanField(default=False)
 
@@ -31,6 +32,11 @@ class UserConfiguration(models.Model):
     def save(self, *args, **kwargs):
         if not self.avatar:
             self.__generate_avatar()
+        if self.notify_by_email and not self.has_active_email():
+            self.notify_by_email = False
+        if self.notify_by_sms and not self.has_active_phone():
+            self.notify_by_sms = False
+
         super(UserConfiguration, self).save(*args, **kwargs)
 
     def get_admin_url(self):
@@ -40,32 +46,38 @@ class UserConfiguration(models.Model):
         return urlresolvers.reverse(
             "admin:%s_%s_change" %
             (content_type.app_label, content_type.model),
-            args=(self.user.id, )
+            args=(self.user.id, ),
         )
 
+    def has_active_email(self):
+        """
+        Returns whether the user has email address.
+        """
+        return self.user.email
+
+    def has_active_phone(self):
+        """
+        Returns whether there is an active phone registered for the user.
+        """
+        return len(self.user.phonedevice_set.filter(confirmed=True)) >= 1
+
     def __generate_avatar(self):
-        pass
-        # TODO: fix avatar creation
-        # avatar = Avatar.generate(256, self.user.username)
-
-        # from django.core.files.base import ContentFile
-
-        # from avatar_generator import Avatar
-
-        # avatar.save( # "avatar_" + str(self.pk) + ".png", ContentFile(avatar)
-        # )
+        avatar = Avatar.generate(256, self.user.username)
+        avatar = avatar
+        # TODO: Disabled because does not work when testing
+        # self.avatar.save("avatar_" +
+        # str(self.pk) + ".png", ContentFile(avatar))
 
 
 def create_user_config(sender, instance, created, **kwargs):
     """
     Automatically creates a user config for every user which is created
     """
-    print("Create user config")
     if created:
         config, created = UserConfiguration.objects.get_or_create(
             user=instance
         )
-    pass
+        pass
 
 
 # UserD = get_user_model()
