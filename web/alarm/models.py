@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.core.validators import MinValueValidator
@@ -40,13 +41,15 @@ def create_alert_config(sender, instance, created, **kwargs):
             tag=instance,
             area=area,
         )
+
+
 post_save.connect(create_alert_config, Tag)
 
 
 class AlarmConfigArea(models.Model):
     """
-    Defines the area a tag is allowed to be in. Currently only supports circular
-    areas.
+    Defines the area a tag is allowed to be in. Currently
+    only supports circular areas.
     """
 
     center = models.PointField(default=Point(0, 0))
@@ -58,8 +61,15 @@ class AlarmConfigArea(models.Model):
 
 ALARM_STATES = (
     (0, _('Triggered')), (1, _('Pending')), (2, _('Active')),
-    (3, _('Dismissed')),
+    (3, _('Canceled')),
 )
+
+
+def generateRandomToken():
+    import random
+    return ''.join(
+        random.choice(settings.RANDOM_TOAKEN_CHARACTERS) for i in range(10)
+    )
 
 
 class Alarm(models.Model):
@@ -78,4 +88,7 @@ class Alarm(models.Model):
     state = models.IntegerField(
         default=0,
         choices=ALARM_STATES,
+    )
+    random_token = models.CharField(
+        max_length=10, default=generateRandomToken, unique=True
     )

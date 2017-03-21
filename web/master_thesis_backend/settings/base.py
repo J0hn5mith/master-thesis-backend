@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 # TODO: Update with https://github.com/jpadilla/
 # django-project-template/blob/master/project_name/settings.py
 import os
+import string
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
@@ -233,7 +234,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
         'django.contrib.auth.password_validation\
-                .UserAttributeSimilarityValidator',
+                    .UserAttributeSimilarityValidator',
     },
     {
         'NAME':
@@ -257,12 +258,11 @@ SECURE_BROWSER_XSS_FILTER = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 
-
 ##################################################
 # Local Apps
 ##################################################
 NOTIFICATION_FROM_EMAIL = 'notification@jan-meier.ch'
-
+RANDOM_TOAKEN_CHARACTERS = string.ascii_letters + string.digits + '-._~'[:]
 
 ##################################################
 # Third Party

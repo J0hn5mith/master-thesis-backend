@@ -1,13 +1,12 @@
 from datetime import timedelta
+from django.contrib.gis.geos import Point
 from django.test import TestCase
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
-from rest_framework.test import APIClient
 from rest_framework import status
+from rest_framework.test import APIClient
 from tags.models import Tag
 from alarm.models import Alarm
-from django.contrib.gis.geos import Point
-
 
 client = APIClient()
 
@@ -43,7 +42,7 @@ class AlarmConfigAreaRESTTrestCase(TestCase):
 
     def test_get(self):
         response = client.get(self.url_list, format='json')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_put(self):
         response = client.get(self.url_detail, format='json')
@@ -77,4 +76,25 @@ class AlarmSerializeRESTTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         response.data['state'] = 1
         response = client.put(self.url_detail, response.data, format='json')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class AlarmManagementRESTTestCase(TestCase):
+    def setUp(self):
+        self.tag = Tag.objects.create()  # Creates alarm config by signal
+        self.tag.save()
+        self.alarm, cerated = Alarm.objects.get_or_create(
+            tag=self.tag,
+            start_position=Point(0, 0),
+            activate_time=timezone.now() +
+            timedelta(seconds=self.tag.alarm_config.time_to_deactivate)
+        )
+
+    def test_cancel_alarm(self):
+        print(self.alarm.random_token)
+        url = reverse(
+            'confirm-alarm',
+            kwargs={'random_token': self.alarm.random_token}
+        )
+        response = client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)

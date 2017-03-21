@@ -1,16 +1,14 @@
-import TagChargeBar from '../tag_charge_bar.vue'
-import TagToggle from '../tag_toggle.vue'
-import TagDetailMap from '../tag_detail_map.vue'
-import PositionMeasurements from '../position_measurements.vue'
-import CollapseSection from '../collapse_section.vue'
-import RESTClient from './../../src/RESTClient.js'
+import TagChargeBar from '../tag_charge_bar.vue';
+import TagToggle from '../tag_toggle.vue';
+import TagDetailMap from '../tag_detail_map.vue';
+import PositionMeasurements from '../position_measurements.vue';
+import CollapseSection from '../collapse_section.vue';
+import RESTClient from './../../src/RESTClient.js';
 
 function fetchPosMes(instance){
   var restClient = new RESTClient();
-  restClient.getTagData(instance.tag.uid).then(function (response) {
-    instance.posMes = response.data.results;
-  }).catch(function (error) {
-    console.log(error);
+  restClient.getSensorData(instance.tag.uid, function (data) {
+    instance.posMes = data;
   });
 }
 
@@ -32,7 +30,7 @@ var TagModal = {
   data: function(){
     return{
       posMes: [],
-    }
+    };
   },
   methods: {
     setCenterToCurrentPosition: function(){
@@ -70,6 +68,6 @@ var TagModal = {
       });
     },
   },
-}
+};
 
 export default TagModal;

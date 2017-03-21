@@ -56,8 +56,9 @@ class RESTClient {
     this.get(URL_CONFIG.tags, success, error);
   }
 
-  getSensorData(id) {
-    return axios.get(URL_CONFIG.tagData + '?uid=' + id, { });
+  getSensorData(id, success, error) {
+    var url = URL_CONFIG.tagData + '?uid=' + id;
+    this.get(url, success, error);
   }
 
   getCurrentUser(success, error) {
