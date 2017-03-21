@@ -6,10 +6,9 @@ var TagToggle = {
     toggle: function (event) {
       this.tag.active = !this.tag.active;
       var restClient = new RESTClient();
-      restClient.updateTag(this.tag).then(function(response){})
-        .catch(function (error) {
-          console.log(error);
-        });
+      restClient.update(this.tag, null, function(){
+      this.tag.active = !this.tag.active;
+      });
     },
   },
 }

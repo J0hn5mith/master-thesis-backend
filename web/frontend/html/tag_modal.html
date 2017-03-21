@@ -3,19 +3,38 @@
   <div class="modal-mask">
     <div class="modal-container" @click.stop="" >
       <div class="modal__header">
+        <div class="modal__floating-header">
+          <input class="modal__title" v-model="tag.name"></input>
+          <img v-if="tag.avatar" class="avatar" :src="tag.avatar"></img>
+          <img v-else class="avatar avatar--medium" src="/static/img/icons/tag.svg"></img>
+        </div>
         <v-tag-detail-map :tag="tag" :posMes="posMes"></v-tag-detail-map>
-      <v-collapse-section>
-        <v-position-measurements :tag="tag" :posMes="posMes"></v-position-measurements>
-      </v-collapse-section>
+        <v-collapse-section>
+          <v-position-measurements :tag="tag" :posMes="posMes"></v-position-measurements>
+        </v-collapse-section>
       </div>
       <div class="modal__body">
-        <img v-if="tag.avatar" class="table__icon table__icon--hexagon" :src="tag.avatar"></img>
-        <img v-else class="table__icon" src="/static/img/icons/tag.svg"></img>
-        <input class="modal__title" v-model="tag.name"></input>
-        <button class="btn btn-success" v-if="edited" @click="save">Save</button>
-        <v-tag-toggle v-bind:tag="tag"></v-tag-toggle>
-        <p>{{ tag.uid }}</p>
-        <v-tag-charge-bar v-bind:tag="tag"></v-tag-charge-bar>
+        <div>
+          <v-tag-toggle v-bind:tag="tag"></v-tag-toggle>
+          <p>{{ tag.uid }}</p>
+          <v-tag-charge-bar v-bind:tag="tag"></v-tag-charge-bar>
+        </div>
+        <div>
+          <h2> Alarm Settings </h2>
+          <div v-if="tag.alarm_config">
+            <div>{{ tag.alarm_config.time_to_deactivate}}</div>
+            <div v-if="tag.alarm_config.area">
+              <div>Center:
+                <input v-model="tag.alarm_config.area.center.coordinates[0]"></input>
+                <input v-model="tag.alarm_config.area.center.coordinates[1]"></input>
+                <div class="btn btn-info" @click="setCenterToCurrentPosition">Current Position</div>
+              </div>
+              <div>Radius:
+                <input type="number" v-model.number="tag.alarm_config.area.radius"></input>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

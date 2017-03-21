@@ -112,3 +112,7 @@
 .form-group__double{
   display: flex;
 }
+
+.form-group__label--disabled {
+  color: $grey--light;
+}

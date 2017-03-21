@@ -3,8 +3,7 @@ module.exports = {
   entry: "./frontend/js/main.js",
   output: {
     path: __dirname,
-    //filename: "./static/js/bundle.js"
-    filename: "./bundle.js"
+    //filename: "./static/js/bundle.js" filename: "./bundle.js"
   },
   module: {
     rules: [
@@ -18,15 +17,23 @@ module.exports = {
         }
       },
       {
+        test: /\.js$/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true,
+        },
+      },
+      {
         test: path.join(__dirname, 'frontend/js/**/*.js'),
         loader: 'babel-loader',
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]?[hash]'
-          }
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
       },
       {
         test: /\.(png|jpg|gif|svg)$/,

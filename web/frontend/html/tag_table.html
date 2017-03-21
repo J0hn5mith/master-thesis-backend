@@ -5,18 +5,17 @@
 
   <table class="table table-striped">
     <thead class="table__head">
-      <th class="table__header">Icon  </th>
+      <th class="table__header table__header--hidden"></th>
+      <th class="table__header">Icon</th>
       <th class="table__header">Name</th>
       <th class="table__header">Status</th>
       <th class="table__header">Last Update</th>
       <th class="table__header">Charge</th>
       <th class="table__header">Toggle</th>
     </thead>
-  </table>
 
-  <table class="table table-striped">
-    <div class="table table-striped">
+    <tbody>
       <v-tag-table-entry  v-for="tag in tags" v-bind:tag="tag"></v-tag-table-entry>
-    </div>
+    </tbody>
   </table>
 </div>

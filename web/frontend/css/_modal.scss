@@ -28,6 +28,16 @@
 
 .modal__header {
 }
+.modal__floating-header{
+    position: absolute;
+    z-index: 999;
+    display: flex;
+    width: 90%;
+    justify-content: flex-end;
+    >img,input{
+        margin: 10px;
+    }
+}
 
 .modal__body {
   padding: 20px 30px;
@@ -36,9 +46,13 @@
 
 .modal__title {
   //font-size: $font-size--extra-large;
-  font-size: 50px;
-  color: $font-color;
+  font-size: 38px;
+  background: $darken;
+  color: $font-color--inverted;
+  text-align: right !important;
   border-style: none;
+  padding-right: 10px;
+  height: 50px;
 }
 
 .modal-default-button {

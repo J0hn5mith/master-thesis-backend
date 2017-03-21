@@ -1,13 +1,13 @@
+import random
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.db import models
 from django.utils.html import format_html
 from django.utils.translation import ugettext as _
-import random
+from colorful.fields import RGBColorField
 from sensor_data.models import PositionMeasurement
 from sensor_data.serializers import PositionMeasurementSerializer
-from colorful.fields import RGBColorField
 
 def get_default_color():
     return "#{:06x}".format(random.randint(0, 0xFFFFFF))
@@ -86,3 +86,5 @@ class Tag(models.Model):
             )
         else:
             return format_html('None')
+
+

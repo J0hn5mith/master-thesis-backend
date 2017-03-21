@@ -31,6 +31,7 @@ clean-back-end:
 
 clean-front-end:
 	rm -r ./node_modules
+	rm -r ./static/
 
 check_defined = \
     $(strip $(foreach 1,$1, \
