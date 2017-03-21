@@ -7,6 +7,7 @@ DEBUG = True
 INSTALLED_APPS += ('debug_toolbar', 'django_extensions', )
 
 INTERNAL_IPS = ('127.0.0.1', )
+PAGE_URL = 'http://localhost:8000'
 
 #: Don't send emails, just print them on stdout
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

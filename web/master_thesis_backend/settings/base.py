@@ -50,6 +50,7 @@ THIRD_PARTY_APPS = [
     'two_factor',
     'rest_framework',
     'rest_framework_gis',  # Has to be after rest_framework
+    'raven.contrib.django.raven_compat',
 ]
 
 LOCAL_APPS = [
@@ -100,8 +101,11 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'dealer.contrib.django.context_processor',
             ],
+            'libraries': {
+                'staticfiles': 'django.templatetags.static',
+            },
         },
-    },
+    }
 ]
 
 WSGI_APPLICATION = 'master_thesis_backend.wsgi.application'
@@ -262,7 +266,7 @@ X_FRAME_OPTIONS = 'DENY'
 # Local Apps
 ##################################################
 NOTIFICATION_FROM_EMAIL = 'notification@jan-meier.ch'
-RANDOM_TOAKEN_CHARACTERS = string.ascii_letters + string.digits + '-._~'[:]
+RANDOM_TOAKEN_CHARACTERS = string.ascii_letters + string.digits + '-._~' [:]
 
 ##################################################
 # Third Party
@@ -305,3 +309,10 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
+
+# Sentry & Raven
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('SENTRY_URL'),
+    # 'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    'release': 'dev',
+}

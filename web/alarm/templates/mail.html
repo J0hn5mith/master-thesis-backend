@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <link rel="stylesheet" href="http://localhost:8000/static/css/main.css" type="text/css">
+    <link rel="stylesheet" href="http://localhost:8000/static/css/libs.css" type="text/css">
+
+    <title>
+        Hello World
+    </title>
+</head>
+
+<body>
+    <p>Hi {{ tag.user.first_name }},</p>
+
+    <p>Your tag "{{ tag.name }}" reports an alarm. What would you like to do?</p>
+    <a href="{{ url_confirm }}" class="btn btn-success">Confirm</a>
+    <a href="{{ url_cancel }}" class="btn btn-danger">Cancel</a>
+
+    <p>Some fancy footer stuff.</p>
+</body>
+</html>

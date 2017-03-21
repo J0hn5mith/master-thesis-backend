@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Raven from 'raven-js';
 
 var URL_CONFIG = {
   tags: '/tags/rest/tags/',
@@ -20,7 +21,9 @@ class RESTClient {
       .catch(function (error) {
         if(error_handler){
           error_handler(error);
-        } else { console.log(error); }
+        } else {
+          Raven.captureException(error);
+        }
       });
   }
 
@@ -31,12 +34,12 @@ class RESTClient {
         if(error_handler) {
           error_handler(error_handler);
         } else {
-          console.log(error);
+          Raven.captureException(error);
         }
       });
   }
 
-  get(url, success, error) {
+  get(url, success, error_handler) {
     axios.get(url, {})
       .then(function(response){
         if(success){
@@ -49,7 +52,9 @@ class RESTClient {
           success(data);
         }
       })
-      .catch(function (e) {if(error){console.log(e.stack);}});
+      .catch(function (error) {if(error_handler){
+        Raven.captureException(error);
+      }});
   }
 
   getTags(success, error) {

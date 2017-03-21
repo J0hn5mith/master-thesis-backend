@@ -10,6 +10,8 @@ ENVIRONMENT = os.environ['ENVIRONMENT']
 SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
+PAGE_URL = 'http://example.com'
+print("Set page url!")
 
 DATABASES['default']['NAME'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
 DATABASES['default']['USER'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()

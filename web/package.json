@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "hint.css": "^2.4.1",
+    "raven-js": "^3.12.1",
     "vue2-leaflet": "^0.0.32"
   },
   "devDependencies": {

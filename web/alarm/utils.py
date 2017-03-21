@@ -1,6 +1,10 @@
 from datetime import timedelta
+from django.conf import settings
 from django.utils import timezone
+from django.urls import reverse
+from django.template.loader import render_to_string
 from alarm.models import Alarm
+from user.notifications import notify
 
 
 def check_trigger_alarm(alarm_config):
@@ -30,12 +34,47 @@ def update_alarms():
     """
     for alarm in Alarm.objects.all():
         # Triggered
-        if alarm.state == 0:
-            alarm.state = 1
+        if alarm.state == Alarm.states.TRIGGERED:
+            alarm.state = Alarm.states.PENDEING
             alarm.save()
-            print("Changed alarm state to pending")
-        # Pending
-        elif alarm.state == 1 and alarm.activate_time <= timezone.now():
+            send_alarm_notification(alarm)
+        elif alarm.state == Alarm.states.PENDING and\
+                alarm.activate_time <= timezone.now():
             alarm.state = 2
             alarm.save()
-            print("Changed alarm state to active")
+
+
+def send_alarm_notification(alarm):
+    """
+    Sends a notification to inform the user that one of his/her
+    tags has triggered an alarm
+    """
+    context = {}
+    context["tag"] = alarm.tag
+    context['url_confirm'] = ''.join(
+        [
+            settings.PAGE_URL,
+            reverse(
+                'confirm-alarm', kwargs={'random_token': alarm.random_token}
+            ),
+        ]
+    )
+    context['url_cancel'] = ''.join(
+        [
+            settings.PAGE_URL, reverse(
+                'cancel-alarm', kwargs={'random_token': alarm.random_token}
+            )
+        ]
+    )
+
+    mail_content = None
+    mail_subject = None
+    sms_content = None
+    try:
+        mail_content = render_to_string('mail.html', context=context)
+        mail_subject = render_to_string('mail_subject.txt', context=context)
+        sms_content = render_to_string('sms.txt', context=context)
+    except:
+        print("Failed to render template")
+
+    notify(alarm.tag.user, mail_subject, mail_content, sms_content)

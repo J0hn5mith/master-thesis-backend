@@ -28,3 +28,4 @@ django-sendsms==0.2.3
 django-debug-toolbar==1.4
 django-extensions==1.7.7
 twilio==5.7.0
+raven==6.0.0

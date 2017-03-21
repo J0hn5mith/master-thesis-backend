@@ -10,6 +10,7 @@ def notify_by_email(user, subject, message):
         settings.NOTIFICATION_FROM_EMAIL,
         [user.email],
         fail_silently=False,
+        html_message=message,
     )
 
 

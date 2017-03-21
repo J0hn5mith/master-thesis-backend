@@ -8,6 +8,7 @@ os.environ.setdefault('BROKER_HOST', '127.0.0.1:5672')
 ENVIRONMENT = os.environ['ENVIRONMENT']
 
 SECRET_KEY = os.environ['SECRET_KEY']
+PAGE_URL = 'http://example.com'
 
 DEBUG = False
 
@@ -85,7 +86,7 @@ if ENVIRONMENT.upper() == 'LOCAL':
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Django SendSMS
-SENDSMS_FROM_NUMBER = '+15005550006' # Magic number that passes everything
+SENDSMS_FROM_NUMBER = '+15005550006'  # Magic number that passes everything
 SENDSMS_BACKEND = 'sendsms.backends.twiliorest.SmsBackend'
 SENDSMS_TWILIO_ACCOUNT_SID = 'AC1a1b980ad0faa5bd2f08ac7427a89159'
 SENDSMS_TWILIO_AUTH_TOKEN = '6e18ecb8e71d3bb723a1031bc729f901'

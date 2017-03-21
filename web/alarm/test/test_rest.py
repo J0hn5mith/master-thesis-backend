@@ -91,10 +91,59 @@ class AlarmManagementRESTTestCase(TestCase):
         )
 
     def test_cancel_alarm(self):
-        print(self.alarm.random_token)
+        self.alarm.state = Alarm.states.PENDING
+        self.alarm.save()
         url = reverse(
-            'confirm-alarm',
-            kwargs={'random_token': self.alarm.random_token}
+            'cancel-alarm', kwargs={'random_token': self.alarm.random_token}
         )
+
         response = client.get(url, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(
+            response.status_code, status.HTTP_200_OK, "Alarm failed to cancel."
+        )
+        self.alarm.refresh_from_db()
+        self.assertEqual(
+            self.alarm.state, Alarm.states.CANCELED,
+            "State has been set incorrect"
+        )
+
+        response = client.get(url, format='json')
+        self.assertEqual(
+            response.status_code, status.HTTP_404_NOT_FOUND,
+            "Alarm could be canceled in wrong state."
+        )
+        self.alarm.refresh_from_db()
+        self.assertEqual(
+            self.alarm.state, Alarm.states.CANCELED,
+            "Stat has been changed but it should not."
+        )
+
+    def test_confirm_alarm(self):
+
+        self.alarm.state = Alarm.states.PENDING
+        self.alarm.save()
+        url = reverse(
+            'confirm-alarm', kwargs={'random_token': self.alarm.random_token}
+        )
+
+        response = client.get(url, format='json')
+        self.assertEqual(
+            response.status_code, status.HTTP_200_OK, "Alarm failed to cancel."
+        )
+        self.alarm.refresh_from_db()
+        self.assertEqual(
+            self.alarm.state, Alarm.states.ACTIVE,
+            "State has been set incorrect"
+        )
+
+        response = client.get(url, format='json')
+        self.assertEqual(
+            response.status_code, status.HTTP_404_NOT_FOUND,
+            "Alarm could be canceled in wrong state."
+        )
+
+        self.alarm.refresh_from_db()
+        self.assertEqual(
+            self.alarm.state, Alarm.states.ACTIVE,
+            "State has been changed but should have not."
+        )

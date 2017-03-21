@@ -1,0 +1,1 @@
+Your alarm "{{ tag.name }}" has been triggered. Deactivate: {{ url_cancel }}

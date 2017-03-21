@@ -59,9 +59,17 @@ class AlarmConfigArea(models.Model):
     )
 
 
+class AlarmStates(object):
+    TRIGGERED = 0
+    PENDING = 1
+    ACTIVE = 2
+    CANCELED = 3
+
+
 ALARM_STATES = (
-    (0, _('Triggered')), (1, _('Pending')), (2, _('Active')),
-    (3, _('Canceled')),
+    (AlarmStates.TRIGGERED, _('Triggered')),
+    (AlarmStates.PENDING, _('Pending')), (AlarmStates.ACTIVE, _('Active')),
+    (AlarmStates.CANCELED, _('Canceled')),
 )
 
 
@@ -92,3 +100,5 @@ class Alarm(models.Model):
     random_token = models.CharField(
         max_length=10, default=generateRandomToken, unique=True
     )
+
+    states = AlarmStates

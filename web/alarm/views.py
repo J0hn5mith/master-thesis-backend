@@ -26,7 +26,7 @@ def cancel(request, random_token):
     """
     try:
         alarm = Alarm.objects.get(random_token=random_token, state=1)
-        alarm.state = 3  # Canceled
+        alarm.state = Alarm.states.CANCELED
         alarm.save()
         return HttpResponse()
     except Alarm.DoesNotExist:
@@ -39,7 +39,7 @@ def confirm(request, random_token):
     """
     try:
         alarm = Alarm.objects.get(random_token=random_token, state=1)
-        alarm.state = 2  # Active
+        alarm.state = Alarm.states.ACTIVE
         alarm.save()
         return HttpResponse()
     except Alarm.DoesNotExist:
