@@ -17,21 +17,21 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from registration.backends import *
-
 from login_registration.views import LoginView
 
-urlpatterns = [
-        url(r'^user/', include('user.urls'), name='user'),
-        url(r'^admin/', admin.site.urls),
-        url(r'^', include('home.urls')),
-        url(r'^tags/', include('tags.urls'), name='tags'),
-        url(r'^sensor-data/', include('sensor_data.urls'), name='sensor-data'),
-        url(r'^alarm/', include('alarm.urls'), name='alarm'),
-        url(r'^dashboard/', include('dashboard.urls')),
-        url(r'^login$', LoginView.as_view(), name='login'),
 
-        # Third party
-        url(r'', include('two_factor.urls', 'two_factor')),
-        url(r'^register/', include('registration.backends.default.urls')),
-        ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = [
+    # Third party
+    url(r'', include('two_factor.urls', 'two_factor')),
+    url(r'', include('registration.backends.default.urls')),
+    url(r'^user/', include('user.urls'), name='user'),
+    url(r'^admin/', admin.site.urls),
+    url(r'^', include('home.urls')),
+    url(r'^tags/', include('tags.urls'), name='tags'),
+    url(r'^sensor-data/', include('sensor_data.urls'), name='sensor-data'),
+    url(r'^alarm/', include('alarm.urls'), name='alarm'),
+    url(r'^dashboard/', include('dashboard.urls')),
+    url(r'^login$', LoginView.as_view(), name='login'),
+] + static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+)

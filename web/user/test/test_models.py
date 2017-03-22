@@ -5,6 +5,26 @@ from django.test import TestCase
 User = get_user_model()
 
 
+class UserConfigurationSignalsTestCase(TestCase):
+    """
+    Test signals related to the UserConfiguration model.
+    """
+
+    def test_auto_creation_email(self):
+        """
+        Test if user config is created correctly on instance creation of User
+        model
+        """
+        self.user, created = User.objects.get_or_create(
+            username='test2',
+            password='test2',
+        )
+        self.assertIsNotNone(
+            self.user.conf,
+            "User should have conf instance set.",
+        )
+
+
 class UserConfigurationTestCase(TestCase):
     def setUp(self):
         self.user, created = User.objects.get_or_create(

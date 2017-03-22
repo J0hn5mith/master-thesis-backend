@@ -7,7 +7,7 @@ os.environ.setdefault('BROKER_HOST', '127.0.0.1:5672')
 #: deploy environment - e.g. "staging" or "production"
 ENVIRONMENT = os.environ['ENVIRONMENT']
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'SECRET_KEY'
 PAGE_URL = 'http://example.com'
 
 DEBUG = False

@@ -9,6 +9,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 0 and sys.argv[1] == 'test':
         os.environ.setdefault(
             "DJANGO_SETTINGS_MODULE", "master_thesis_backend.settings.test"
+            # "DJANGO_SETTINGS_MODULE", "master_thesis_backend.settings"
         )
     else:
         os.environ.setdefault(

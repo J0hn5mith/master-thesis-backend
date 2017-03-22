@@ -18,15 +18,14 @@ import string
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ADMINS = (  # ('Your Name', 'your_email@example.com'),
-)
+ADMINS = ()
 
-# Application definition
-
+# Application Definition
 DJANGO_APPS = [
+    'login_registration',  # Must stand before reg. because of templates
+    'registration',  # Must stand before auth
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -39,10 +38,6 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    # Local but has to stand before registration.
-    # Otherwise templates are not found.
-    'login_registration',
-    'registration',
     'widget_tweaks',
     'django_otp',
     'django_otp.plugins.otp_static',
@@ -50,7 +45,6 @@ THIRD_PARTY_APPS = [
     'two_factor',
     'rest_framework',
     'rest_framework_gis',  # Has to be after rest_framework
-    'raven.contrib.django.raven_compat',
 ]
 
 LOCAL_APPS = [
@@ -65,6 +59,7 @@ LOCAL_APPS = [
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
+# Midelware
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -73,13 +68,17 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_otp.middleware.OTPMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+
+    'two_factor.middleware.threadlocals.ThreadLocals',
 ]
 
+# Urls
 ROOT_URLCONF = 'master_thesis_backend.urls'
 
+# Templates
 TEMPLATES = [
     {
         'BACKEND':
@@ -111,17 +110,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'master_thesis_backend.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
 DATABASES = {
-    # 'default': {
-    # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    # 'NAME': os.environ['DB_NAME'],
-    # 'USER': os.environ['DB_USER'],
-    # 'PASSWORD': os.environ['DB_PASS'],
-    # 'HOST': os.environ['DB_SERVICE'],
-    # 'PORT': os.environ['DB_PORT']
-    # },
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': os.environ.get('DB_NAME'),
@@ -132,15 +121,11 @@ DATABASES = {
     },
 }
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
+# Media Files
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'public', 'media')
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
+# LOGGING
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -191,54 +176,22 @@ LOGGING = {
 }
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
-
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'locale'), )
-
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# On Unix systems, a value of None will cause Django to use the same
-# timezone as the operating system.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
 TIME_ZONE = 'Europe/Zurich'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
-
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
-
-# Additional locations of static files
 STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'), )
 
-# If using Celery, tell it to obey our logging configuration.
-CELERYD_HIJACK_ROOT_LOGGER = False
-
-# https://docs.djangoproject.com/
-# en/1.9/topics/auth/passwords/#password-validation
-
+# Authentication
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
-        'django.contrib.auth.password_validation\
-                    .UserAttributeSimilarityValidator',
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
         'NAME':
@@ -254,13 +207,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Make things more secure by default. Run "python manage.py check --deploy" for
-# even more suggestions that you might want to add to the settings, depending
-# on how the site uses SSL.
+# Security
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
+
 
 ##################################################
 # Local Apps
@@ -272,7 +224,7 @@ RANDOM_TOAKEN_CHARACTERS = string.ascii_letters + string.digits + '-._~' [:]
 # Third Party
 ##################################################
 
-# Django Registration
+# Django Registration Redux
 ACCOUNT_ACTIVATION_DAYS = 1
 REGISTRATION_DEFAULT_FROM_EMAIL = "john-doe@example.com"  # TODO
 REGISTRATION_EMAIL_HTML = True
@@ -309,10 +261,4 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
-
-# Sentry & Raven
-RAVEN_CONFIG = {
-    'dsn': os.environ.get('SENTRY_URL'),
-    # 'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
-    'release': 'dev',
-}
+CELERYD_HIJACK_ROOT_LOGGER = False

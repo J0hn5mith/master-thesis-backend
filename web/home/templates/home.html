@@ -23,42 +23,42 @@
         </div>
       </div>
       <div class="home__login-form-buttons">
-        <a class="home__login-form-register" href="{% url 'register' %}">Register</a>
+        <a class="home__login-form-register" href="{% url 'registration_register' %}">Register</a>
         <button type="submit" class="btn btn-success btn-lg">Login</button>
       </div>
     </form>
   </div>
 </div>
 
-<div class="section">
-  <div class="home__section-background-image parallax__layer--back" >
-    <div class="center-content">
-      <img src="{% static "./img/map.png" %}"></img>
-    </div>
-  </div>
-  <div class="columns__1-1--reverse shadow--inset">
-    <div class="home__text-block">
-      <h2 class="font__inverted home__heading">Keep Track of your Things!</h2>
-      <p class="font__inverted">{% lorem %}</p>
-    </div>
-    <div class="center-content">
-      <object class="home__image--large" data="{% static "img/icons/tag.svg"%}" type="image/svg+xml"></object>
-    </div>
-  </div>
-</div>
+<!--<div class="section">-->
+  <!--<div class="home__section-background-image parallax__layer--back" >-->
+    <!--<div class="center-content">-->
+      <!--<img src="{% static "./img/map.png" %}"></img>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="columns__1-1--reverse shadow--inset">-->
+    <!--<div class="home__text-block">-->
+      <!--<h2 class="font__inverted home__heading">Keep Track of your Things!</h2>-->
+      <!--<p class="font__inverted">{% lorem %}</p>-->
+    <!--</div>-->
+    <!--<div class="center-content">-->
+      <!--<object class="home__image--large" data="{% static "img/icons/tag.svg"%}" type="image/svg+xml"></object>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
-<div class="section home__section-background">
-  <div class="columns__1-1">
-    <div>
-      <h2 class="font__inverted home__heading">Object Tracking Made Easy!</h2>
-      <div class="center-content">
-        <iframe class="home__video" src="https://www.youtube.com/embed/ITHKAu4xmNg" frameborder="0" allowfullscreen></iframe>
-        <!--<div class="home__video">Hello</div>-->
-      </div>
-    </div>
-    <div class="center-content">
-      <object class="home__image--large" data="{% static "img/icons/lock.svg"%}" type="image/svg+xml"></object>
-    </div>
-  </div>
-</div>
+<!--<div class="section home__section-background">-->
+  <!--<div class="columns__1-1">-->
+    <!--<div>-->
+      <!--<h2 class="font__inverted home__heading">Object Tracking Made Easy!</h2>-->
+      <!--<div class="center-content">-->
+        <!--<iframe class="home__video" src="https://www.youtube.com/embed/ITHKAu4xmNg" frameborder="0" allowfullscreen></iframe>-->
+        <!--[><div class="home__video">Hello</div><]-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="center-content">-->
+      <!--<object class="home__image--large" data="{% static "img/icons/lock.svg"%}" type="image/svg+xml"></object>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 {% endblock %}

@@ -10,11 +10,11 @@
     <input type="password" class="form-control" id="id_auth-password" placeholder="Password" name="auth-password">
   </div>
   <button type="Login" class="btn btn-success">Login</button>
-  <a  class="btn btn-info" href="{% url 'register' %}">Register</a>
+  <a class="btn btn-info" href="{% url 'registration_register' %}">Register</a>
 </form>
 <div class="navbar-right med-only">
   <a type="Login" class="btn btn-success btn-navbar" href="{% url 'login' %}">Login</a>
-  <a  class="btn btn-info btn-navbar" href="{% url 'register' %}">Register</a>
+  <a  class="btn btn-info btn-navbar" href="{% url 'registration_register' %}">Register</a>
 </div>
 {% else %}
 <div class="navbar-right">
@@ -25,7 +25,7 @@
         {% if request.user.conf %}
         <img class="avatar avatar--small" src="{{ request.user.conf.avatar.url }}" />
         {% else %}
-            <img class="navbar__avatar" src="http://lorempixel.com/500/500/cats" />
+        <img class="navbar__avatar" src="http://lorempixel.com/500/500/cats" />
         {% endif %}
       </div>
       <p class="navbar__user-font">Hello {{ request.user }}</p>
@@ -40,7 +40,7 @@
         Logout
         <span>
           <img class="dropdown-menu--icon" src="{% static "img/icons/logout--white.svg" %}">
-        </span> 
+        </span>
       </a>
     </li>
   </ul>

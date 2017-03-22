@@ -1,13 +1,12 @@
 import sys
-
-from master_thesis_backend.settings.base import *  # noqa
+from master_thesis_backend.settings.base import *
 
 DEBUG = True
 
 INSTALLED_APPS += ('debug_toolbar', 'django_extensions', )
 
 INTERNAL_IPS = ('127.0.0.1', )
-PAGE_URL = 'http://localhost:8000'
+PAGE_URL = os.environ.get('PAGE_URL')
 
 #: Don't send emails, just print them on stdout
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -17,11 +16,6 @@ EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
-#: Run celery tasks synchronously
-CELERY_ALWAYS_EAGER = True
-
-#: Tell us when a synchronous celery task fails
-CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',
@@ -37,8 +31,23 @@ if 'test' in sys.argv:
 
     LOGGING['root']['handlers'] = []
 
+##################################################
+# Third Party
+##################################################
+
+# Django Registration
+# TODO: Move Twilio credentials to env file
+TWO_FACTOR_SMS_GATEWAY = 'two_factor.gateways.twilio.gateway.Twilio'
+TWILIO_CALLER_ID = os.environ.get('TWILIO_PHONE_NUMBER')
+TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
+
 # Django SendSMS
 SENDSMS_BACKEND = 'sendsms.backends.twiliorest.SmsBackend'
-SENDSMS_FROM_NUMBER = '+41798074786'
-SENDSMS_TWILIO_ACCOUNT_SID = 'AC8c157f3981c2d3c3d9cd8f8dcbd3fb2c'
-SENDSMS_TWILIO_AUTH_TOKEN = '6925d887df65c472217021a657ab912f'
+SENDSMS_FROM_NUMBER = TWILIO_CALLER_ID
+SENDSMS_TWILIO_ACCOUNT_SID = TWILIO_ACCOUNT_SID
+SENDSMS_TWILIO_AUTH_TOKEN = TWILIO_AUTH_TOKEN
+
+# Celery
+CELERY_ALWAYS_EAGER = True
+CELERY_EAGER_PROPAGATES_EXCEPTIONS = True

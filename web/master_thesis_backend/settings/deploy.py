@@ -11,7 +11,10 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 PAGE_URL = 'http://example.com'
-print("Set page url!")
+
+INSTALLED_APPS += [
+    'raven.contrib.django.raven_compat',
+]
 
 DATABASES['default']['NAME'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
 DATABASES['default']['USER'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
@@ -65,16 +68,22 @@ for backend in TEMPLATES:
     if backend['BACKEND'] == 'django.template.backends.django.DjangoTemplates':
         default_loaders = ['django.template.loaders.filesystem.Loader']
         if backend.get('APP_DIRS', False):
-            default_loaders.append('django.template.loaders.app_directories.Loader')
-            # Django gets annoyed if you both set APP_DIRS True and specify your own loaders
+            default_loaders.append(
+                'django.template.loaders.app_directories.Loader'
+            )
+            # Django gets annoyed if you
+            # both set APP_DIRS True and specify your own loaders
             backend['APP_DIRS'] = False
         loaders = backend['OPTIONS'].get('loaders', default_loaders)
         for loader in loaders:
-            if len(loader) == 2 and loader[0] == 'django.template.loaders.cached.Loader':
+            if len(loader) == 2 \
+                    and loader[0] == 'django.template.loaders.cached.Loader':
                 # We're already caching our templates
                 break
         else:
-            backend['OPTIONS']['loaders'] = [('django.template.loaders.cached.Loader', loaders)]
+            backend['OPTIONS']['loaders'] = [
+                ('django.template.loaders.cached.Loader', loaders)
+            ]
 
 # Uncomment if using celery worker configuration
 # CELERY_SEND_TASK_ERROR_EMAILS = True
@@ -86,8 +95,19 @@ if ENVIRONMENT.upper() == 'LOCAL':
     # Don't send emails from the Vagrant boxes
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+##################################################
+# Third Party
+##################################################
+
 # Django SendSMS
-SENDSMS_FROM_NUMBER = '+15005550006' # Magic number that passes everything
+SENDSMS_FROM_NUMBER = '+15005550006'  # Magic number that passes everything
 SENDSMS_BACKEND = 'sendsms.backends.twiliorest.SmsBackend'
 SENDSMS_TWILIO_ACCOUNT_SID = 'AC1a1b980ad0faa5bd2f08ac7427a89159'
 SENDSMS_TWILIO_AUTH_TOKEN = '6e18ecb8e71d3bb723a1031bc729f901'
+
+# Sentry & Raven
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('SENTRY_URL'),
+    # 'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    'release': 'dev',
+}

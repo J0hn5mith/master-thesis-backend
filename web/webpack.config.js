@@ -3,7 +3,7 @@ module.exports = {
   entry: "./frontend/js/main.js",
   output: {
     path: __dirname,
-    //filename: "./static/js/bundle.js" filename: "./bundle.js"
+    filename: "./bundle.js",
   },
   module: {
     rules: [
