@@ -1,5 +1,5 @@
 # Settings for live deployed environments: vagrant, staging, production, etc
-from .base import *  # noqa
+from master_thesis_backend.settings.base import *
 
 os.environ.setdefault('CACHE_HOST', '127.0.0.1:11211')
 os.environ.setdefault('BROKER_HOST', '127.0.0.1:5672')
@@ -12,11 +12,11 @@ PAGE_URL = 'http://example.com'
 
 DEBUG = False
 
-DATABASES['default']['NAME'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
-DATABASES['default']['USER'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
-DATABASES['default']['HOST'] = os.environ.get('DB_HOST', '')
-DATABASES['default']['PORT'] = os.environ.get('DB_PORT', '')
-DATABASES['default']['PASSWORD'] = os.environ.get('DB_PASSWORD', '')
+# DATABASES['default']['NAME'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
+# DATABASES['default']['USER'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
+# DATABASES['default']['HOST'] = os.environ.get('DB_HOST', '')
+# DATABASES['default']['PORT'] = os.environ.get('DB_PORT', '')
+# DATABASES['default']['PASSWORD'] = os.environ.get('DB_PASSWORD', '')
 
 WEBSERVER_ROOT = '/var/www/master_thesis_backend/'
 
