@@ -59,6 +59,8 @@ SESSION_COOKIE_HTTPONLY = True
 
 ALLOWED_HOSTS = [os.environ['DOMAIN']]
 
+DEFAULT_FILE_STORAGE = 'inmemorystorage.InMemoryStorage'
+
 # Use template caching on deployed servers
 for backend in TEMPLATES:
     if backend['BACKEND'] == 'django.template.backends.django.DjangoTemplates':
