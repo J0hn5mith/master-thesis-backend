@@ -19,7 +19,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from login_registration.views import LoginView
 
-
 urlpatterns = [
     # Third party
     url(r'', include('two_factor.urls', 'two_factor')),
@@ -31,6 +30,7 @@ urlpatterns = [
     url(r'^sensor-data/', include('sensor_data.urls'), name='sensor-data'),
     url(r'^alarm/', include('alarm.urls'), name='alarm'),
     url(r'^dashboard/', include('dashboard.urls')),
+    url(r'login/', include('login_registration.urls')),
     url(r'^login$', LoginView.as_view(), name='login'),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

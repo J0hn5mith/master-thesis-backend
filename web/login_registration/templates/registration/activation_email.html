@@ -27,7 +27,7 @@
     </p>
 
     <!--TODO: User reverse-->
-    <p><a class="btn btn-success" href="http://{{ site|default:"localhost:8000" }}/accounts/activate/{{ activation_key|default:"no-key-found" }}">
+    <p><a class="btn btn-success" href="http://{{ site |default:"localhost:8000" }}/activate/{{ activation_key|default:"no-key-found" }}">
       {% blocktrans %}
       Activate
       {% endblocktrans %}
