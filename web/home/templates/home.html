@@ -5,8 +5,8 @@
 {% block content %}
 
 <div class="section section--fullscreen section--blue center-content">
-  <div class="overlay-panel">
-    <div class="align-horizontal">
+  <div class="content-panel">
+    <div class="content-panel__header content-panel__header--center">
       <h1 class="logo__heading logo__heading--large">Pharos</h1>
       <object class="home__logo" data="{% static "img/icons/tower--new.svg"%}" type="image/svg+xml"></object>
     </div>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="home__login-form-buttons">
-        <a class="home__login-form-register" href="{% url 'registration_register' %}">Register</a>
+        <a class="link link--blue" href="{% url 'registration_register' %}">Register</a>
         <button type="submit" class="btn btn-success btn-lg">Login</button>
       </div>
     </form>

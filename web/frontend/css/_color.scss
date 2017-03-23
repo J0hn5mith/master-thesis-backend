@@ -28,9 +28,10 @@ $lightblue: #85D0ED; // TODO: Remove
 $blue--light: #85D0ED;
 $blue--ultra-light: #C8E5F0;
 $darkblue: #006FC6;
+$blue--dark: #006FC6;
 
 @mixin gradientblue() {
-  @include gradient($darkblue, $blue, $lightblue)
+  @include gradient($blue--dark, $blue, $blue--light)
 }
 
 @mixin gradientblue--light() {

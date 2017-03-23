@@ -1,6 +1,19 @@
+@mixin center--horizontal() {
+    display: flex;
+    align-items: center;
+}
+
+@mixin center() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .section{
     background: transparent;
     width: 100%;
+    @include center();
 }
 
 
@@ -64,13 +77,6 @@
 .center-content--horizontal{
     display: flex;
     align-items: center;
-    //justify-content: center;
-    flex-direction: column;
-}
-.center-content{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
 }
 

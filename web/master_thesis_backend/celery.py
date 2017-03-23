@@ -3,7 +3,7 @@ from celery import Celery
 # from django.conf import settings
 from master_thesis_backend import load_env
 
-load_env.load_env()
+load_env.load_env(True)
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault(

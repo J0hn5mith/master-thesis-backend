@@ -1,0 +1,42 @@
+.content-panel{
+  background: $darken;
+  padding: 50px;
+  @include shadow();
+  width: 700px;
+  min-height: 400px;
+
+  @include screen(med){
+    padding: 40px;
+    width: 600px;
+  }
+
+  @include screen(small){
+    padding: 75px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 500px;
+  }
+
+  @include screen(mobile){
+    padding: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.content-panel__header {
+}
+
+.content-panel__header--center {
+  @include center--horizontal();
+}
+
+.content-panel__text {
+  color: $white;
+  font-size: $font-size;
+  padding-bottom: 10px;
+  font-family: $font--light;
+  font-weight: $font-weight--light;
+}

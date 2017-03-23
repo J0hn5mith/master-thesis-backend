@@ -24,6 +24,10 @@ h1 {
   padding-bottom: 30px;
 }
 
+.heading-1--inverted{
+  color: $font-color--inverted;
+}
+
 h2 {
   font-size: 36px;
 }
@@ -64,4 +68,14 @@ ul {
   @include screen(mobile){
     font-size: 70px;
   }
+}
+
+.link {
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.link--blue {
+  color: $blue;
+  font-family: $font--light;
 }

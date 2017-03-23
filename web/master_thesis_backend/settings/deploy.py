@@ -6,21 +6,17 @@ os.environ.setdefault('BROKER_HOST', '127.0.0.1:5672')
 
 #: deploy environment - e.g. "staging" or "production"
 ENVIRONMENT = os.environ['ENVIRONMENT']
+ALLOWED_HOSTS = (os.environ.get('HOST'),)
+ALLOWED_HOSTS = (os.environ['DOMAIN'],)
+PAGE_URL = os.environ.get('PAGE_URL')
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
-PAGE_URL = 'http://example.com'
 
 INSTALLED_APPS += [
     'raven.contrib.django.raven_compat',
 ]
-
-DATABASES['default']['NAME'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
-DATABASES['default']['USER'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
-DATABASES['default']['HOST'] = os.environ.get('DB_HOST', '')
-DATABASES['default']['PORT'] = os.environ.get('DB_PORT', '')
-DATABASES['default']['PASSWORD'] = os.environ.get('DB_PASSWORD', '')
 
 WEBSERVER_ROOT = '/var/www/master_thesis_backend/'
 
@@ -56,12 +52,9 @@ DEFAULT_FROM_EMAIL = 'noreply@%(DOMAIN)s' % os.environ
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 CSRF_COOKIE_SECURE = True
-
 SESSION_COOKIE_SECURE = True
-
 SESSION_COOKIE_HTTPONLY = True
 
-ALLOWED_HOSTS = [os.environ['DOMAIN']]
 
 # Use template caching on deployed servers
 for backend in TEMPLATES:
@@ -99,11 +92,17 @@ if ENVIRONMENT.upper() == 'LOCAL':
 # Third Party
 ##################################################
 
+# Django Registration
+TWO_FACTOR_SMS_GATEWAY = 'two_factor.gateways.twilio.gateway.Twilio'
+TWILIO_CALLER_ID = os.environ.get('TWILIO_PHONE_NUMBER')
+TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
+
 # Django SendSMS
-SENDSMS_FROM_NUMBER = '+15005550006'  # Magic number that passes everything
 SENDSMS_BACKEND = 'sendsms.backends.twiliorest.SmsBackend'
-SENDSMS_TWILIO_ACCOUNT_SID = 'AC1a1b980ad0faa5bd2f08ac7427a89159'
-SENDSMS_TWILIO_AUTH_TOKEN = '6e18ecb8e71d3bb723a1031bc729f901'
+SENDSMS_FROM_NUMBER = TWILIO_CALLER_ID
+SENDSMS_TWILIO_ACCOUNT_SID = TWILIO_ACCOUNT_SID
+SENDSMS_TWILIO_AUTH_TOKEN = TWILIO_AUTH_TOKEN
 
 # Sentry & Raven
 RAVEN_CONFIG = {

@@ -66,9 +66,6 @@
 }
 
 .home__login-form-register{
-  margin-right: 20px;
-  font-size: 18px;
-  font-color: $blue;
 }
 
 .home__image--large{
@@ -138,36 +135,6 @@
   }
   @include screen(small){
     font-size: 28px;
-  }
-}
-
-.overlay-panel{
-  background: $darken;
-  padding: 40px;
-  @include shadow();
-  width: 700px;
-  height: 400px;
-
-  @include screen(med){
-    padding: 50px;
-    //padding-top: 75px;
-    //padding-bottom: 75px;
-    width: 600px;
-  }
-
-  @include screen(small){
-    padding: 75px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    width: 500px;
-  }
-
-  @include screen(mobile){
-    padding: 25px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    width: 300px;
-    height: 300px;
   }
 }
 

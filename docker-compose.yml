@@ -8,7 +8,7 @@ web:
   volumes:
   - /usr/src/app
   - /usr/src/app/static
-  env_file: .env
+  env_file: web/.env.develop
   environment:
     DEBUG: 'true'
   command: /usr/local/bin/gunicorn master_thesis_backend.wsgi:application -w 2 -b :8000
@@ -19,8 +19,7 @@ nginx:
   ports:
   - "80:80"
   volumes:
-  - pgdata:/var/lib/postgresql/data/
-  - pgisdata:/var/lib/postgis/data/
+    - /www/static
   volumes_from:
   - web
   links:
