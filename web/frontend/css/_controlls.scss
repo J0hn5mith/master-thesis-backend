@@ -1,0 +1,69 @@
+input{
+  &:focus, &:focus{
+    outline-color: $blue;
+    outline-style: solid;
+    outline-width: 2px;
+  }
+}
+.slider{
+  -webkit-appearance: none;
+  background-color: $gray;
+  height: 1px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  &:focus, &:focus{
+    outline: none;
+  }
+}
+
+.slider__container {
+  width: 100%;
+}
+
+.slider__labels {
+}
+
+.slider__ticks {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top:1px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.slider__tick {
+  height: 7px;
+  width: 1px;
+  background-color: $gray;
+}
+
+.slider__tick--large {
+  height: 15px;
+}
+
+//ToDo: Dentering of tick labels is done manually
+.slider__tick-labels{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  :first-child {
+    text-align: left;
+    width: 25px;
+  }
+  :last-child {
+    text-align: right;
+    width: 25px;
+  }
+}
+
+.slider__tick-label-wrapper{
+}
+
+.slider__tick-label{
+  position: static;
+  width: 45px;
+  text-align: center;
+  align-self: flex-start;
+
+}

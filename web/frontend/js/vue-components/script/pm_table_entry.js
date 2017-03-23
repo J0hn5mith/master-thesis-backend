@@ -10,10 +10,7 @@ var PMTableEntry = {
   },
   filters: {
     coordinates: function (coordinates) {
-      console.log(coordinates);
-      console.log(this);
-      return 'test';
-      //return formater.coordinates(coordinates);
+      return formater.coordinates(coordinates);
     }
   },
   methods: {

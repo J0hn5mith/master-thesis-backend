@@ -4,6 +4,12 @@
   border-radius: 0px;
   border-color: none;
   border-style: none;
+
+  &:focus, &:focus{
+    outline-color: $blue;
+    outline-style: solid;
+    outline-width: 2px;
+  }
 }
 
 .form-control--light{
@@ -62,7 +68,7 @@
   margin-right:0px;
   padding-bottom: 30px;
   font-family: $heading-font;
-  font-size: 60px
+  font-size: 60px;
   color: $red;
 }
 

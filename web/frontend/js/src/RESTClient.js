@@ -21,9 +21,8 @@ class RESTClient {
       .catch(function (error) {
         if(error_handler){
           error_handler(error);
-        } else {
-          Raven.captureException(error);
         }
+        Raven.captureException(error);
       });
   }
 
@@ -31,11 +30,10 @@ class RESTClient {
     axios.put(instance.url, instance, {headers: {'X-CSRFToken': csrfToken}})
       .then(function (response) { if(success){success(response);}})
       .catch(function (error) {
-        if(error_handler) {
-          error_handler(error_handler);
-        } else {
-          Raven.captureException(error);
+        if(error_handler){
+          error_handler(error);
         }
+        Raven.captureException(error);
       });
   }
 
@@ -52,9 +50,12 @@ class RESTClient {
           success(data);
         }
       })
-      .catch(function (error) {if(error_handler){
+      .catch(function (error) {
+        if(error_handler){
+          error_handler(error);
+        }
         Raven.captureException(error);
-      }});
+      });
   }
 
   getTags(success, error) {

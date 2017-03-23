@@ -1,6 +1,7 @@
 import TagChargeBar from '../tag_charge_bar.vue';
 import TagToggle from '../tag_toggle.vue';
 import TagDetailMap from '../tag_detail_map.vue';
+import SliderControll from '../slider_controll.vue';
 import PositionMeasurements from '../position_measurements.vue';
 import CollapseSection from '../collapse_section.vue';
 import RESTClient from './../../src/RESTClient.js';
@@ -23,6 +24,7 @@ var TagModal = {
     'v-tag-detail-map': TagDetailMap,
     'v-position-measurements': PositionMeasurements,
     'v-collapse-section': CollapseSection,
+    'v-slider-controll': SliderControll,
   },
   created: function(){
     fetchPosMes(this);
@@ -46,7 +48,6 @@ var TagModal = {
   watch: {
     // whenever question changes, this function will run
     'tag': function (value, oldValue) {
-      console.log(value);
     },
     'tag.name': function (value, oldValue) {
       this.save();
@@ -56,7 +57,6 @@ var TagModal = {
       var restClient = new RESTClient();
       restClient.update(this.tag, null, function(){
         instance.alarm_config.area.center.coordinates = oldValue;
-        console.log(error);
       });
     },
     'tag.alarm_config.area.radius': function(value, oldValue){
@@ -64,7 +64,6 @@ var TagModal = {
       var restClient = new RESTClient();
       restClient.update(this.tag, null, function(){
         instance.alarm_config.area.center.radius = oldValue;
-        console.log(error);
       });
     },
   },

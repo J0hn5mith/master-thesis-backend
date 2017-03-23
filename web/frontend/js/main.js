@@ -5,7 +5,7 @@ import UserSettings from './vue-components/user_settings.vue';
 import RESTClient from './src/RESTClient.js';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
-Raven.config('https://e0409ee7479e45b1a9bca0a1e06f2267@sentry.io/150277').addPlugin(RavenVue, Vue).install();
+
 
 
 
@@ -13,6 +13,7 @@ Raven.config('https://e0409ee7479e45b1a9bca0a1e06f2267@sentry.io/150277').addPlu
 // Settings
 ////////////////////////////////////////
 L.Icon.Default.imagePath = '/static/img/';
+//Raven.config('https://e0409ee7479e45b1a9bca0a1e06f2267@sentry.io/150277').addPlugin(RavenVue, Vue).install();
 
 
 ////////////////////////////////////////
