@@ -30,3 +30,44 @@ class SensorDataRESTTrestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = client.delete(self.url_detail, response.data, format='json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+
+class SensorDataPost(TestCase):
+    def setUp(self):
+        self.url = reverse('post-sensor-data')
+
+    def test_post(self):
+        response = client.put(
+            self.url,
+            format='json',
+            data={
+                "sensor_id":
+                "uid_1",
+                "measurements": [
+                    {
+                        "time_stamp": "2017-03-23T14:38:18.968986418Z",
+                        "position": {
+                            "latitude": 47.4156,
+                            "longitude": 8.512299
+                        }
+                    }, {
+                        "time_stamp": "2017-03-23T14:39:18.968986418Z",
+                        "position": {
+                            "latitude": 47.5156,
+                            "longitude": 8.612299
+                        }
+                    }
+                ]
+            }
+        )
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK,
+            "The response has wrong status code.",
+        )
+        self.assertEqual(
+            len(PositionMeasurement.objects.all()),
+            2,
+            "Not enoguh measurements were created",
+        )
+        print(PositionMeasurement.objects.all().first().time_stamp)
