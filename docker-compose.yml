@@ -1,3 +1,9 @@
+web_base:
+    build: ./web_base
+    volumes:
+    - /usr/src/app
+    - /usr/src/app/static
+
 web:
   restart: always
   build: ./web
@@ -5,6 +11,7 @@ web:
   - "8000"
   links:
   - postgis:postgis
+  - redis:redis
   volumes:
   - /usr/src/app
   - /usr/src/app/static
@@ -32,6 +39,10 @@ postgis:
   - "5432:5432"
   volumes:
   - pgisdata:/var/lib/postgis/data/
+  environment:
+    - POSTGRES_USER=docker
+    - POSTGRES_PASS=docker
+    - POSTGRES_DBNAME=docker
 
 redis:
   restart: always

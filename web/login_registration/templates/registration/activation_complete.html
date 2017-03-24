@@ -3,11 +3,13 @@
 {% load i18n %}
 
 {% block extra-meta %}
-<!--<meta http-equiv="refresh" content="5; url={% url 'dashboard' %}" />-->
+<meta http-equiv="refresh" content="5; url={% url 'dashboard' %}" />
 {% endblock %}
 
 {% block focus_content %}
 {% blocktrans %}
-<p class="form-panel__text">Your account has been activated.</p>
+<p class="content-panel__text content-panel__text--large">
+Your account has been activated.
+</p>
 {% endblocktrans %}
 {% endblock focus_content %}

@@ -3,11 +3,14 @@
 {% load i18n %}
 
 {% block extra-meta %}
-<!--<meta http-equiv="refresh" content="10; url=http://localhost:8000/" />-->
+<meta http-equiv="refresh" content="5; url={% url 'home' %}" />
 {% endblock %}
 
 {% block panel_content %}
 {% blocktrans %}
-<p class="formpanel__text">This activation link is not valid. Please check the URL or contact our support team.</p>
+
+<p class="content-panel__text content-panel__text--large">
+This activation link is not valid. Please check the URL or contact our support team.
+</p>
 {% endblocktrans %}
 {% endblock panel_content %}

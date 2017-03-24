@@ -3,12 +3,13 @@
 {% load i18n %}
 
 {% block extra-meta %}
-<!--TODO: Make link dynamic!-->
-<!--<meta http-equiv="refresh" content="10; url=http://localhost:8000/" />-->
+<meta http-equiv="refresh" content="10; url={% url 'home' %}"/>
 {% endblock %}
 
 {% block focus_content %}
 {% blocktrans %}
-<p class="form-panel__text">You Successfully registered for Pharos. We have sent you a mail with the activation link.</p>
+<p class="content-panel__text content-panel__text--large">
+You Successfully registered for Pharos. We have sent you a mail with the activation link.
+</p>
 {% endblocktrans %}
 {% endblock focus_content %}

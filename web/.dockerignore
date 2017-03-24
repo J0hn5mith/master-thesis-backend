@@ -1,0 +1,13 @@
+node_modules
+/*static*/
+*.swp
+*.idea
+
+.git/
+.ropeproject/
+
+**/__pycache__/**
+*.pyc
+
+web
+

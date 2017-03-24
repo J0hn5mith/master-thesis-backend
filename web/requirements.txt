@@ -25,6 +25,6 @@ twilio==5.7.0
 # Develop
 django-debug-toolbar==1.4
 django-extensions==1.7.7
-dj-inmemorystorage==1.4.0
-python-memcached==1.58
+# dj-inmemorystorage==1.4.0
+# python-memcached==1.58
 

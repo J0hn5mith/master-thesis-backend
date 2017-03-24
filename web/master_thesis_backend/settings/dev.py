@@ -1,5 +1,5 @@
 import sys
-from master_thesis_backend.settings.base import *
+from .base import *
 
 DEBUG = True
 
@@ -52,3 +52,10 @@ SENDSMS_TWILIO_AUTH_TOKEN = TWILIO_AUTH_TOKEN
 # Celery
 CELERY_ALWAYS_EAGER = True
 CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
+
+#TODO: Remove
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('SENTRY_URL'),
+    # 'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    'release': 'dev',
+}

@@ -234,7 +234,7 @@ REGISTRATION_AUTO_LOGIN = True
 LOGIN_URL = 'two_factor:login'
 TWO_FACTOR_SMS_GATEWAY = 'two_factor.gateways.fake.Fake'
 TWO_FACTOR_CALL_GATEWAY = 'two_factor.gateways.fake.Fake'
-LOGIN_REDIRECT_URL = 'http://localhost:8000/dashboard'
+LOGIN_REDIRECT_URL = '/dashboard'
 
 # Django REST framework
 REST_FRAMEWORK = {
