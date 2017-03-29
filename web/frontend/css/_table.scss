@@ -67,6 +67,9 @@
   height: 100%;
   border-width: 0px!important;
 }
+.table__cell--empty{
+  text-align: center;
+}
 
 .table__cell-text{
   font-family: $font--light;
@@ -79,6 +82,14 @@
 
 .table__cell-text--small{
   font-size: $font-size--small;
+}
+
+.table__cell-text--placeholder{
+  //display: flex;
+  color: $grey--light;
+  font-size: $font-size--large;
+  font-family: $font--light;
+  padding-bottom: 20px;
 }
 
 .table__icon{
