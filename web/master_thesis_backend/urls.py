@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^dashboard/', include('dashboard.urls')),
     url(r'login/', include('login_registration.urls')),
     url(r'^login$', LoginView.as_view(), name='login'),
+    url(r'^utils/', include('utils.urls')),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )

@@ -1,0 +1,36 @@
+<div class="modal__root">
+  <div class="modal__toggle" @click="toggle">
+    <slot>
+    Put trigger here
+    </slot>
+  </div>
+  <div class="my-modal" :style="modalVisibilityStyle">
+    <div class="modal-mask" @click="toggle" @dragover.prevent>
+      <div class="modal-container modal-container--small" @click.stop="">
+        <div v-if="tag" class="modal__body">
+          <div class="my-columns">
+            <div class="column__25">
+              <div class="avatar__border avatar__border--blue avatar__border--large" @drop="handleFileDrop">
+                <div v-if="tag.avatar">
+                  <img  v-bind:src="tag.avatar"></img>
+                </div>
+                <div v-else>
+                  Drop Image Here
+                </div>
+              </div>
+              <input type="file" v-on:change="imageChangeHandler" value="tag.avatar">
+            </div>
+            <div class="column__75">
+              <form>
+                <input type="text" class="form-control form-control--light form-control--large heading-1" v-model="tag.name" placeholder="Name"></input>
+                <input type="text" class="form-control form-control--light" v-model="tag.uid" placeholder="Tag ID"></input>
+              </form>
+              <div class="btn btn-danger">Cancel</div>
+              <div class="btn btn-success" @click="create">Create</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

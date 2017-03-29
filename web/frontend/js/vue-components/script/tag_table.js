@@ -1,10 +1,12 @@
 import TagTableEntry from '../tag_table_entry.vue';
+import TagRegistrationModal from '../tag_registration_modal.vue';
 import RESTClient from './../../src/RESTClient.js';
 
 
 var TagTable = {
   components: {
     'v-tag-table-entry': TagTableEntry,
+    'v-tag-registration-modal': TagRegistrationModal,
   },
   data: function(){
     return{

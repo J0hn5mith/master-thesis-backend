@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
@@ -34,3 +35,11 @@ class TagViewSet(viewsets.ModelViewSet):
             return Response(
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST
             )
+
+def tag_prototype_view(request):
+    new_tag = Tag(user=request.user)
+    serializer = TagSerializer(
+        new_tag,
+        context={'request': request},
+    )
+    return JsonResponse(serializer.data)

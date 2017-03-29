@@ -4,6 +4,8 @@
   border-radius: 0px;
   border-color: none;
   border-style: none;
+  height: auto;
+  box-shadow: none;
 
   &:focus, &:focus{
     outline-color: $blue;
@@ -14,6 +16,14 @@
 
 .form-control--light{
   border-width: 0 !important;
+  &:focus, &:focus{
+    outline-width: 1px;
+  }
+}
+
+.form-control--large{
+  padding: 10px;
+  font-size: $font-size--title;
 }
 
 .form-group--min{

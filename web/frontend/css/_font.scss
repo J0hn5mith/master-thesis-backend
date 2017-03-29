@@ -5,10 +5,12 @@ $link-font:  $font--light;
 
 $font-weight--light: 100;
 
+$font-size--title: 50px;
 $font-size--extra-large: 30px;
 $font-size--large: 24px;
 $font-size: 20px;
 $font-size--small: 16px;
+
 
 h1 {
   //font-size: 80px;
@@ -19,7 +21,7 @@ h1 {
 
 .heading-1{
   font-family: $heading-font;
-  font-size: 80px;
+  font-size: $font-size--title;
   color: $font-color;
   padding-bottom: 30px;
 }

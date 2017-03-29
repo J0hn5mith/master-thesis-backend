@@ -80,6 +80,20 @@
     flex-direction: column;
 }
 
+.my-columns{
+    display: flex!important;
+    //flex-direction: column;
+}
+
+.column_25{
+    flex-grow: 1;
+}
+
+.column_75{
+    flex-grow: 3;
+
+}
+
 .columns__1-1{
     display: flex;
     flex-wrap: wrap;

@@ -3,8 +3,10 @@ import Raven from 'raven-js';
 
 var URL_CONFIG = {
   tags: '/tags/rest/tags/',
+  tagPrototype: '/tags/rest/prototype/',
   tagData: '/sensor-data/rest/position_measurements/',
   currentUser: '/user/rest/current-user/',
+  fileUpload: '/utils/file-upload/',
 };
 
 class RESTClient {
@@ -58,8 +60,43 @@ class RESTClient {
       });
   }
 
+  create(url, instance, success, error_handler) {
+    axios.post(url, instance, {headers: {'X-CSRFToken': csrfToken}})
+      .then(function(response){
+        if(success){
+          console.log(response);
+          success(response.data);
+        }
+      }).catch(function (error) {
+        if(error_handler){
+          error_handler(error);
+        }
+        Raven.captureException(error);
+      });
+  }
+
   getTags(success, error) {
     this.get(URL_CONFIG.tags, success, error);
+  }
+
+  getTagPrototype(success, error_handler) {
+    axios.get(URL_CONFIG.tagPrototype)
+      .then(function(response){
+        if(success){
+          console.log(response);
+          success(response.data);
+        }
+      }).catch(function (error) {
+        if(error_handler){
+          error_handler(error);
+        }
+        Raven.captureException(error);
+      });
+  }
+
+  createTag(instance, success, error_handler) {
+    console.log(instance);
+    this.create(URL_CONFIG.tags, instance, success, error_handler);
   }
 
   getSensorData(id, success, error) {
@@ -69,6 +106,26 @@ class RESTClient {
 
   getCurrentUser(success, error) {
     this.get(URL_CONFIG.currentUser, success, error);
+  }
+
+  uploadFile(file, success, error_handler) {
+    var formData = new FormData();
+    formData.append('image', file);
+    axios.post(URL_CONFIG.fileUpload, formData, {
+      headers: {
+        'X-CSRFToken': csrfToken,
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then(function(response){
+      if(success){
+        success(response.data.url);
+      }
+    }).catch(function (error) {
+      if(error_handler){
+        error_handler(error);
+      }
+      Raven.captureException(error);
+    });
   }
 }
 

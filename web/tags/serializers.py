@@ -15,9 +15,9 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'pk', 'name', 'charge_status', 'get_status', 'last_update',
             'active', 'avatar', 'uid', 'current_position', 'color',
-            'alarm_config', 'alarm', 'url'
+            'alarm_config', 'alarm', 'url', 'user'
         )
         read_only_fields = (
             'pk', 'charge_status', 'get_status', 'last_update', 'avatar',
-            'uid', 'current_position', 'color', 'alarm_config', 'url', 'alarm'
+            'current_position', 'color', 'alarm_config', 'url', 'alarm',
         )
