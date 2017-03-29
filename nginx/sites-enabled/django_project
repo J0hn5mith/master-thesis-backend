@@ -1,7 +1,10 @@
 server {
 
-    listen 80;
-    server_name example.org;
+    listen              443 ssl;
+    ssl_certificate     nginx.crt;
+    ssl_certificate_key nginx.key;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
     charset utf-8;
 
     location /static {
