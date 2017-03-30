@@ -13,7 +13,12 @@ import RavenVue from 'raven-js/plugins/vue';
 // Settings
 ////////////////////////////////////////
 L.Icon.Default.imagePath = '/static/img/';
-//Raven.config('https://e0409ee7479e45b1a9bca0a1e06f2267@sentry.io/150277').addPlugin(RavenVue, Vue).install();
+Raven.config(
+  'https://e0409ee7479e45b1a9bca0a1e06f2267@sentry.io/150277',
+  {
+    debug: true,
+  }
+).addPlugin(RavenVue, Vue).install();
 
 
 ////////////////////////////////////////

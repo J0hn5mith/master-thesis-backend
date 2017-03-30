@@ -65,14 +65,15 @@ class RESTClient {
       .then(function(response){
         if(success){
           console.log(response);
-          success(response.data);
+          var newInstance  = response.data;
+          success(newInstance);
         }
-      }).catch(function (error) {
+      }.bind(success)).catch(function (error) {
         if(error_handler){
           error_handler(error);
         }
         Raven.captureException(error);
-      });
+      }.bind(error_handler));
   }
 
   getTags(success, error) {
@@ -83,7 +84,6 @@ class RESTClient {
     axios.get(URL_CONFIG.tagPrototype)
       .then(function(response){
         if(success){
-          console.log(response);
           success(response.data);
         }
       }).catch(function (error) {
@@ -95,7 +95,6 @@ class RESTClient {
   }
 
   createTag(instance, success, error_handler) {
-    console.log(instance);
     this.create(URL_CONFIG.tags, instance, success, error_handler);
   }
 

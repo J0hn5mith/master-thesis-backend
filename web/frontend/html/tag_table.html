@@ -16,15 +16,20 @@
 
     <tbody v-if="hasTags" >
       <v-tag-table-entry  v-if="hasTags" v-for="tag in tags" v-bind:tag="tag"></v-tag-table-entry>
+      <td class="table__cell table__cell--empty" colspan="6">
+        <v-tag-registration-modal :tagList="tags">
+          <div class="btn btn-info">Register New</div>
+        </v-tag-registration-modal>
+      </td>
     </tbody>
     <tbody v-else >
       <tr class="table__row">
         <td class="table__cell" style="display: hidden;"></td>
         <td class="table__cell table__cell--empty" colspan="6">
-            <div class="table__cell-text--placeholder">No Tag Registered</div>
-            <v-tag-registration-modal>
-              <div class="btn btn-info">Register Your First Tag</div>
-            </v-tag-registration-modal>
+          <div class="table__cell-text--placeholder">No Tag Registered</div>
+          <v-tag-registration-modal :tagList="tags">
+            <div class="btn btn-info">Register Your First Tag</div>
+          </v-tag-registration-modal>
         </td>
       </tr>
     </tbody>

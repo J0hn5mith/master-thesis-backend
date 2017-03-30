@@ -1,6 +1,11 @@
 import RESTClient from './../../src/RESTClient.js';
 
 var TagRegistrationModal={
+  props: {
+    tagList : {
+      default: function(){return [];},
+    }
+  },
   data: function() {
     return {
       visible: false,
@@ -11,7 +16,12 @@ var TagRegistrationModal={
   methods: {
     create: function(){
       var restClient = new RESTClient();
-      restClient.createTag(this.tag);
+      var instance = this;
+      restClient.createTag(this.tag, function(newInstance){
+        instance.tagList.push(newInstance);
+        instance.tag = null;
+        instance.toggle();
+      }.bind(this));
     },
     toggle: function(){
       this.visible = !this.visible;
