@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: $darken--strong;
     display: flex;
     justify-content: center;
     transition: opacity .3s ease;
@@ -14,40 +14,57 @@
 }
 
 .modal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin: 0px auto;
     background-color: $white;
     border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     transition: all .3s ease;
     font-family: $font;
+    overflow: hidden;
 }
 
 .modal-container--large {
     width: 90vw;
-    height: 190vh;
+    height: 90vh;
+    //height: auto;
 }
 
 .modal-container--small {
-    width: 70vw;
-    height: 60vh;
+    width: 60vw;
+    height: 33vh;
 }
 
 .modal__header {
 }
-.modal__floating-header{
+
+.hud{
     position: absolute;
-    z-index: 999;
+    z-index: 401;
     display: flex;
     width: 90%;
-    justify-content: flex-end;
     >img,input{
         margin: 10px;
     }
+
+    background: $brighten--strong;
+}
+
+.hud--horizontal{
+
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .modal__body {
     padding: 20px 30px;
     margin: 20px 0;
+}
+
+.modal__footer {
+    padding: 20px;
+    text-align: right;
 }
 
 .modal__title {

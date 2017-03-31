@@ -8,7 +8,7 @@ os.environ.setdefault('BROKER_HOST', '127.0.0.1:5672')
 ENVIRONMENT = os.environ['ENVIRONMENT']
 
 SECRET_KEY = 'SECRET_KEY'
-PAGE_URL = 'http://example.com'
+PAGE_URL = 'example.com'
 
 DEBUG = False
 

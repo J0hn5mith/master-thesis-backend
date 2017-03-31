@@ -1,10 +1,10 @@
 <div class="modal-mask">
   <div class="modal-container modal-container--large" @click.stop="" >
     <div class="modal__header">
-      <div class="modal__floating-header">
-        <input class="modal__title" v-model="tag.name"></input>
-        <img v-if="tag.avatar" class="avatar" :src="tag.avatar"></img>
+      <div class="hud hud--horizontal">
+        <img v-if="tag.avatar" class="avatar avatar--medium" :src="tag.avatar"></img>
         <img v-else class="avatar avatar--medium" src="/static/img/icons/tag.svg"></img>
+        <input class="modal__title" v-model="tag.name"></input>
         <v-tag-toggle v-bind:tag="tag"></v-tag-toggle>
         <v-tag-charge-bar v-bind:tag="tag"></v-tag-charge-bar>
         <div>
@@ -20,9 +20,6 @@
       <div>
         <h2> Alarm Settings </h2>
         <div v-if="tag.alarm_config">
-          <div>Center:
-            <input v-model="tag.alarm_config.time_to_deactivate"></input>
-          </div>
           <div v-if="tag.alarm_config.area">
             <div>Center:
               <input v-model="tag.alarm_config.area.center.coordinates[0]"></input>
