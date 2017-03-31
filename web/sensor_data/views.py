@@ -1,10 +1,8 @@
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse, Http404
-from django.contrib.auth.decorators import login_required
 from django.contrib.gis.geos import Point
 from rest_framework import viewsets
-from rest_framework.response import Response
 from rest_framework import status
 
 from sensor_data.serializers import PositionMeasurementSerializer
@@ -30,19 +28,18 @@ def post_position_measurement(request):
     if not request.body:
         raise Http404
 
-    data = None
+    json_str = ((request.body).decode('utf-8'))
     try:
-        data = json.loads(request.body)
+        json_obj = json.loads(json_str)
     except Exception as e:
         return HttpResponse(
             status=status.HTTP_400_BAD_REQUEST,
-            content="Json format error.",
+            content="Json format error: {0}".format(e),
         )
-    json_str = ((request.body).decode('utf-8'))
-    json_obj = json.loads(json_str)
-    sensor_id = json_obj['sensor_id']
-    for measurement in json_obj['measurements']:
-        try:
+
+    try:
+        sensor_id = json_obj['sensor_id']
+        for measurement in json_obj['measurements']:
             position = measurement['position']
             PositionMeasurement.objects.create(
                 uid=sensor_id,
@@ -52,10 +49,46 @@ def post_position_measurement(request):
                     position['longitude'],
                 )
             ).save()
-        except KeyError as e:
-            return HttpResponse(
-                status=status.HTTP_400_BAD_REQUEST,
-                content="JSON is not formated correctly.",
+    except KeyError:
+        return HttpResponse(
+            status=status.HTTP_400_BAD_REQUEST,
+            content="JSON is not formated correctly.",
+        )
+
+    return JsonResponse({'status': 'ok'})
+
+
+@csrf_exempt
+def post_position_measurement_ttn(request):
+    if not request.body:
+        raise Http404
+
+    json_str = ((request.body).decode('utf-8'))
+    try:
+        json_obj = json.loads(json_str)
+    except Exception as e:
+        return HttpResponse(
+            status=status.HTTP_400_BAD_REQUEST,
+            content="Json format error: {0}".format(e),
+        )
+
+    try:
+        sensor_id = json_obj['dev_id']
+        position = json_obj['payload_fields']
+        time_stamp = json_obj['metadata']['time']
+
+        PositionMeasurement.objects.create(
+            uid=sensor_id,
+            time_stamp=time_stamp,
+            position=Point(
+                position['lat'],
+                position['lng'],
             )
+        ).save()
+    except KeyError as e:
+        return HttpResponse(
+            status=status.HTTP_400_BAD_REQUEST,
+            content="JSON has not the required structure: {0}".format(e),
+        )
 
     return JsonResponse({'status': 'ok'})

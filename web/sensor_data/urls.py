@@ -12,4 +12,9 @@ urlpatterns = [
         views.post_position_measurement,
         name='post-sensor-data',
     ),
+    url(
+        r'^ttn/post/$',
+        views.post_position_measurement_ttn,
+        name='post-sensor-data-ttn',
+    ),
 ]

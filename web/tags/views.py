@@ -33,8 +33,9 @@ class TagViewSet(viewsets.ModelViewSet):
         return request
 
     def perform_create(self, serializer):
-        res = serializer.save(avatar=self.avatar_file)
-        res.avatar.save("test.jpg", self.avatar_file)
+        res = serializer.save()
+        if hasattr(self, 'avatar_file'):
+            res.avatar.save("test.jpg", self.avatar_file)
 
     def update(self, request, pk, format=None):
         """
