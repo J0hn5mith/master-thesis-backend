@@ -5,6 +5,7 @@ import UserSettings from './vue-components/user_settings.vue';
 import RESTClient from './src/RESTClient.js';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
+import axios from 'axios';
 
 
 

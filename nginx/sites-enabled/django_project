@@ -1,4 +1,9 @@
 server {
+    listen 80;
+    rewrite ^(.*) https://$host$1 permanent;
+}
+
+server {
 
     listen              443 ssl;
     ssl_certificate     nginx.crt;
@@ -7,11 +12,15 @@ server {
     ssl_ciphers         HIGH:!aNULL:!MD5;
     charset utf-8;
 
+
     location /static {
         alias /usr/src/app/static;
     }
 
     location / {
+        proxy_set_header X-Forwarded-Protocol  $scheme;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
         proxy_pass http://web:8000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
