@@ -28,6 +28,7 @@ var TagModal = {
   },
   created: function(){
     fetchPosMes(this);
+    console.log(this.tag);
   },
   data: function(){
     return{

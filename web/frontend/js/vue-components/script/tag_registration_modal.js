@@ -14,13 +14,17 @@ var TagRegistrationModal={
     };
   },
   methods: {
+    cancel: function(){
+        this.setPrototype();
+        this.toggle();
+    },
     create: function(){
       var restClient = new RESTClient();
       var instance = this;
       restClient.createTag(this.tag, function(newInstance){
         instance.tagList.push(newInstance);
-        instance.tag = null;
-        instance.toggle();
+        this.setPrototype();
+        this.toggle();
       }.bind(this));
     },
     toggle: function(){
@@ -42,14 +46,17 @@ var TagRegistrationModal={
       restClient.uploadFile(file, function(url){
         this.tag.avatar = url;
       }.bind(this));
-    }
+    },
+    setPrototype: function(){
+      var restClient = new RESTClient();
+      restClient.getTagPrototype(function(result){
+        this.tag = result;
+      }.bind(this));
+    },
   },
   created: function() {
     this.visible = window.location.pathname.endsWith(this.urlSuffix);
-    var restClient = new RESTClient();
-    restClient.getTagPrototype(function(result){
-      this.tag = result;
-    }.bind(this));
+    this.setPrototype();
   },
   computed: {
     modalVisibilityStyle: function(){

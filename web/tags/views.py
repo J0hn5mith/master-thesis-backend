@@ -1,8 +1,7 @@
 from django.http import JsonResponse
+from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework import status
-
 from tags.serializers import TagSerializer
 from tags.models import Tag
 
@@ -21,6 +20,7 @@ class TagViewSet(viewsets.ModelViewSet):
         Custom implementation to deal with image.
         """
         tag = self.get_object()
+        print(tag.avatar)
         serializer = TagSerializer(
             tag,
             data=request.data,
@@ -35,6 +35,7 @@ class TagViewSet(viewsets.ModelViewSet):
             return Response(
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST
             )
+
 
 def tag_prototype_view(request):
     new_tag = Tag(user=request.user)

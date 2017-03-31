@@ -29,7 +29,10 @@ class RESTClient {
   }
 
   update(instance, success, error_handler) {
-    axios.put(instance.url, instance, {headers: {'X-CSRFToken': csrfToken}})
+    axios.put(instance.url, instance, {headers: {
+      'X-CSRFToken': csrfToken,
+      'Content-Type': 'multipart/form-data',
+    }})
       .then(function (response) { if(success){success(response);}})
       .catch(function (error) {
         if(error_handler){
@@ -64,7 +67,6 @@ class RESTClient {
     axios.post(url, instance, {headers: {'X-CSRFToken': csrfToken}})
       .then(function(response){
         if(success){
-          console.log(response);
           var newInstance  = response.data;
           success(newInstance);
         }
