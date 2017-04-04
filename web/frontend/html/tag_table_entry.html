@@ -1,6 +1,6 @@
 <tr class="table__row" @click="toggleModal" >
   <td class="table__cell" style="display: hidden;">
-    <v-tag-modal v-if="showModal" v-bind:tag="tag"></v-tag-modal>
+    <v-tag-modal :triggerModal="showModal" v-bind:tag="tag" :tags="tags"><div></div></v-tag-modal>
   </td>
   <td class="table__cell">
     <img v-if="tag.avatar" class="table__icon table__icon--hexagon" :src="tag.avatar"></img>
@@ -25,8 +25,12 @@
     <p v-if="tag.last_update" class="table__cell-text table__cell-text--small">
     {{ tag.last_update | date }}
     </p>
+
     <p v-else class="table__cell-text table__cell-text--small">
-    Unknown
+
+    <span class="hint--top" v-bind:aria-label="noLastUpdateHint">
+      Unknown
+    </span>
     </p>
   </td>
   <td class="table__cell">

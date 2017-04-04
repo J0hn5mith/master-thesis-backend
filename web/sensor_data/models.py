@@ -11,6 +11,9 @@ class PositionMeasurement(models.Model):
 
     def coordinates(self):
         return {
-            "lat": self.position[0],
-            "lng": self.position[1],
+            "lng": self.position[0],
+            "lat": self.position[1],
         }
+
+    class Meta:
+        ordering = ['-time_stamp']

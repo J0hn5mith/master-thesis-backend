@@ -45,8 +45,8 @@ def post_position_measurement(request):
                 uid=sensor_id,
                 time_stamp=measurement['time_stamp'],
                 position=Point(
-                    position['latitude'],
                     position['longitude'],
+                    position['latitude'],
                 )
             ).save()
     except KeyError:
@@ -81,8 +81,8 @@ def post_position_measurement_ttn(request):
             uid=sensor_id,
             time_stamp=time_stamp,
             position=Point(
-                position['lat'],
                 position['lng'],
+                position['lat'],
             )
         ).save()
     except KeyError as e:

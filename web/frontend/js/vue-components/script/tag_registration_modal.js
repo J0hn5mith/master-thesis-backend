@@ -18,6 +18,9 @@ var TagRegistrationModal={
         this.setPrototype();
         this.toggle();
     },
+    toggle: function(){
+      this.visible = !this.visible;
+    },
     create: function(){
       var restClient = new RESTClient();
       var instance = this;
@@ -26,9 +29,6 @@ var TagRegistrationModal={
         this.setPrototype();
         this.toggle();
       }.bind(this));
-    },
-    toggle: function(){
-      this.visible = !this.visible;
     },
     handleFileDrop: function(e){
       if (e.preventDefault) { e.preventDefault(); }

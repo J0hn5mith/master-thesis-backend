@@ -16,6 +16,7 @@ class Command(BaseCommand):
         self.delete_alarms()
         for alarm_config in AlarmConfig.objects.all():
             if check_trigger_alarm(alarm_config):
+                print("Trigger alarm")
                 create_alarm(alarm_config)
 
     def delete_alarms(self):

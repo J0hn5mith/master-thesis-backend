@@ -1,10 +1,13 @@
-import TagChargeBar from '../tag_charge_bar.vue'
-import TagToggle from '../tag_toggle.vue'
-import TagModal from '../tag_modal.vue'
-import formater from './../../src/Formats.js'
+import TagChargeBar from '../tag_charge_bar.vue';
+import TagToggle from '../tag_toggle.vue';
+import TagModal from '../tag_modal.vue';
+import formater from './../../src/Formats.js';
 
 var TagTableEntry = {
-    props: ['tag'],
+    props: [
+        'tag',
+        'tags',
+    ],
     components: {
         'v-tag-charge-bar': TagChargeBar,
         'v-tag-toggle': TagToggle,
@@ -18,7 +21,7 @@ var TagTableEntry = {
     data: function(){
         return{
             showModal: false,
-        }
+        };
     },
     computed: {
         alertStatusHint: function(){
@@ -29,13 +32,16 @@ var TagTableEntry = {
             } else {
                 return "No alert";
             }
-        }
+        },
+        noLastUpdateHint: function(){
+            return 'There is no update indormation for this tag';
+        },
     },
     methods: {
         toggleModal: function (event) {
-            this.showModal = !this.showModal; //TODO:
+            this.showModal = !this.showModal;
         },
     }
-}
+};
 
 export default TagTableEntry;

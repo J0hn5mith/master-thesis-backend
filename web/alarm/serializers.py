@@ -3,10 +3,11 @@ from alarm.models import AlarmConfig, AlarmConfigArea, Alarm
 
 
 class AlarmConfigAreaSerializer(serializers.HyperlinkedModelSerializer):
-
     class Meta:
         model = AlarmConfigArea
-        fields = ('__all__')
+        # TODO
+        fields = ('url', 'center', 'radius', )
+        read_only = ('url')
 
 
 class AlarmConfigSerializer(serializers.HyperlinkedModelSerializer):
@@ -16,12 +17,13 @@ class AlarmConfigSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = AlarmConfig
         fields = ('pk', 'tag', 'time_to_deactivate', 'area', 'url')
-        read_only_fields = ('pk', 'tag', 'area')
+        read_only_fields = ('pk', 'tag', 'area', 'url')
+
 
 class AlarmSerializer(serializers.HyperlinkedModelSerializer):
     lookup_fieled = 'tag'
 
     class Meta:
         model = Alarm
-        fields = ('state', 'start_time')
-        read_only_fields = ('state', 'start_time')
+        fields = ('state', 'start_time', 'url')
+        read_only_fields = ('state', 'start_time', 'url')

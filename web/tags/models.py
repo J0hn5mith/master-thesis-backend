@@ -71,8 +71,7 @@ class Tag(models.Model):
     def current_position(self):
         sensor_data = PositionMeasurement.objects.filter(
             uid=self.uid
-        ).order_by('time_stamp').first()
-
+        ).order_by('time_stamp').last()
         return sensor_data
 
     def user_with_avatar(self):

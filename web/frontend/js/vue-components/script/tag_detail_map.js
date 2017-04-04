@@ -18,9 +18,19 @@ var TagDetailMap = {
   data: function(){
     return {
       zoom:11,
-      center:[47.413220, 8.519482],
       circleCenter: L.latLng(47.413220, 8.519482),
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      options: {
+        style: function () {
+          return {
+            weight: 2,
+            color: '#ECEFF1',
+            opacity: 1,
+            fillColor: '#e4ce7f',
+            fillOpacity: 1
+          };
+        }
+      },
     };
   },
   computed: {
@@ -30,11 +40,18 @@ var TagDetailMap = {
       }
       return null;
     },
+    center: function() {
+      if(this.positions){
+        return this.positions[0];
+      } else {
+        return [0,0];
+      }
+    },
     areaCenter: function() {
       if(this.tag.alarm_config && this.tag.alarm_config.area){
         return {
-          lat: this.tag.alarm_config.area.center.coordinates[0],
-          lng: this.tag.alarm_config.area.center.coordinates[1],
+          lng: this.tag.alarm_config.area.center.coordinates[0],
+          lat: this.tag.alarm_config.area.center.coordinates[1],
         };
       }
       return {};

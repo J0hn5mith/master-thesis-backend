@@ -3,8 +3,6 @@
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-poly v-if="positions" :lat-lngs="positions"></v-poly>
     <v-marker  v-if="currentPosition" :lat-lng="currentPosition" :color="tag.color" class="marker-class"></v-marker>
-    <v-marker  v-if="currentPosition" :lat-lng="currentPosition" :color="tag.color" class="marker-class"></v-marker>
-    <!--<v-alarm-config-area v-if="tag.alarm_config.area" :area="tag.alarm_config.area"></v-alarm-config-area>-->
     <v-circle v-if="area" :lat-lng="areaCenter" :radius="area.radius"></v-circle>
   </v-map>
 </div>

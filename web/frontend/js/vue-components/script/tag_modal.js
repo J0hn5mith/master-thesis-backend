@@ -17,6 +17,8 @@ function fetchPosMes(instance){
 var TagModal = {
   props: {
     tag: Object,
+    tags: Array,
+    triggerModal: Boolean, // When this value changes, the modal's visibility is toggled.
   },
   components: {
     'v-tag-charge-bar': TagChargeBar,
@@ -28,18 +30,32 @@ var TagModal = {
   },
   created: function(){
     fetchPosMes(this);
-    console.log(this.tag);
   },
   data: function(){
     return{
       posMes: [],
+      visible: false,
     };
   },
   methods: {
+    toggle: function(){
+      this.visible = !this.visible;
+    },
     setCenterToCurrentPosition: function(){
       if (this.tag.current_position && this.tag.alarm_config.area){
         this.tag.alarm_config.area.center.coordinates = this.tag.current_position.position.coordinates;
       }
+    },
+    deleteTag: function (event) {
+      var restClient = new RESTClient();
+      restClient.remove(this.tag, function(){
+        for (var i = 0; i < this.tags.length; i++) {
+          if (this.tag === this.tags[i]) {
+            this.tags.splice(i,1);
+            this.toggle();
+          }
+        }
+      }.bind(this));
     },
     save: function (event) {
       var restClient = new RESTClient();
@@ -47,25 +63,42 @@ var TagModal = {
     },
   },
   watch: {
+    'triggerModal': function (value, oldValue) {
+      this.toggle();
+    },
     // whenever question changes, this function will run
     'tag': function (value, oldValue) {
     },
-    'tag.name': function (value, oldValue) {
-      this.save();
+    'tag.name': function (value, oldValue) { this.save();
     },
     'tag.alarm_config.area.center.coordinates': function(value, oldValue){
-      var instance = this;
       var restClient = new RESTClient();
-      restClient.update(this.tag, null, function(){
-        instance.alarm_config.area.center.coordinates = oldValue;
-      });
+      restClient.update(this.tag.alarm_config.area,
+        function(newArea){
+          //this.tag.alarm_config.area = newArea;
+        },
+        function(error){
+          this.tag.alarm_config.area.center.coordinates = oldValue;
+        }.bind(this));
     },
     'tag.alarm_config.area.radius': function(value, oldValue){
-      var instance = this;
       var restClient = new RESTClient();
-      restClient.update(this.tag, null, function(){
-        instance.alarm_config.area.center.radius = oldValue;
-      });
+      restClient.update(this.tag.alarm_config.area,
+        function(newArea){
+          //this.tag.alarm_config.area = newArea;
+        },
+        function(error){
+          this.tag.alarm_config.area.center.radius = oldValue;
+        }.bind(this));
+    },
+  },
+  computed: {
+    modalVisibilityStyle: function(){
+      if (this.visible){
+        return "display: inline";
+      } else {
+        return "display: none";
+      }
     },
   },
 };
