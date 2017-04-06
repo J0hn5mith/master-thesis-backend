@@ -1,2 +1,2 @@
-FROM masterthesisbackend_web_base:latest
+FROM web_base:latest
 COPY . /usr/src/app

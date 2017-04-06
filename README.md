@@ -5,6 +5,9 @@
     * `docker-machine create -d virtualbox dev`
 * Tell docker that this is the default machine
     * `eval $(docker-machine env dev)`
+* Create volumes
+    * `docker volume create --name=pgdata`
+    * `docker volume create --name=pgisdata`
 * Build the docker images
     * `docker-compose build`
 * Mount the docker containers containers

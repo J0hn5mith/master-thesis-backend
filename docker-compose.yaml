@@ -1,11 +1,11 @@
-version: "2.1"
-
+version: '2'
 
 services:
   web_base:
     build: ./web_base
     container_name: web_base
     image: web_base:latest
+
     volumes:
       - /usr/src/app
       - /usr/src/app/static
@@ -17,53 +17,47 @@ services:
     depends_on:
       - web_base
     expose:
-      - 8000
+      - "8000"
     links:
       - postgis:postgis
       - redis:redis
     volumes:
+      - /usr/src/app
       - /usr/src/app/static
-    env_file: ${WEB_ENV_FILE}
-    command: /usr/local/bin/gunicorn master_thesis_backend.wsgi:application -w 2 -b :8000
-
-  letsencrypt-proxy:
-    image: annixa/docker-nginx-letsencrypt-proxy:build
-    ports:
-      - 443:443
-      - 80:80
-    container_name: letsencrypt-proxy
-    env_file: ${ENV_FILE}
-    volumes:
-      - /etc/letsencrypt
-    links:
-      - nginx
+    env_file: web/.env.develop
+    environment:
+      DEBUG: 'true'
+      command: /usr/local/bin/gunicorn master_thesis_backend.wsgi:application -w 2 -b :8000
 
   nginx:
     restart: always
     build: ./nginx/
     container_name: nginx
     volumes:
-      - /www/static/
+      - /www/static
     volumes_from:
       - web
     links:
       - web:web
+    ports:
+        - 443:443
+        - 80:80
 
   postgis:
     restart: always
-    build: ./postgis
-    container_name: postgis
+    image: kartoza/postgis:latest
     ports:
       - 5432:5432
     volumes:
-      - pgdata:/var/lib/postgresql/9.5/main
       - pgisdata:/var/lib/postgis/data/
-    env_file: ${ENV_FILE}
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+      - POSTGRES_DBNAME=docker
 
   redis:
     restart: always
     image: redis:latest
-    container_name: redis
     ports:
       - 6379:6379
     volumes:
@@ -72,4 +66,3 @@ services:
 volumes:
   redisdata:
   pgisdata:
-  pgdata:
