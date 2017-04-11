@@ -23,3 +23,7 @@ FAQ:
     * First attach yourself to the running docker image `docker exec -it <image_name> bash`
     * Then you get a command line which is located inside the running docker iamge.
     * Attention: The linux distributions are reduced to a minimum and some commonly available tools are not installed!
+
+# Deployment
+* Docker Workflow
+* set env variables `ENV_FILE` and `WEB_ENV_FILE` to corresponding paths

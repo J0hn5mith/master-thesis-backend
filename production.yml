@@ -27,7 +27,7 @@ services:
     command: /usr/local/bin/gunicorn master_thesis_backend.wsgi:application -w 2 -b :8000
 
   letsencrypt-proxy:
-    image: annixa/docker-nginx-letsencrypt-proxy:build
+    build: docker-nginx-letsencrypt-proxy
     ports:
       - 443:443
       - 80:80
