@@ -1,6 +1,5 @@
 version: "2.1"
 
-
 services:
   web_base:
     build: ./web_base

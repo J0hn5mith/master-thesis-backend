@@ -8,6 +8,9 @@
 * Create volumes
     * `docker volume create --name=pgdata`
     * `docker volume create --name=pgisdata`
+* set env variables `ENV_FILE` and `WEB_ENV_FILE` to corresponding paths
+    *  `ENV_FILE=.env.develop`
+    *  `ENV_FILE=.web/env.develop`
 * Build the docker images
     * `docker-compose build`
 * Mount the docker containers containers
