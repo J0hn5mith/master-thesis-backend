@@ -87,3 +87,7 @@ class Tag(models.Model):
             return format_html('None')
 
 
+# class SharedTag(models.Model):
+    # tag = None
+    # owner = None
+
