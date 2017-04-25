@@ -32,13 +32,18 @@
 {% else %}
 <div class="form-group form-group--full-width">
   {% if field.help_text %}
+  {% if field.help_text|length < 50 %}
   <div class="hint--right hint--full-width" aria-label="{{ field.help_text }}">
-    {% endif %}
-
     {% render_field field placeholder=field.label class="form-control form-panel__form-control" %}
-
-    {% if field.help_text %}
   </div>
+  {% else %}
+  {% render_field field placeholder=field.label class="form-control form-panel__form-control" %}
+  <p class="help-block">
+  {{ field.help_text | safe }}
+  </p>
+  {% endif %}
+  {% else %}
+  {% render_field field placeholder=field.label class="form-control form-panel__form-control" %}
   {% endif %}
 </div>
 {% endif %}

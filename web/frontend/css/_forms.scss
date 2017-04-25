@@ -112,3 +112,12 @@
 .form-group__label--disabled {
   color: $grey--light;
 }
+
+.form__link {
+  color: $blue;
+  margin-left: 10px;
+}
+
+.form__link--danger {
+  color: $red;
+}

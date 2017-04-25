@@ -213,6 +213,9 @@ SECURE_BROWSER_XSS_FILTER = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 
+# Mail
+DEFAULT_FROM_EMAIL = os.environ.get('FROM_MAIL', 'develop@example.com')
+
 
 ##################################################
 # Local Apps

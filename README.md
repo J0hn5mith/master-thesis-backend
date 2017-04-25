@@ -1,6 +1,8 @@
-# Installation
+# Installation Backend
 ## Local
 * Install the docker tool box from [here](https://www.docker.com/products/docker-toolbox).
+* Clone the following docker image into the root folder of the project
+    * `git clone https://github.com/J0hn5mith/docker-nginx-letsencrypt-proxy.git`
 * Create a docker machine with the name `dev`
     * `docker-machine create -d virtualbox dev`
 * Tell docker that this is the default machine
@@ -27,6 +29,16 @@ FAQ:
     * Then you get a command line which is located inside the running docker iamge.
     * Attention: The linux distributions are reduced to a minimum and some commonly available tools are not installed!
 
-# Deployment
+## Deployment
 * Docker Workflow
 * set env variables `ENV_FILE` and `WEB_ENV_FILE` to corresponding paths
+
+# Installation Front end
+* Install NPM
+    * https://nodejs.org/en/
+* Install yarn
+    * https://yarnpkg.com/lang/en/docs/install/
+* Run yarn to install frontend packages
+
+## Build frontend
+* `gulp build`
