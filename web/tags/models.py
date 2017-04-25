@@ -1,13 +1,11 @@
 import random
+from django.utils.translation import ugettext as _
 from django.conf import settings
-from django.contrib.auth import get_user_model
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.db import models
 from django.utils.html import format_html
-from django.utils.translation import ugettext as _
 from colorful.fields import RGBColorField
 from sensor_data.models import PositionMeasurement
-from sensor_data.serializers import PositionMeasurementSerializer
+
 
 def get_default_color():
     return "#{:06x}".format(random.randint(0, 0xFFFFFF))
@@ -61,9 +59,7 @@ class Tag(models.Model):
         blank=True,
     )
 
-    color = RGBColorField(
-            default=get_default_color
-            )
+    color = RGBColorField(default=get_default_color)
 
     def get_status(self):
         return 0
@@ -77,7 +73,8 @@ class Tag(models.Model):
     def user_with_avatar(self):
         if self.user:
             return format_html(
-                '<a href="{url}"><img src="{0}" width="{size}" height="{size} title="{1}"></img></a>',
+                '<a href="{url}"><img src="{0}" width="{size}"\
+                    height="{size} title="{1}"></img></a>',
                 self.user.conf.avatar.url,
                 self.user,
                 size=25,
@@ -87,7 +84,38 @@ class Tag(models.Model):
             return format_html('None')
 
 
-# class SharedTag(models.Model):
-    # tag = None
-    # owner = None
+class SharedTagPermissions(object):
+    ON_ALARM = 0
+    READ = 0
+    DELEGATE = 1
+    ADMIN = 2
 
+
+SHARED_TAG_PERMISSIONS = (
+    (SharedTagPermissions.ON_ALARM, _('On Alarm')),
+    (SharedTagPermissions.READ, _('Read Always')),
+    (SharedTagPermissions.DELEGATE, _('Read and handle')),
+    (SharedTagPermissions.ADMIN, _('Same rights as owner'))
+)
+
+
+class SharedTag(models.Model):
+    tag = models.ForeignKey(
+        Tag, on_delete=models.CASCADE, related_name="shared_users", null=False
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='shared_tags',
+        blank=True,
+        null=True,
+    )
+
+    permissions = models.IntegerField(
+        default=0,
+        choices=SHARED_TAG_PERMISSIONS,
+    )
+
+    class Meta:
+        unique_together = ('tag', 'user')

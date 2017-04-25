@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tags.models import Tag
+from tags.models import Tag, SharedTag
 from sensor_data.serializers import PositionMeasurementSerializer
 from alarm.serializers import AlarmConfigSerializer, AlarmSerializer
 
@@ -20,4 +20,15 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = (
             'pk', 'charge_status', 'get_status', 'last_update', 'avatar',
             'current_position', 'color', 'alarm_config', 'url', 'alarm',
+        )
+
+
+class SharedTagSerializer(serializers.HyperlinkedModelSerializer):
+    lookup_fieled = 'pk'
+    # tag = TagSerializer(read_only=True)
+
+    class Meta:
+        model = SharedTag
+        fields = (
+            'user', 'tag', 'permissions'
         )

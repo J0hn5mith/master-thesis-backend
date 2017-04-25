@@ -5,8 +5,8 @@ from django.core.files.base import ContentFile
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
-from tags.serializers import TagSerializer
-from tags.models import Tag
+from tags.serializers import TagSerializer, SharedTagSerializer
+from tags.models import Tag, SharedTag
 
 
 class TagViewSet(viewsets.ModelViewSet):
@@ -14,15 +14,17 @@ class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
 
     def get_queryset(self):
+        tags = None
+        shared_tags = None
         if hasattr(self.request.user, 'tags'):
-            return self.request.user.tags.all().order_by('pk')
+            tags =  self.request.user.tags.all().order_by('pk')
+
         return []
 
     def initialize_request(self, request, *args, **kwargs):
         request = super(TagViewSet, self).initialize_request(
             request, *args, **kwargs
         )
-
         file = request.data.get('avatar')
         if file:
             file_name = self._extract_file_name(file)
@@ -72,6 +74,19 @@ class TagViewSet(viewsets.ModelViewSet):
             return '/{0}'.format(matches[0])
         else:
             return ''
+
+
+class SharedTagViewSet(viewsets.ModelViewSet):
+    queryset = SharedTag.objects.all()
+    serializer_class = SharedTagSerializer
+
+    def get_queryset(self):
+        tags = None
+        shared_tags = None
+        if hasattr(self.request.user, 'shared_tags'):
+            return self.request.user.shared_tags.all().order_by('pk')
+
+        return []
 
 
 def tag_prototype_view(request):
