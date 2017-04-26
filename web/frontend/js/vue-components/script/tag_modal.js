@@ -4,6 +4,8 @@ import TagDetailMap from '../tag_detail_map.vue';
 import SliderControll from '../slider_controll.vue';
 import PositionMeasurements from '../position_measurements.vue';
 import CollapseSection from '../collapse_section.vue';
+import ShareTagButton from '../share_tag_button.vue';
+import ShareSettingsEntry from '../share_settings_entry.vue';
 import RESTClient from './../../src/RESTClient.js';
 
 function fetchPosMes(instance){
@@ -27,14 +29,24 @@ var TagModal = {
     'v-position-measurements': PositionMeasurements,
     'v-collapse-section': CollapseSection,
     'v-slider-controll': SliderControll,
+    'v-share-tag-button': ShareTagButton,
+    'v-share-settings-entry': ShareSettingsEntry,
   },
   created: function(){
     fetchPosMes(this);
     this.visible = window.location.pathname.endsWith(this.tag.pk +  "/");
+    var restClient = new RESTClient();
+    restClient.getSharedTags(
+      function (sharedTags) {
+        this.sharedTags = sharedTags;
+      }.bind(this),
+      function (error) { console.log(error);}
+    );
   },
   data: function(){
     return{
       posMes: [],
+      sharedTags: [],
       visible: false,
     };
   },

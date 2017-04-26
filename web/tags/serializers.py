@@ -16,11 +16,12 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'pk', 'name', 'charge_status', 'get_status', 'last_update',
             'active', 'avatar', 'uid', 'current_position', 'color',
-            'alarm_config', 'alarm', 'url', 'user'
+            'alarm_config', 'alarm', 'url', 'user', 'shared_users'
         )
         read_only_fields = (
             'pk', 'charge_status', 'get_status', 'last_update', 'avatar',
             'current_position', 'color', 'alarm_config', 'url', 'alarm',
+            'shared_users'
         )
 
 
@@ -33,8 +34,8 @@ class SharedTagSerializer(serializers.ModelSerializer):
     class Meta:
         model = SharedTag
         fields = (
-            'user', 'tag', 'permissions'
+            'pk', 'user', 'tag', 'permissions'
         )
         read_only = (
-            'tag',
+            'pk', 'tag',
         )

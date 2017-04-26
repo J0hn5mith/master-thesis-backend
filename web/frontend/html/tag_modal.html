@@ -39,7 +39,21 @@
             </div>
           </div>
           <div>
-            <h2> Alarm Settings </h2>
+            <h2> Share Settings </h2>
+            <table class="table table-striped">
+              <thead class="table__head">
+                <th class="table__header">User</th>
+                <th class="table__header">Permissions</th>
+                <th class="table__header">Actions</th>
+              </thead>
+
+              <tbody>
+                <v-share-settings-entry v-for="sharedTag in sharedTags" :shared-tag="sharedTag"></v-share-settings-entry>
+                <td class="table__cell table__cell--empty" colspan="6">
+                  <v-share-tag-button :shared-tags="sharedTags"></v-share-tag-button>
+                </td>
+              </tbody>
+            </table>
           </div>
         </div>
 

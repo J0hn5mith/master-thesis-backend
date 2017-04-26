@@ -1,4 +1,4 @@
-import * as Vue2Leaflet from 'vue2-leaflet'
+import * as Vue2Leaflet from 'vue2-leaflet';
 
 var AlarmConfigArea = {
   props: {
@@ -8,11 +8,11 @@ var AlarmConfigArea = {
     'v-circle': Vue2Leaflet.LCircle,
   },
   data: function(){
-    return {hello: 'world'}
+    return {hello: 'world'};
   },
   methods: {
     deferredMountedTo(parent) {
     },
   }
-}
+};
 export default AlarmConfigArea;
