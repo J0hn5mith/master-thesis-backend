@@ -20,6 +20,12 @@ var TagRegistrationModal={
     },
     toggle: function(){
       this.visible = !this.visible;
+      if (this.visible){
+        var stateObj = {};
+        window.history.pushState(stateObj, "Create new tag", this.urlSuffix + "/");
+      } else {
+        window.history.pushState({}, "", "./../");
+      }
     },
     create: function(){
       var restClient = new RESTClient();

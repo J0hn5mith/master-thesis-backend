@@ -30,6 +30,7 @@ var TagModal = {
   },
   created: function(){
     fetchPosMes(this);
+    this.visible = window.location.pathname.endsWith(this.tag.pk +  "/");
   },
   data: function(){
     return{
@@ -40,6 +41,11 @@ var TagModal = {
   methods: {
     toggle: function(){
       this.visible = !this.visible;
+      if (this.visible){
+        window.history.pushState({}, "", this.tag.pk + "/");
+      } else {
+        window.history.pushState({}, "", "./../");
+      }
     },
     setCenterToCurrentPosition: function(){
       if (this.tag.current_position && this.tag.alarm_config.area){
@@ -93,6 +99,7 @@ var TagModal = {
     },
   },
   computed: {
+
     modalVisibilityStyle: function(){
       if (this.visible){
         return "display: inline";

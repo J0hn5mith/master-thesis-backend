@@ -79,8 +79,12 @@ var vue = new Vue({
   },
   computed: {
     ViewComponent () {
-      console.log(this.currentRoute);
-      return routes[this.currentRoute] || NotFound;
+      for (var key in routes){
+        if(this.currentRoute.startsWith(key)){
+          return routes[key];
+        }
+      }
+      return NotFound;
     },
   },
   render (h) { return h(this.ViewComponent);}

@@ -23,6 +23,7 @@
             <v-position-measurements :tag="tag" :posMes="posMes"></v-position-measurements>
           </v-collapse-section>
         </div>
+
         <div class="modal__body">
           <div>
             <h2> Alarm Settings </h2>
@@ -37,12 +38,17 @@
               </div>
             </div>
           </div>
+          <div>
+            <h2> Alarm Settings </h2>
+          </div>
         </div>
+
         <div class="modal__footer">
           <div class="btn btn-danger" @click="deleteTag">Delete</div>
           <div class="btn btn-success" @click="toggle">Ok</div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
