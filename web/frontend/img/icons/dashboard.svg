@@ -10,9 +10,10 @@
             <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.292742301 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <linearGradient x1="85.8442164%" y1="50%" x2="0%" y2="50%" id="linearGradient-4">
-            <stop stop-color="#FBDA61" offset="0%"></stop>
-            <stop stop-color="#F76B1C" offset="100%"></stop>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-4">
+            <stop stop-color="#85D0ED" offset="0%"></stop>
+            <stop stop-color="#44A1DA" offset="40.4061439%"></stop>
+            <stop stop-color="#006FC6" offset="100%"></stop>
         </linearGradient>
         <polygon id="path-5" points="200 87 150 173.60254 50 173.60254 0 87 50 0.397459622 150 0.397459622"></polygon>
     </defs>

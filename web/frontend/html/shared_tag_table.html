@@ -1,5 +1,5 @@
 <div>
-  <div class="table__heading">Tags</div>
+  <div class="table__heading">Shared Tags</div>
   <div class="table__actions">
     <input type="text" class="form-control table__filter" placeholder="Search"></input>
   </div>
@@ -9,6 +9,8 @@
       <th class="table__header table__header--hidden"></th>
       <th class="table__header">Icon</th>
       <th class="table__header">Name</th>
+      <th class="table__header">Owner</th>
+      <th class="table__header">Permissions</th>
       <th class="table__header">Status</th>
       <th class="table__header">Last Update</th>
       <th class="table__header">Charge</th>
@@ -16,21 +18,13 @@
     </thead>
 
     <tbody v-if="hasTags" >
-      <v-tag-table-entry  v-if="hasTags" v-for="tag in tags" :tag="tag" :tags="tags"></v-tag-table-entry>
-      <td class="table__cell table__cell--empty" colspan="6">
-        <v-tag-registration-modal :tagList="tags">
-          <div class="btn btn-info">Register New</div>
-        </v-tag-registration-modal>
-      </td>
+      <v-shared-tag-table-entry  v-if="hasTags" v-for="tag in tags" :tag="tag" :tags="tags"></v-shared-tag-table-entry>
     </tbody>
     <tbody v-else >
       <tr class="table__row">
         <td class="table__cell table__cell--hidden" style="display: hidden;"></td>
         <td class="table__cell table__cell--empty" colspan="6">
-          <div class="table__cell-text--placeholder">No Tag Registered</div>
-          <v-tag-registration-modal :tagList="tags">
-            <div class="btn btn-info">Register Your First Tag</div>
-          </v-tag-registration-modal>
+          <div class="table__cell-text--placeholder">No tags shared with you.</div>
         </td>
       </tr>
     </tbody>

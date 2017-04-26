@@ -2,6 +2,8 @@
   <v-map :zoom="zoom" :center="center" :tags="tags">
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-marker v-for="tag in tags" v-if="tag.current_position" :lat-lng="tag.current_position.coordinates"
-       :color="tag.color" class="marker-class"></v-marker>
+       :color="tag.color" :icon="icon" class="marker-class"></v-marker>
+    <v-marker v-for="tag in sharedTags" v-if="tag.current_position" :lat-lng="tag.current_position.coordinates"
+                                        :color="tag.color" :icon="iconOrange" class="map__marker--hover"></v-marker>
   </v-map>
 </div>

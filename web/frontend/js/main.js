@@ -1,11 +1,10 @@
 import * as Vue from 'vue/dist/vue.common.js'; // Required for using with external templates
-import TagOverviewMap from './vue-components/tag_overview_map.vue';
-import TagTable from './vue-components/tag_table.vue';
+import Dashboard from './vue-components/dashboard.vue';
 import UserSettings from './vue-components/user_settings.vue';
 import RESTClient from './src/RESTClient.js';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
-import axios from 'axios';
+//import axios from 'axios';
 
 
 
@@ -17,7 +16,7 @@ L.Icon.Default.imagePath = '/static/img/';
 Raven.config(
   //'https://e0409ee7479e45b1a9bca0a1e06f2267@sentry.io/150277',
   //{
-    //debug: true,
+  //debug: true,
   //}
 ).addPlugin(RavenVue, Vue).install();
 
@@ -46,17 +45,26 @@ if (typeof String.prototype.endsWith !== 'function') {
   };
 }
 
+
+////////////////////////////////////////
+// Vue.js Routing
+////////////////////////////////////////
+const NotFound = { template: '<p>Page not found</p>' };
+
+const routes = {
+  '/dashboard/': Dashboard,
+};
+
+
 var vue = new Vue({
   el: '#vue',
   components: {
-    'v-tag-overview-map': TagOverviewMap,
-    //'v-tag-detail-map': TagDetailMap,
-    'v-tag-table': TagTable,
     'v-user-settings': UserSettings,
   },
   data: {
     //function() {return {user: {}};},
     user: false,
+    currentRoute: window.location.pathname,
   },
   beforeCreate: function(){
     'use strict';
@@ -69,12 +77,13 @@ var vue = new Vue({
   },
   methods: {
   },
-  filters: {
-    coordinates: function (coordinates) {
-      'use strict';
-      return coordinates.lat + ' | ' + coordinates.lng;
+  computed: {
+    ViewComponent () {
+      console.log(this.currentRoute);
+      return routes[this.currentRoute] || NotFound;
     },
   },
+  render (h) { return h(this.ViewComponent);}
 });
 
 export default vue;

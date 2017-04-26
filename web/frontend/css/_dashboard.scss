@@ -46,6 +46,11 @@
   padding: 50px;
 }
 
+.dashboard__element--scrollable{
+  overflow: scroll;
+  height: 60vh!important;
+}
+
 .dashboard__navbar--normal{
   background-color: $darkgrey;
   height: 100%;

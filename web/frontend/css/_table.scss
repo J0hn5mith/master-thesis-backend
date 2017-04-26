@@ -37,6 +37,12 @@
 
 }
 
+.table__heading{
+  font-size: $font-size--extra-large;
+  font-family: $heading-font;
+  font-color: $font-color;
+}
+
 .table__header{
   color: $font-color--light;
   font-family: $font--light;
@@ -51,9 +57,10 @@
 }
 
 .table__header--hidden{
-  width: 0px;
+  padding: 0px;
+  margin: -8px;
+  width: 1px;
 }
-
 
 .table__row{
   padding-top: 30px!important;
@@ -65,6 +72,12 @@
   display: table-cell;
   height: 100%;
   border-width: 0px!important;
+}
+
+.table__cell--hidden{
+  width: 10px;
+  padding: 0px;
+  color: pink !important;
 }
 
 .table__cell--empty{

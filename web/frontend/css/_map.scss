@@ -1,7 +1,8 @@
 .map{
   background: lightblue;
-  height: 600px!important;
+  height: 40vh!important;
   overflow: hidden!important;
+  @include shadow();
 }
 
 .map--shawod{
@@ -10,4 +11,13 @@
 
 .map--small{
   height: 600px!important;
+}
+
+.map__marker--hover{
+  width: 100px;
+  background-color: pink;
+}
+
+.leaflet-marker-icon{
+  width: 35px;
 }

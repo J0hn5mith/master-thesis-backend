@@ -4,11 +4,21 @@
   </td>
   <td class="table__cell">
     <img v-if="tag.avatar" class="table__icon table__icon--hexagon" :src="tag.avatar"></img>
-    <img v-else class="table__icon" src="/static/img/icons/marker.svg"></img>
+    <img v-else class="table__icon" src="/static/img/icons/marker--orange.svg"></img>
   </td>
   <td class="table__cell">
     <p class="table__cell-text">
-    {{ tag.name }}
+    {{ tag.tag.name }}
+    </p>
+  </td>
+  <td class="table__cell">
+    <p  class="table__cell-text table__cell-text--small">
+    {{ tag.user.email }}
+    </p>
+  </td>
+  <td class="table__cell">
+    <p  class="table__cell-text table__cell-text--small">
+    {{ tag.permissions }}
     </p>
   </td>
   <td class="table__cell">

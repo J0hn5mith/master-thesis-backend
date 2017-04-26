@@ -14,10 +14,8 @@ class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
 
     def get_queryset(self):
-        tags = None
-        shared_tags = None
         if hasattr(self.request.user, 'tags'):
-            tags =  self.request.user.tags.all().order_by('pk')
+            return self.request.user.tags.all().order_by('pk')
 
         return []
 
@@ -81,8 +79,6 @@ class SharedTagViewSet(viewsets.ModelViewSet):
     serializer_class = SharedTagSerializer
 
     def get_queryset(self):
-        tags = None
-        shared_tags = None
         if hasattr(self.request.user, 'shared_tags'):
             return self.request.user.shared_tags.all().order_by('pk')
 

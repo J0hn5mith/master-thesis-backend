@@ -2,6 +2,7 @@ from rest_framework import serializers
 from tags.models import Tag, SharedTag
 from sensor_data.serializers import PositionMeasurementSerializer
 from alarm.serializers import AlarmConfigSerializer, AlarmSerializer
+from user.serializers import UserSerializer
 
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,12 +24,17 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class SharedTagSerializer(serializers.HyperlinkedModelSerializer):
+class SharedTagSerializer(serializers.ModelSerializer):
     lookup_fieled = 'pk'
-    # tag = TagSerializer(read_only=True)
+    # TODO It might be a good idea to use different serializer
+    tag = TagSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = SharedTag
         fields = (
             'user', 'tag', 'permissions'
+        )
+        read_only = (
+            'tag',
         )

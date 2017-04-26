@@ -3,6 +3,7 @@ import Raven from 'raven-js';
 
 var URL_CONFIG = {
   tags: '/tags/rest/tags/',
+  sharedTags: '/tags/rest/shared_tags/',
   tagPrototype: '/tags/rest/prototype/',
   tagData: '/sensor-data/rest/position_measurements/',
   currentUser: '/user/rest/current-user/',
@@ -79,6 +80,10 @@ class RESTClient {
 
   getTags(success, error) {
     this.get(URL_CONFIG.tags, success, error);
+  }
+
+  getSharedTags(success, error) {
+    this.get(URL_CONFIG.sharedTags, success, error);
   }
 
   getTagPrototype(success, error_handler) {

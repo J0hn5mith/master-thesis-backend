@@ -51,3 +51,4 @@ module.exports = {
   },
   devtool: '#eval-source-map',
 };
+process.traceDeprecation = true;
