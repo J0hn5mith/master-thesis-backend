@@ -25,6 +25,7 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
+# class SharedTagSerializer(serializers.HyperlinkedModelSerializer):
 class SharedTagSerializer(serializers.ModelSerializer):
     lookup_fieled = 'pk'
     # TODO It might be a good idea to use different serializer
@@ -34,8 +35,8 @@ class SharedTagSerializer(serializers.ModelSerializer):
     class Meta:
         model = SharedTag
         fields = (
-            'pk', 'user', 'tag', 'permissions'
+            'pk', 'user', 'tag', 'permissions', 'url',
         )
         read_only = (
-            'pk', 'tag',
+            'pk', 'tag', 'url',
         )

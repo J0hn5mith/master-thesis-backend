@@ -1,4 +1,3 @@
-import sys
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from django.utils.timezone import now
@@ -31,5 +30,8 @@ class Command(BaseCommand):
                 PositionMeasurement.objects.get_or_create(
                     uid=tag.uid,
                     time_stamp=now(),
-                    position=Point(47.413220 + i * 0.01, 8.519482 + tag_i * 0.01),
+                    position=Point(
+                        8.519482 + tag_i * 0.01,
+                        47.413220 + i * 0.01,
+                    ),
                 )

@@ -1,6 +1,10 @@
 
 var ShareTagButton = {
   props: {
+    tag: {
+      type: Object,
+      required: true,
+    },
     sharedTags: {
       type: Array,
       default: function(){return [];},
@@ -13,7 +17,8 @@ var ShareTagButton = {
   },
   methods: {
     toggle: function(){
-        this.sharedTags.push({pk: null});
+      //add pk so it can be watched by vue component
+        this.sharedTags.push({pk: null, tag_id: this.tag.pk, permissions: 0});
     }
   },
 };

@@ -7,6 +7,7 @@ var URL_CONFIG = {
   tagPrototype: '/tags/rest/prototype/',
   tagData: '/sensor-data/rest/position_measurements/',
   currentUser: '/user/rest/current-user/',
+  users: '/user/rest/user/',
   fileUpload: '/utils/file-upload/',
 };
 
@@ -86,6 +87,10 @@ class RESTClient {
     this.get(URL_CONFIG.sharedTags, success, error);
   }
 
+  getUsers(success, error) {
+    this.get(URL_CONFIG.users, success, error);
+  }
+
   getTagPrototype(success, error_handler) {
     axios.get(URL_CONFIG.tagPrototype)
       .then(function(response){
@@ -102,6 +107,10 @@ class RESTClient {
 
   createTag(instance, success, error_handler) {
     this.create(URL_CONFIG.tags, instance, success, error_handler);
+  }
+
+  createSharedTag(instance, success, error_handler) {
+    this.create(URL_CONFIG.sharedTags, instance, success, error_handler);
   }
 
   getSensorData(id, success, error) {

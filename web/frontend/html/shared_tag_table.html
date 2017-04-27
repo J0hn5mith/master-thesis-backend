@@ -18,7 +18,7 @@
     </thead>
 
     <tbody v-if="hasTags" >
-      <v-shared-tag-table-entry  v-if="hasTags" v-for="tag in tags" :tag="tag" :tags="tags"></v-shared-tag-table-entry>
+      <v-shared-tag-table-entry  v-if="hasTags" v-for="tag in tags" :tag="tag" :tags="tags" :key="tag.id"></v-shared-tag-table-entry>
     </tbody>
     <tbody v-else >
       <tr class="table__row">

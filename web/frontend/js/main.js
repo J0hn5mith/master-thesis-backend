@@ -25,6 +25,7 @@ Raven.config(
 // Globals
 ////////////////////////////////////////
 
+
 ////////////////////////////////////////
 // Utils
 ////////////////////////////////////////
@@ -87,7 +88,7 @@ var vue = new Vue({
       return NotFound;
     },
   },
-  render (h) { return h(this.ViewComponent);}
+  render (h) { return h(this.ViewComponent);},
 });
 
 export default vue;

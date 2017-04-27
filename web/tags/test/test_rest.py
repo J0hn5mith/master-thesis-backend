@@ -10,7 +10,7 @@ from rest_framework import status
 User = get_user_model()
 
 
-class TagRESTTrestCase(TestCase):
+class TagRESTTestCase(TestCase):
     def setUp(self):
         self.test_user, created = User.objects.get_or_create(
             username='test',
@@ -46,3 +46,30 @@ class TagRESTTrestCase(TestCase):
             self.url_detail, response.data, format='json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class SharedTagRESTTestCase(TestCase):
+    def setUp(self):
+        self.user, created = User.objects.get_or_create(
+            username='test',
+            password='test',
+        )
+        self.user.save()
+
+        self.tag = Tag.objects.create(user=self.user)
+        self.tag.save()
+
+        self.client = APIClient()
+        # Required because normal login doesn't work due to 2 phase auth
+        self.client.force_authenticate(self.user)
+
+        self.url = reverse_lazy('sharedtag-list')
+
+    def test_create(self):
+        data = {
+            'permissions': 0,
+            'user_id': self.user.pk,
+            'tag_id': self.tag.pk,
+        }
+        response = self.client.post(self.url, data, format='json')
+        print(response)

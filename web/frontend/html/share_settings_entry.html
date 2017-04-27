@@ -4,39 +4,26 @@
     <p class="table__cell-text" v-if="sharedTag.pk">
     {{ sharedTag.user.email }}
     </p>
+
   <p class="table__cell-text" v-else>
-  test
+  <v-select :options="options" :on-change="userSet"></v-select>
   </p>
   </td>
 
   <td class="table__cell">
     <p class="table__cell-text" v-if="sharedTag.pk">
-    {{ sharedTag.permissions }}
+    <select v-model="sharedTag.permissions">
+      <option value="0">Read on alarm</option>
+      <option value="1">Read</option>
+      <option value="2">Edit</option>
+      <option value="3">Admin</option>
+    </select>
     </p>
-    <p class="table__cell-text" v-else>
-    test
-    </p>
-    <!--<div class="btn btn-danger dropdown">-->
-    <!--<span>Read on alert-->
-    <!--<span class="caret"></span>-->
-    <!--</span>-->
-    <!--<ul class="dropdown__content">-->
-    <!--<li><a class="dropdown__text">Read on Alert</a></li>-->
-    <!--<li><a class="dropdown__text">Read</a></li>-->
-    <!--<li><a class="dropdown__text">Delegate</a></li>-->
-    <!--<li><a class="dropdown__text">Admin</a></li>-->
-    <!--</ul>-->
-    <!--</div>-->
   </td>
 
   <td class="table__cell">
-    <div class="btn btn-info dropdown">
-      <span>Actions</span>
-      <ul class="dropdown__content">
-        <li class="dropdown__item">
-          <a class="dropdown__text">Delete</a>
-        </li>
-      </ul>
+    <div class="btn btn-info " @click="removeSharedTag" v-if="sharedTag.pk">
+      Delete
     </div>
   </td>
 

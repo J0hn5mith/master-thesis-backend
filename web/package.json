@@ -44,6 +44,7 @@
     "vue": "^2.2.6",
     "vue-cli": "^2.8.1",
     "vue-loader": "^11.0.0",
+    "vue-select": "^2.2.0",
     "webpack": "^2.4.1",
     "webpack-stream": "^3.2.0"
   }

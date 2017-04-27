@@ -9,8 +9,10 @@
       <th class="table__header table__header--dark">Position</th>
       <th class="table__header table__header--dark">Actions</th>
     </thead>
+
     <tbody>
-      <v-pm-table-entry v-if="posMes" v-for="mes in posMes" :mes="mes" :l="posMes"></v-pm-table-entry>
+      <v-pm-table-entry v-if="posMes" v-for="mes in posMes" :key="mes.id" :mes="mes" :l="posMes"></v-pm-table-entry>
     </tbody>
+
   </table>
 </div>

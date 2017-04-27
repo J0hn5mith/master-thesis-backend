@@ -86,9 +86,9 @@ class Tag(models.Model):
 
 class SharedTagPermissions(object):
     ON_ALARM = 0
-    READ = 0
-    DELEGATE = 1
-    ADMIN = 2
+    READ = 1
+    DELEGATE = 2
+    ADMIN = 3
 
 
 SHARED_TAG_PERMISSIONS = (

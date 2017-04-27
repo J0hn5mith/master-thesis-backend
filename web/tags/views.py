@@ -84,6 +84,18 @@ class SharedTagViewSet(viewsets.ModelViewSet):
 
         return []
 
+    def create(self, request):
+        user_id = request.data['user_id']
+        tag_id = request.data['tag_id']
+        shared_tag = SharedTag.objects.create(
+            permissions=0, user_id=user_id, tag_id=tag_id
+        )
+        serializer = self.get_serializer(shared_tag)
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
+
 
 def tag_prototype_view(request):
     """

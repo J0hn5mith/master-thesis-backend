@@ -1,5 +1,6 @@
 <div>
   <div class="table__heading">Tags</div>
+
   <div class="table__actions">
     <input type="text" class="form-control table__filter" placeholder="Search"></input>
   </div>
@@ -16,7 +17,7 @@
     </thead>
 
     <tbody v-if="hasTags" >
-      <v-tag-table-entry  v-if="hasTags" v-for="tag in tags" :tag="tag" :tags="tags"></v-tag-table-entry>
+      <v-tag-table-entry  v-if="hasTags" v-for="tag in tags" :tag="tag" :tags="tags" :key="tag.id"></v-tag-table-entry>
       <td class="table__cell table__cell--empty" colspan="6">
         <v-tag-registration-modal :tagList="tags">
           <div class="btn btn-info">Register New</div>
