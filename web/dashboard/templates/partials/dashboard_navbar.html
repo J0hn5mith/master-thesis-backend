@@ -20,8 +20,9 @@
             <div class="large-only dashboard__navbar-text">{{ item.label }}</div>
           </li>
       </a>
+      {% endfor %}
     </ul>
-    {% endfor %}
+
     <ul class="dashboard__navbar-list">
       <a class="dashboard__navbar-link" href="{% url "auth_logout" %}">
         <li class="dashboard__navbar-item hover-apear__container">
@@ -52,6 +53,15 @@
             </li>
         </a>
         {% endfor %}
+      </ul>
+
+      <ul class="dashboard__navbar-list">
+        <a class="dashboard__navbar-link" href="{% url "auth_logout" %}">
+          <li class="dashboard__navbar-item hover-apear__container">
+            <img class="dashboard__navbar-icon " src="{% static "img/icons/logout--white.svg" %}" >
+            <div class="dashboard__navbar-text">Logout</div>
+          </li>
+        </a>
       </ul>
     </div>
   </div>

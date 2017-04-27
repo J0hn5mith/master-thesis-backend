@@ -24,9 +24,14 @@
   border-color: $grey--light;
   margin-bottom: 10px;
 
+  @include screen(small){
+    display: none;
+  };
+
 }
 
 .table__head{
+  padding-bottom: 20px !important;
 }
 
 .table__head--dark{
@@ -50,6 +55,12 @@
   font-size: $font-size;
   border-width: 0px!important;
   padding: 8px;
+  padding-bottom: 30px;
+
+  @include screen(small){
+    font-size: $font-size--small;
+  };
+
 }
 
 .table__header--dark{
@@ -64,14 +75,34 @@
 
 .table__row{
   padding-top: 30px!important;
+  max-height: 60px;
+  min-height: 60px;
+  height: 60px;
+  &:hover{
+    background-color: $blue--ultra-light !important;
+  }
 }
+
 .table__row--dark{
+  &:hover{
+    background-color: red !important;
+  }
 }
 
 .table__cell{
   display: table-cell;
-  height: 100%;
+
+  max-height: 60px !important;
+  min-height: 60px !important;
+  height: 60px !important;
   border-width: 0px!important;
+
+  font-family: $font--light;
+  font-size: $font-size;
+
+  @include screen(small){
+    font-size: $font-size--small;
+  };
 }
 
 .table__cell--hidden{
@@ -86,16 +117,24 @@
 }
 
 .table__cell-text{
-  font-family: $font--light;
-  font-size: $font-size;
-
   display: flex;
   height: 100%;
   align-items: center;
 }
 
+.table__cell--center{
+  display: flex;
+  min-height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .table__cell-text--small{
   font-size: $font-size--small;
+
+  @include screen(small){
+    font-size: $font-size--small;
+  };
 }
 
 .table__cell-text--placeholder{
@@ -108,13 +147,32 @@
 .table__icon{
   width: 50px;
   height:50px;
+  //background-color: red;
+
+  @include screen(small){
+    width: 30px;
+    height: 30px;
+  };
+
 }
 
 .table__icon--small{
   width: 30px;
   height:30px;
+
+  @include screen(small){
+    width: 20px;
+    height: 20px;
+  };
 }
 
 .table__icon--hexagon{
   @include hexagon-clip();
+}
+
+.table__content--center {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
 }

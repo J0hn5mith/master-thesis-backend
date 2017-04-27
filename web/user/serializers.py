@@ -8,9 +8,9 @@ class UserConfigurationSerializer(serializers.HyperlinkedModelSerializer):
         model = UserConfiguration
         fields = (
             'url', 'notify_by_email', 'notify_by_sms', 'has_active_email',
-            'has_active_phone',
+            'has_active_phone', 'avatar'
         )
-        read_only = ('url', 'has_active_email', 'has_active_phone', )
+        read_only = ('url', 'has_active_email', 'has_active_phone', 'avatar')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

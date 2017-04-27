@@ -4,13 +4,16 @@
 
 .dashboard__navbar{
 
-  z-index: 1;
+  z-index: 999;
   height: 100vh;
   min-width: 200px;
 
   @include screen(med){
     min-width: 60px;
     max-width: 60px;
+    >.dashboard__navbar--normal{
+      display: none;
+    }
   }
 
   @include screen(small){
@@ -23,16 +26,6 @@
     right: 0px;
     width: 50px;
     height: 50px;
-
-    >.dashboard__navbar--normal{
-      visibility: hidden;
-    }
-
-    >.dashboard__navbar--mobile{
-      visibility: visible;
-      width: 50px;
-      height: 50px;
-    }
   }
 }
 
@@ -44,6 +37,14 @@
 
 .dashboard__element{
   padding: 50px;
+
+  @include screen(small){
+    padding: 5px;
+  };
+}
+
+.dashboard__section {
+  padding-bottom: 50px;
 }
 
 .dashboard__element--scrollable{
@@ -55,6 +56,9 @@
   background-color: $darkgrey;
   height: 100%;
   width: 100%;
+  @include screen(small){
+    display: none;
+  }
 }
 
 .dashboard__navbar--mobile{
@@ -62,7 +66,6 @@
   right:0;
 
   position: absolute;
-  visibility: hidden;
   overflow: hidden;
 
   width: 0px;
@@ -71,6 +74,13 @@
 
   transition: all 1s;
   -webkit-transition: all 1s;
+
+  display: none;
+  @include screen(small){
+    width: 50px;
+    height: 50px;
+    display: block;
+  }
 
   &:hover, &:active{
     margin: 0px;
