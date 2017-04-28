@@ -3,11 +3,15 @@ import Raven from 'raven-js';
 
 var URL_CONFIG = {
   tags: '/tags/rest/tags/',
+
   sharedTags: '/tags/rest/shared_tags/',
+  sharedTagsList: '/tags/rest/shared-tag-list/',
+
   tagPrototype: '/tags/rest/prototype/',
   tagData: '/sensor-data/rest/position_measurements/',
   currentUser: '/user/rest/current-user/',
   users: '/user/rest/user/',
+
   fileUpload: '/utils/file-upload/',
 };
 
@@ -85,6 +89,11 @@ class RESTClient {
 
   getSharedTags(success, error) {
     this.get(URL_CONFIG.sharedTags, success, error);
+  }
+
+  getSharedTagsFor(id, success, error) {
+    var url = URL_CONFIG.sharedTagsList + '?tag__id=' + id;
+    this.get(url, success, error);
   }
 
   getUsers(success, error) {

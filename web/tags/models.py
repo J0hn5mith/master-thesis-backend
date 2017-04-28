@@ -61,6 +61,9 @@ class Tag(models.Model):
 
     color = RGBColorField(default=get_default_color)
 
+    def __str__(self):
+        return "{0}".format(self.name)
+
     def get_status(self):
         return 0
 

@@ -27,7 +27,7 @@ var  ShareSettingsEntry = {
       restClient.getUsers(
         function (users) {
           for (var i in users) {
-            this.opt.push({value: i, label: users[i].username});
+            this.opt.push({value: users[i].pk, label: users[i].username});
           }
         }.bind(this),
         function (error) { console.log(error);}
@@ -77,6 +77,7 @@ var  ShareSettingsEntry = {
     userSet: function(value){
       var restClient = new RESTClient();
       this.sharedTag.user_id = value.value;
+      console.log(this.sharedTag);
       restClient.createSharedTag(
         this.sharedTag,
         function (sharedTag) {

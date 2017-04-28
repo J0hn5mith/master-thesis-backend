@@ -36,7 +36,8 @@ var TagModal = {
     fetchPosMes(this);
     this.visible = window.location.pathname.endsWith(this.tag.pk +  "/");
     var restClient = new RESTClient();
-    restClient.getSharedTags(
+    restClient.getSharedTagsFor(
+      this.tag.pk,
       function (sharedTags) {
         this.sharedTags = sharedTags;
       }.bind(this),

@@ -90,5 +90,6 @@ var vue = new Vue({
   },
   render (h) { return h(this.ViewComponent);},
 });
+console.log('Hello');
 
 export default vue;

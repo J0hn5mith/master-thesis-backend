@@ -34,6 +34,22 @@ var TagOverviewMap = {
       if(par.hover){
         return par.hover;
       }
+    },
+    getTagIcon: function(tag) {
+      if (tag.avatar){
+        return L.icon({
+          iconUrl: tag.avatar,
+          shadowUrl: '',
+          iconSize: [40, 35],
+          iconAnchor: [20, 17],
+        });
+      }
+      return L.icon({
+        iconUrl: '/static/img/icons/marker--orange.svg',
+        shadowUrl: '',
+        iconSize: [40, 35],
+        iconAnchor: [20, 17],
+      });
     }
   },
   computed: {
@@ -54,7 +70,9 @@ var TagOverviewMap = {
         iconAnchor: [20, 17],
       });
     },
-    iconOrange: function() {
+    iconOrange: function(data) {
+      console.log(data);
+      console.log("hello");
       return L.icon({
         iconUrl: '/static/img/icons/marker--orange.svg',
         shadowUrl: '',

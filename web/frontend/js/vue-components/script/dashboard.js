@@ -24,7 +24,6 @@ var Dashboard = {
     );
     restClient.getSharedTags(
       function (sharedTags) {
-        var tags = [];
         for (var i = 0; i < sharedTags.length; i++) {
           sharedTags[i].tag.hover = false;
           this.sharedTagsTags.push(sharedTags[i].tag);

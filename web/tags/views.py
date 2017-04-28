@@ -74,6 +74,17 @@ class TagViewSet(viewsets.ModelViewSet):
             return ''
 
 
+from rest_framework import generics
+import django_filters.rest_framework
+
+
+class SharedTagListView(generics.ListAPIView):
+    queryset = SharedTag.objects.all()
+    serializer_class = SharedTagSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+    filter_fields = ('permissions', 'tag__id')
+
+
 class SharedTagViewSet(viewsets.ModelViewSet):
     queryset = SharedTag.objects.all()
     serializer_class = SharedTagSerializer
@@ -81,7 +92,6 @@ class SharedTagViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if hasattr(self.request.user, 'shared_tags'):
             return self.request.user.shared_tags.all().order_by('pk')
-
         return []
 
     def create(self, request):
