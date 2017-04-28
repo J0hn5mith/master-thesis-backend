@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = [
     'two_factor',
     'rest_framework',
     'rest_framework_gis',  # Has to be after rest_framework
+    # 'guardian',
 ]
 
 LOCAL_APPS = [
@@ -71,7 +72,6 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-
     'two_factor.middleware.threadlocals.ThreadLocals',
 ]
 
@@ -216,6 +216,11 @@ X_FRAME_OPTIONS = 'DENY'
 # Mail
 DEFAULT_FROM_EMAIL = os.environ.get('FROM_MAIL', 'develop@example.com')
 
+# Mail
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # default
+    # 'guardian.backends.ObjectPermissionBackend',
+)
 
 ##################################################
 # Local Apps
@@ -242,9 +247,9 @@ LOGIN_REDIRECT_URL = '/dashboard'
 # Django REST framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':
-    ('rest_framework.authentication.SessionAuthentication', ),
+    ['rest_framework.authentication.SessionAuthentication'],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',  # TODO: Change that!!
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_FILTER_BACKENDS':
     ('django_filters.rest_framework.DjangoFilterBackend', ),

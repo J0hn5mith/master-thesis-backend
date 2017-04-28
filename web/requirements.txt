@@ -28,3 +28,4 @@ django-extensions==1.7.7
 # dj-inmemorystorage==1.4.0
 # python-memcached==1.58
 
+django-guardian==1.4.8

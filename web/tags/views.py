@@ -2,14 +2,20 @@ import re
 from django.http import JsonResponse
 from django.conf import settings
 from django.core.files.base import ContentFile
-from rest_framework import status
-from rest_framework import viewsets
+from rest_framework import viewsets, status, generics
+import django_filters.rest_framework
 from rest_framework.response import Response
 from tags.serializers import TagSerializer, SharedTagSerializer
 from tags.models import Tag, SharedTag
 
 
 class TagViewSet(viewsets.ModelViewSet):
+    """
+    A REST interface for accessing the Tag model.
+    Required Authorization:
+    * Owner of the tag
+    * Admin
+    """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
 
@@ -53,6 +59,7 @@ class TagViewSet(viewsets.ModelViewSet):
             serializer.save(avatar=tag.avatar)
             return Response(serializer.data)
         except Exception as e:
+            print("Error")
             print(e)
             return Response(
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST
@@ -72,10 +79,6 @@ class TagViewSet(viewsets.ModelViewSet):
             return '/{0}'.format(matches[0])
         else:
             return ''
-
-
-from rest_framework import generics
-import django_filters.rest_framework
 
 
 class SharedTagListView(generics.ListAPIView):
