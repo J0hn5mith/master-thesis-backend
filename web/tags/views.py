@@ -2,11 +2,12 @@ import re
 from django.http import JsonResponse
 from django.conf import settings
 from django.core.files.base import ContentFile
-from rest_framework import viewsets, status, generics
+from rest_framework import viewsets, status, generics, filters
 import django_filters.rest_framework
 from rest_framework.response import Response
 from tags.serializers import TagSerializer, SharedTagSerializer
 from tags.models import Tag, SharedTag
+from .permissions import ExtendedObjectPermissions
 
 
 class TagViewSet(viewsets.ModelViewSet):
@@ -18,12 +19,14 @@ class TagViewSet(viewsets.ModelViewSet):
     """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+    filter_backends = (filters.DjangoObjectPermissionsFilter, )
+    permission_classes = (ExtendedObjectPermissions, )
 
-    def get_queryset(self):
-        if hasattr(self.request.user, 'tags'):
-            return self.request.user.tags.all().order_by('pk')
+    # def get_queryset(self):
+    # if hasattr(self.request.user, 'tags'):
+    # return self.request.user.tags.all().order_by('pk')
 
-        return []
+    # return []
 
     def initialize_request(self, request, *args, **kwargs):
         request = super(TagViewSet, self).initialize_request(
@@ -84,7 +87,7 @@ class TagViewSet(viewsets.ModelViewSet):
 class SharedTagListView(generics.ListAPIView):
     queryset = SharedTag.objects.all()
     serializer_class = SharedTagSerializer
-    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend, )
     filter_fields = ('permissions', 'tag__id')
 
 

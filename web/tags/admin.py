@@ -1,5 +1,6 @@
 from django.contrib import admin
 from tags.models import Tag, SharedTag
+from guardian.admin import GuardedModelAdmin
 
 
 class SharedTagInline(admin.TabularInline):
@@ -10,7 +11,7 @@ class SharedTagAdmin(admin.ModelAdmin):
     list_display = ('user', 'tag', 'permissions')
 
 
-class TagAdmin(admin.ModelAdmin):
+class TagAdmin(GuardedModelAdmin):
     list_display = (
         'name', 'uid', 'user_with_avatar', 'last_update', 'active', 'color'
     )

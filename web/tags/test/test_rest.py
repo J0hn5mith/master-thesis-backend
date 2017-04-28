@@ -17,6 +17,12 @@ class TagRESTTestCase(TestCase):
             password='test',
         )
         self.user.save()
+        self.other_user, created = User.objects.get_or_create(
+            username='other_user',
+            password='test',
+        )
+        self.other_user.save()
+
         self.client = APIClient()
         # Required because normal login doesn't work due to 2 phase auth
         self.tag = Tag.objects.create(user=self.user, uid='1')
@@ -35,12 +41,50 @@ class TagRESTTestCase(TestCase):
         match = TagViewSet._extract_file_name(string)
         self.assertEqual(match, '//image/name.jpg')
 
-    def test_get(self):
+    def test_get_authenticated(self):
+        """
+        Test if GET succeeds when user is authenticated.
+        """
+
         self.client.force_authenticate(self.user)
         response = self.client.get(self.url_list, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_put(self):
+    def test_get_unauthenticated(self):
+        """
+        Test if GET fails when user is not authenticated.
+        """
+        response = self.client.get(self.url_list, format='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_get_list(self):
+        """
+        Test only return instances where user has proper permissisons.
+        """
+
+        tag_of_other_user = Tag.objects.create(user=self.other_user, uid=2)
+        tag_of_other_user.save()
+
+        self.client.force_authenticate(self.user)
+        response = self.client.get(self.url_list, format='json')
+
+        self.assertEqual(response.data['count'], 1)
+
+    def test_put_unauthorized(self):
+        self.client.force_authenticate(self.user)
+        response = self.client.get(self.url_detail, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        response.data['name'] = 'new name'
+
+        self.client.force_authenticate(self.other_user)
+        response = self.client.get(self.url_detail, format='json')
+        response = self.client.put(
+            self.url_detail, response.data, format='json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_put_authorized(self):
         self.client.force_authenticate(self.user)
         response = self.client.get(self.url_detail, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -51,29 +95,23 @@ class TagRESTTestCase(TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_post(self):
+        self.client.force_authenticate(self.user)
+        url_user = reverse_lazy(
+            'user-detail', kwargs={'pk': self.user.pk}
+        )
+        tag_data = {
+             'uid':"hello",
+            'user': url_user,
+        }
+        response = self.client.post(
+            self.url_list, tag_data, format='json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+
     def test_no_authentication(self):
         response = self.client.get(self.url_list, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-    def test_missing_authorization(self):
-        self.unauthorized_user, created = User.objects.get_or_create(
-            username='unauthorized_user',
-            password='test',
-        )
-        response = self.client.force_authenticate(self.unauthorized_user)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-
-        # self.admin_user, created = User.objects.get_or_create(
-            # username='admin_uaser',
-            # password='test',
-        # )
-
-        # Admin User
-
-        # Authorized user
-
-        # Unauthorized  user
 
 
 class SharedTagRESTTestCase(TestCase):

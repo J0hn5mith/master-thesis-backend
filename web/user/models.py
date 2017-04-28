@@ -1,10 +1,10 @@
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.core import urlresolvers
 from django.core.files.base import ContentFile
 from django.db import models
 from django.db.models.signals import post_save
+from guardian.shortcuts import assign_perm
 from avatar_generator import Avatar
 
 
@@ -86,3 +86,15 @@ def create_user_config(sender, instance, created, **kwargs):
 
 
 post_save.connect(create_user_config, settings.AUTH_USER_MODEL)
+
+
+def add_permissions(sender, instance, created, **kwargs):
+    """
+    Sets default permissions of created users.
+    """
+    if created and not instance.username == 'AnonymousUser':
+        for permission in settings.DEFAULT_PERMISSIONS:
+            assign_perm(permission, instance)
+
+
+post_save.connect(add_permissions, settings.AUTH_USER_MODEL)

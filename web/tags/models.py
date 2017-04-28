@@ -3,8 +3,10 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.db import models
 from django.utils.html import format_html
+from django.db.models.signals import post_save
 from colorful.fields import RGBColorField
 from sensor_data.models import PositionMeasurement
+from guardian.shortcuts import assign_perm
 
 
 def get_default_color():
@@ -64,6 +66,9 @@ class Tag(models.Model):
     def __str__(self):
         return "{0}".format(self.name)
 
+    class Meta:
+        permissions = (('view_tag', 'View tag'), )
+
     def get_status(self):
         return 0
 
@@ -85,6 +90,17 @@ class Tag(models.Model):
             )
         else:
             return format_html('None')
+
+
+def set_tag_permissions(sender, instance, created, **kwargs):
+    """
+    Set permissions for a newly created tagk
+    """
+    if instance.user:
+        assign_perm('view_tag', instance.user, instance)
+        assign_perm('change_tag', instance.user, instance)
+
+post_save.connect(set_tag_permissions, Tag)
 
 
 class SharedTagPermissions(object):

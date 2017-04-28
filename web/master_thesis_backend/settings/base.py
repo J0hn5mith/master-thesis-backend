@@ -45,7 +45,7 @@ THIRD_PARTY_APPS = [
     'two_factor',
     'rest_framework',
     'rest_framework_gis',  # Has to be after rest_framework
-    # 'guardian',
+    'guardian',
 ]
 
 LOCAL_APPS = [
@@ -218,8 +218,8 @@ DEFAULT_FROM_EMAIL = os.environ.get('FROM_MAIL', 'develop@example.com')
 
 # Mail
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend', # default
-    # 'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',  # default
+    'guardian.backends.ObjectPermissionBackend',
 )
 
 ##################################################
@@ -227,6 +227,9 @@ AUTHENTICATION_BACKENDS = (
 ##################################################
 NOTIFICATION_FROM_EMAIL = 'notification@jan-meier.ch'
 RANDOM_TOAKEN_CHARACTERS = string.ascii_letters + string.digits + '-._~' [:]
+
+# User
+DEFAULT_PERMISSIONS = ('tags.view_tag', 'tags.change_tag')
 
 ##################################################
 # Third Party
