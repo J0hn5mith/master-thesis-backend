@@ -7,7 +7,6 @@ var URL_CONFIG = {
   sharedTags: '/tags/rest/shared_tags/',
   sharedTagsList: '/tags/rest/shared-tag-list/',
 
-  tagPrototype: '/tags/rest/prototype/',
   tagData: '/sensor-data/rest/position_measurements/',
   currentUser: '/user/rest/current-user/',
   users: '/user/rest/user/',
@@ -98,20 +97,6 @@ class RESTClient {
 
   getUsers(success, error) {
     this.get(URL_CONFIG.users, success, error);
-  }
-
-  getTagPrototype(success, error_handler) {
-    axios.get(URL_CONFIG.tagPrototype)
-      .then(function(response){
-        if(success){
-          success(response.data);
-        }
-      }).catch(function (error) {
-        if(error_handler){
-          error_handler(error);
-        }
-        Raven.captureException(error);
-      });
   }
 
   createTag(instance, success, error_handler) {

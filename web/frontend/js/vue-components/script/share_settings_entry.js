@@ -3,6 +3,10 @@ import vSelect from 'vue-select';
 
 var  ShareSettingsEntry = {
   props: {
+    userData: {
+      type: Object,
+      required: true
+    },
     sharedTag: {
       type: Object,
       default: null,
@@ -18,7 +22,7 @@ var  ShareSettingsEntry = {
   data:  function() {
     return {
       user: null,
-      opt: [],
+      userOptions: [],
     };
   },
   created: function(){
@@ -26,8 +30,20 @@ var  ShareSettingsEntry = {
       var restClient = new RESTClient();
       restClient.getUsers(
         function (users) {
+          var unavailableUrls = [];
+          for(var i in this.sharedTags){
+            var tag = this.sharedTags[i];
+            if(tag.user){
+              unavailableUrls.push(tag.user.url);
+            }
+          }
+          unavailableUrls.push(this.userData.user.url);
+          console.log(unavailableUrls);
           for (var i in users) {
-            this.opt.push({value: users[i].pk, label: users[i].username});
+            var user = users[i];
+            if(unavailableUrls.indexOf(user.url)<0){
+              this.userOptions.push({value: user.pk, label: user.username});
+            }
           }
         }.bind(this),
         function (error) { console.log(error);}
@@ -44,9 +60,6 @@ var  ShareSettingsEntry = {
     },
   },
   computed: {
-    options: function(){
-      return this.opt;
-    },
     permissionsValue: function(){
       return 'Read';
     },
@@ -77,7 +90,6 @@ var  ShareSettingsEntry = {
     userSet: function(value){
       var restClient = new RESTClient();
       this.sharedTag.user_id = value.value;
-      console.log(this.sharedTag);
       restClient.createSharedTag(
         this.sharedTag,
         function (sharedTag) {

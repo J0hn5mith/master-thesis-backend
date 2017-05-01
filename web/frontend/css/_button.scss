@@ -15,6 +15,10 @@
   border-style: none;
 }
 
+.btn-info--disabled{
+  background-color: $blue--light !important;
+}
+
 .btn-form{
   margin-left: 20px;
 }

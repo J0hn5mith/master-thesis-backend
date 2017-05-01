@@ -4,10 +4,16 @@ import TagModal from '../tag_modal.vue';
 import formater from './../../src/Formats.js';
 
 var TagTableEntry = {
-    props: [
-        'tag',
-        'tags',
-    ],
+    props: {
+        'tag': {
+            type: Object,
+            required: true,
+        },
+        'userData': {
+            type: Object,
+            required: true,
+        }
+    },
     components: {
         'v-tag-charge-bar': TagChargeBar,
         'v-tag-toggle': TagToggle,

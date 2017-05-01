@@ -8,10 +8,11 @@ var TagTable = {
     'v-tag-table-entry': TagTableEntry,
     'v-tag-registration-modal': TagRegistrationModal,
   },
-  data: function(){
-    return{
-      tags: [],// Are set when mounted via AJAX
-    };
+  props: {
+    userData : {
+      type: Object,
+      required: true,
+    },
   },
   created: function(){
     var instance = this;
@@ -23,8 +24,11 @@ var TagTable = {
     );
   },
   computed: {
+    tags: function(){
+      return this.userData.tags;
+    },
     hasTags: function(){
-      return this.tags.length > 0;
+      return this.userData.tags.length > 0;
     }
   }
 };

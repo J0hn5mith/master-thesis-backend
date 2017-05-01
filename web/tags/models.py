@@ -100,6 +100,7 @@ def set_tag_permissions(sender, instance, created, **kwargs):
         assign_perm('view_tag', instance.user, instance)
         assign_perm('change_tag', instance.user, instance)
 
+
 post_save.connect(set_tag_permissions, Tag)
 
 
@@ -138,3 +139,22 @@ class SharedTag(models.Model):
 
     class Meta:
         unique_together = ('tag', 'user')
+        permissions = (
+            ('view_sharedtag', 'View shared tag'),
+        )
+
+
+def set_shared_tag_permissions(sender, instance, created, **kwargs):
+    """
+    Set permissions for a newly created tagk
+    """
+    shared_tag = instance
+    if shared_tag.tag and shared_tag.tag.user:
+        assign_perm('view_sharedtag', shared_tag.tag.user, instance)
+        assign_perm('change_sharedtag', shared_tag.tag.user, instance)
+
+    if shared_tag.user:
+        assign_perm('view_sharedtag', shared_tag.user, instance)
+
+
+post_save.connect(set_shared_tag_permissions, SharedTag)

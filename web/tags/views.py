@@ -1,5 +1,4 @@
 import re
-from django.http import JsonResponse
 from django.conf import settings
 from django.core.files.base import ContentFile
 from rest_framework import viewsets, status, generics, filters
@@ -8,6 +7,8 @@ from rest_framework.response import Response
 from tags.serializers import TagSerializer, SharedTagSerializer
 from tags.models import Tag, SharedTag
 from .permissions import ExtendedObjectPermissions
+# from .serializers import UserSerializer
+# from rest_framework.decorators import api_view
 
 
 class TagViewSet(viewsets.ModelViewSet):
@@ -21,12 +22,6 @@ class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
     filter_backends = (filters.DjangoObjectPermissionsFilter, )
     permission_classes = (ExtendedObjectPermissions, )
-
-    # def get_queryset(self):
-    # if hasattr(self.request.user, 'tags'):
-    # return self.request.user.tags.all().order_by('pk')
-
-    # return []
 
     def initialize_request(self, request, *args, **kwargs):
         request = super(TagViewSet, self).initialize_request(
@@ -94,11 +89,8 @@ class SharedTagListView(generics.ListAPIView):
 class SharedTagViewSet(viewsets.ModelViewSet):
     queryset = SharedTag.objects.all()
     serializer_class = SharedTagSerializer
-
-    def get_queryset(self):
-        if hasattr(self.request.user, 'shared_tags'):
-            return self.request.user.shared_tags.all().order_by('pk')
-        return []
+    filter_backends = (filters.DjangoObjectPermissionsFilter, )
+    permission_classes = (ExtendedObjectPermissions, )
 
     def create(self, request):
         user_id = request.data['user_id']
@@ -111,15 +103,3 @@ class SharedTagViewSet(viewsets.ModelViewSet):
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
-
-
-def tag_prototype_view(request):
-    """
-    Returns an empty tag datatype to fill in the front end.
-    """
-    new_tag = Tag(user=request.user)
-    serializer = TagSerializer(
-        new_tag,
-        context={'request': request},
-    )
-    return JsonResponse(serializer.data)

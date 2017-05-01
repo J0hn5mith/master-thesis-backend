@@ -1,8 +1,9 @@
 <tr class="table__row" @click="toggleModal" >
 
-
   <td class="table__cell" style="display: hidden;">
-    <v-tag-modal :triggerModal="showModal" v-bind:tag="tag" :tags="tags"><div></div></v-tag-modal>
+    <v-tag-modal :triggerModal="showModal" v-bind:tag="tag" :user-data="userData">
+      <div></div>
+    </v-tag-modal>
   </td>
 
 
@@ -56,7 +57,7 @@
 
   <td class="table__cell">
     <div class="table__content--center">
-    <v-tag-toggle v-bind:tag="tag"></v-tag-toggle>
+      <v-tag-toggle v-bind:tag="tag"></v-tag-toggle>
     </div>
   </td>
 </tr>

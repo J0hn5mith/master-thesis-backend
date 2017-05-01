@@ -3,10 +3,10 @@
   <v-tag-overview-map :tags="tags" :sharedTags="sharedTagsTags"></v-tag-overview-map>
   <div class="dashboard__element dashboard__element--scrollable">
     <div class="dashboard__section">
-      <v-tag-table :tags="tags" ></v-tag-table>
+      <v-tag-table :tags="tags" :userData="userData"></v-tag-table>
     </div>
     <div class="dashboard__section">
-      <v-shared-tag-table :tags="sharedTags"></v-shared-tag-table>
+      <v-shared-tag-table :userData="userData"></v-shared-tag-table>
     </div>
   </div>
 </div>

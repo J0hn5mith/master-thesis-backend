@@ -1,4 +1,12 @@
 <div>
-  <a v-if="tag.active" class="btn btn-info" v-on:click.stop="toggle">On</a>
-  <a v-else type="button" class="btn btn-outline btn-outline-danger" v-on:click.stop="toggle">Off</a>
+  <div v-if="!disabled">
+    <a v-if="tag.active" class="btn btn-info" v-on:click.stop="toggle">On</a>
+    <a v-else type="button" class="btn btn-outline btn-outline-danger" v-on:click.stop="toggle">Off</a>
+  </div>
+  <div v-else>
+    <span class="hint--top" aria-label="You can't modify shared tags">
+      <a v-if="tag.active" class="btn btn-info btn-info--disabled" >On</a>
+      <a v-else type="button" class="btn btn-outline btn-outline-danger" v-on:click.stop="toggle">Off</a>
+    </span>
+  </div>
 </div>

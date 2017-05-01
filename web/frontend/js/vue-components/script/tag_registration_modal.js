@@ -2,8 +2,9 @@ import RESTClient from './../../src/RESTClient.js';
 
 var TagRegistrationModal={
   props: {
-    tagList : {
-      default: function(){return [];},
+    userData : {
+      type: Object,
+      required: true,
     }
   },
   data: function() {
@@ -15,8 +16,8 @@ var TagRegistrationModal={
   },
   methods: {
     cancel: function(){
-        this.setPrototype();
-        this.toggle();
+      this.setPrototype();
+      this.toggle();
     },
     toggle: function(){
       this.visible = !this.visible;
@@ -28,13 +29,14 @@ var TagRegistrationModal={
       }
     },
     create: function(){
-      var restClient = new RESTClient();
-      var instance = this;
-      restClient.createTag(this.tag, function(newInstance){
-        instance.tagList.push(newInstance);
-        this.setPrototype();
-        this.toggle();
-      }.bind(this));
+      this.userData.addNewTag(
+        this.tag,
+        function(newInstance){
+          this.setPrototype();
+          this.toggle();
+        }.bind(this),
+        null
+      );
     },
     handleFileDrop: function(e){
       if (e.preventDefault) { e.preventDefault(); }
@@ -54,10 +56,10 @@ var TagRegistrationModal={
       }.bind(this));
     },
     setPrototype: function(){
-      var restClient = new RESTClient();
-      restClient.getTagPrototype(function(result){
-        this.tag = result;
-      }.bind(this));
+      this.tag = {
+        name: "",
+        uid: "",
+      };
     },
   },
   created: function() {

@@ -19,7 +19,7 @@ function fetchPosMes(instance){
 var TagModal = {
   props: {
     tag: Object,
-    tags: Array,
+    userData: Object,
     triggerModal: Boolean, // When this value changes, the modal's visibility is toggled.
   },
   components: {
@@ -66,15 +66,7 @@ var TagModal = {
       }
     },
     deleteTag: function (event) {
-      var restClient = new RESTClient();
-      restClient.remove(this.tag, function(){
-        for (var i = 0; i < this.tags.length; i++) {
-          if (this.tag === this.tags[i]) {
-            this.tags.splice(i,1);
-            this.toggle();
-          }
-        }
-      }.bind(this));
+      this.userData.deleteTag( this.tag, function(){ this.toggle(); }.bind(this));
     },
     save: function (event) {
       var restClient = new RESTClient();
@@ -92,7 +84,8 @@ var TagModal = {
     },
     'tag.alarm_config.area.center.coordinates': function(value, oldValue){
       var restClient = new RESTClient();
-      restClient.update(this.tag.alarm_config.area,
+      restClient.update(
+        this.tag.alarm_config.area,
         function(newArea){
           //this.tag.alarm_config.area = newArea;
         },
@@ -112,12 +105,14 @@ var TagModal = {
     },
   },
   computed: {
-
     modalVisibilityStyle: function(){
       if (this.visible){
-        return "display: inline";
+        //return "display: block";
+        return "visibility: visible";
       } else {
-        return "display: none";
+        //return "display: none";
+        // Otherwise there is a display problem
+        return "visibility: hidden";
       }
     },
   },

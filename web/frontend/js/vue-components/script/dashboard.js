@@ -2,6 +2,7 @@ import TagTable from '../tag_table.vue';
 import SharedTagTable from '../shared_tag_table.vue';
 import TagOverviewMap from '../tag_overview_map.vue';
 import RESTClient from './../../src/RESTClient.js';
+import UserData from './../../src/UserData.js';
 
 var Dashboard = {
   components: {
@@ -12,26 +13,13 @@ var Dashboard = {
   data:  function() {
     return {
       tags:[],
+      userData: new UserData(),
       sharedTags:[],
       sharedTagsTags:[], //Only the tag objects of the shared tags
     };
   },
   beforeCreate: function(){
-    var restClient = new RESTClient();
-    restClient.getTags(
-      function (results) { this.tags = this.tags.concat(results);}.bind(this),
-      function (error) { console.log(error);}
-    );
-    restClient.getSharedTags(
-      function (sharedTags) {
-        for (var i = 0; i < sharedTags.length; i++) {
-          sharedTags[i].tag.hover = false;
-          this.sharedTagsTags.push(sharedTags[i].tag);
-        }
-        this.sharedTags = sharedTags;
-      }.bind(this),
-      function (error) { console.log(error);}
-    );
+    this.$emit('newMessage');
   },
 };
 export default Dashboard;

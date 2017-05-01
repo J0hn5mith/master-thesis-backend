@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse, reverse_lazy
 from rest_framework.test import APIClient
-from tags.models import Tag
+from tags.models import Tag, SharedTag
 from tags.views import TagViewSet
 from rest_framework import status
 
@@ -31,7 +31,6 @@ class TagRESTTestCase(TestCase):
         self.url_detail = reverse_lazy(
             'tag-detail', kwargs={'pk': self.tag.pk}
         )
-
 
     def test_extract_file_name(self):
         self.client.force_authenticate(self.user)
@@ -97,45 +96,51 @@ class TagRESTTestCase(TestCase):
 
     def test_post(self):
         self.client.force_authenticate(self.user)
-        url_user = reverse_lazy(
-            'user-detail', kwargs={'pk': self.user.pk}
-        )
+        url_user = reverse_lazy('user-detail', kwargs={'pk': self.user.pk})
         tag_data = {
-             'uid':"hello",
+            'uid': "hello",
             'user': url_user,
         }
-        response = self.client.post(
-            self.url_list, tag_data, format='json'
-        )
+        response = self.client.post(self.url_list, tag_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
 
     def test_no_authentication(self):
         response = self.client.get(self.url_list, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
 class SharedTagRESTTestCase(TestCase):
     def setUp(self):
-        self.user, created = User.objects.get_or_create(
-            username='test',
+        self.user_1, created = User.objects.get_or_create(
+            username='user_1',
             password='test',
         )
-        self.user.save()
+        self.user_2, created = User.objects.get_or_create(
+            username='user_2',
+            password='test',
+        )
 
-        self.tag = Tag.objects.create(user=self.user)
+        self.tag = Tag.objects.create(user=self.user_1)
         self.tag.save()
 
         self.client = APIClient()
         # Required because normal login doesn't work due to 2 phase auth
-        self.client.force_authenticate(self.user)
+        self.client.force_authenticate(self.user_1)
 
         self.url = reverse_lazy('sharedtag-list')
 
-    def test_create(self):
-        data = {
-            'permissions': 0,
-            'user_id': self.user.pk,
-            'tag_id': self.tag.pk,
-        }
-        response = self.client.post(self.url, data, format='json')
+        self.shared_tag, created = SharedTag.objects.get_or_create(
+            tag=self.tag,
+            user=self.user_2,
+        )
+
+    def test_get_list(self):
+        """
+        Test if allowed users can access shared tags and others can't
+        """
+
+        self.client.force_authenticate(self.user_1)
+        response = self.client.get(self.url, format='json')
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['count'], 1)

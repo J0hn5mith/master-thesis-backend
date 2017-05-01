@@ -229,7 +229,10 @@ NOTIFICATION_FROM_EMAIL = 'notification@jan-meier.ch'
 RANDOM_TOAKEN_CHARACTERS = string.ascii_letters + string.digits + '-._~' [:]
 
 # User
-DEFAULT_PERMISSIONS = ('tags.view_tag', 'tags.change_tag')
+DEFAULT_PERMISSIONS = (
+    'tags.view_tag', 'tags.change_tag', 'tags.view_sharedtag',
+    'tags.change_sharedtag',
+)
 
 ##################################################
 # Third Party
