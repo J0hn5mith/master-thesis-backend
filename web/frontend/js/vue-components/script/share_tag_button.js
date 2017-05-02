@@ -8,7 +8,7 @@ var ShareTagButton = {
     sharedTags: {
       type: Array,
       default: function(){return [];},
-    }re
+    }
   },
   data: function() {
     return {

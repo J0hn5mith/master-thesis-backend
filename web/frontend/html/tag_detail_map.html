@@ -1,8 +1,11 @@
 <div class="map map--small">
-  <v-map :zoom="1" :center="center" id="hello">
+  <v-map v-if="currentPosition" :zoom="zoom" :center="center" id="hello">
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-poly v-if="positions" :lat-lngs="positions"></v-poly>
     <v-marker  v-if="currentPosition" :lat-lng="currentPosition" :color="tag.color" class="marker-class"></v-marker>
     <v-circle v-if="area" :lat-lng="areaCenter" :radius="area.radius"></v-circle>
   </v-map>
+  <div v-else class="map__no-data">
+    No positional data for this tag.
+  </div>
 </div>

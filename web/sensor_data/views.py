@@ -4,7 +4,7 @@ from django.http import JsonResponse, HttpResponse, Http404
 from django.contrib.gis.geos import Point
 from rest_framework import viewsets
 from rest_framework import status
-
+from tags.models import Tag
 from sensor_data.serializers import PositionMeasurementSerializer
 from sensor_data.models import PositionMeasurement
 
@@ -14,13 +14,22 @@ class PositionMeasurementViewSet(viewsets.ModelViewSet):
     serializer_class = PositionMeasurementSerializer
 
     def get_queryset(self):
-        print("TODO: Check access rights!")
-        if 'uid' in self.request.GET:
-            return PositionMeasurement.objects.all().filter(
-                uid=self.request.GET['uid']
-            )
-        else:
-            return PositionMeasurement.objects.all()
+        if 'uid' not in self.request.GET:
+            raise Http404
+
+        uid = self.request.GET['uid']
+
+        tag = None
+        try:
+            tag = Tag.objects.get(uid=uid)
+        except Tag.DoesNotExist:
+            raise Http404
+
+        user = self.request.user
+        if not user.has_perm('view_tag', tag):
+            raise Http404
+
+        return PositionMeasurement.objects.all().filter(uid=uid)
 
 
 @csrf_exempt
@@ -29,9 +38,11 @@ def post_position_measurement(request):
         raise Http404
 
     json_str = ((request.body).decode('utf-8'))
+
     try:
         json_obj = json.loads(json_str)
     except Exception as e:
+
         return HttpResponse(
             status=status.HTTP_400_BAD_REQUEST,
             content="Json format error: {0}".format(e),
@@ -64,6 +75,7 @@ def post_position_measurement_ttn(request):
         raise Http404
 
     json_str = ((request.body).decode('utf-8'))
+
     try:
         json_obj = json.loads(json_str)
     except Exception as e:

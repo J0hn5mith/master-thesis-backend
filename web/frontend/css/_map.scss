@@ -1,6 +1,6 @@
 .map{
-  background: lightblue;
   height: 40vh!important;
+  width: 100%;
   overflow: hidden!important;
   @include shadow();
 }
@@ -11,12 +11,22 @@
 
 .map--small{
   display: block;
-  height: 600px!important;
+  height: 450px!important;
 }
 
 .map__marker--hover{
   width: 100px;
   background-color: pink;
+}
+
+.map__no-data{
+  display: flex;
+  background-color: $grey;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-size--extra-large;
+  color: $grey--dark;
 }
 
 .leaflet-marker-icon{

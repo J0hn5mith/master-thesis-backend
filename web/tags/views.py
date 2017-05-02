@@ -7,8 +7,6 @@ from rest_framework.response import Response
 from tags.serializers import TagSerializer, SharedTagSerializer
 from tags.models import Tag, SharedTag
 from .permissions import ExtendedObjectPermissions
-# from .serializers import UserSerializer
-# from rest_framework.decorators import api_view
 
 
 class TagViewSet(viewsets.ModelViewSet):

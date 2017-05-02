@@ -1,0 +1,27 @@
+.hud{
+    position: absolute;
+    z-index: 401;
+    display: flex;
+    width: 90%;
+    >img,input{
+        margin: 10px;
+    }
+
+    background: $brighten--strong;
+}
+
+.hud--horizontal{
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hud--vertical{
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hud__content{
+}
+
+.hud__content--vertical{
+}

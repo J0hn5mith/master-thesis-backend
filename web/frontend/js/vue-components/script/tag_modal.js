@@ -48,7 +48,7 @@ var TagModal = {
     return{
       posMes: [],
       sharedTags: [],
-      visible: false,
+      visible: null,
     };
   },
   methods: {
@@ -107,12 +107,13 @@ var TagModal = {
   computed: {
     modalVisibilityStyle: function(){
       if (this.visible){
-        //return "display: block";
         return "visibility: visible";
-      } else {
-        //return "display: none";
+      }
+      else if (this.visible === null){
         // Otherwise there is a display problem
         return "visibility: hidden";
+      } else {
+        return "display: none";
       }
     },
   },

@@ -11,6 +11,7 @@ class UserData {
     this._user = null;
 
     this._load_user();
+    setInterval(this._updateTags.bind(this), 5000);
   }
 
   get user() {
@@ -90,13 +91,35 @@ class UserData {
     );
   }
 
-
   _load_tags(){
     var restClient = new RESTClient();
     restClient.getTags(
       function (tags) {
         for (var i = 0; i < tags.length; i++) {
           this._tags.push(tags[i]);
+        }
+      }.bind(this),
+      function (error) { console.log(error);}
+    );
+  }
+
+  _updateTags(){
+    if(!this._tags){
+      return;
+    }
+    var restClient = new RESTClient();
+    restClient.getTags(
+      function (tags) {
+        for (var i = 0; i < tags.length; i++) {
+          var newVersion = tags[i];
+          for (var ii = 0; ii < this._tags.length; ii++) {
+            var oldVersion = this._tags[ii];
+            if (newVersion.url === oldVersion.url){
+              console.log(oldVersion);
+              //todo check if tag actually has changed!
+              oldVersion.current_position = newVersion.current_position;
+            }
+          }
         }
       }.bind(this),
       function (error) { console.log(error);}

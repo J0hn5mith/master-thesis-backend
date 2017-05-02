@@ -5,9 +5,9 @@ import TagMarker  from './../tag_marker.vue';
 
 var TagOverviewMap = {
   props: {
-    tags: {
-      type: Array,
-      default: function(){return [];},
+    userData: {
+      type: Object,
+      required: true,
     },
     sharedTags: {
       type: Array,
@@ -61,6 +61,16 @@ var TagOverviewMap = {
         }
       }
       return [47.413220, 8.519482];
+    },
+    tags: function(){
+      return this.userData.tags;
+    },
+    sharedTags: function(){
+      var sharedTags = [];
+      for(var i in this.userData.sharedTags){
+        sharedTags.push(this.userData.sharedTags[i].tag);
+      }
+      return sharedTags;
     },
     icon: function() {
       return L.icon({

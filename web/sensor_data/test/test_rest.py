@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.contrib.auth import get_user_model
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from rest_framework.test import APIClient
@@ -6,7 +7,7 @@ from django.contrib.gis.geos import Point
 from sensor_data.models import PositionMeasurement
 from rest_framework import status
 
-client = APIClient()
+User = get_user_model()
 
 
 class SensorDataRESTTrestCase(TestCase):
@@ -20,24 +21,39 @@ class SensorDataRESTTrestCase(TestCase):
         self.url_detail = reverse_lazy(
             'positionmeasurement-detail', kwargs={'pk': self.sensor_data.pk}
         )
+        self.user, created = User.objects.get_or_create(
+            username='user',
+            password='test',
+        )
+        self.client = APIClient()
+        self.client.force_authenticate(self.user)
 
     def test_get(self):
-        response = client.get(self.url_list, format='json')
+        response = self.client.get(self.url_list, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_get_for_invalid_tag(self):
+        pass
+
+    def test_get_unauthorized(self):
+        pass
+
     def test_delete(self):
-        response = client.get(self.url_detail, format='json')
+        response = self.client.get(self.url_detail, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        response = client.delete(self.url_detail, response.data, format='json')
+        response = self.client.delete(
+            self.url_detail, response.data, format='json'
+        )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
 
 class SensorDataPost(TestCase):
     def setUp(self):
         self.url = reverse('post-sensor-data')
+        self.client = APIClient()
 
     def test_post(self):
-        response = client.put(
+        response = self.client.put(
             self.url,
             format='json',
             data={

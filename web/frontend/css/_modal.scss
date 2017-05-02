@@ -39,27 +39,14 @@
 .modal__header {
 }
 
-.hud{
-    position: absolute;
-    z-index: 401;
-    display: flex;
-    width: 90%;
-    >img,input{
-        margin: 10px;
-    }
-
-    background: $brighten--strong;
-}
-
-.hud--horizontal{
-
-    justify-content: flex-end;
-    align-items: center;
-}
 
 .modal__body {
     padding: 20px 30px;
     margin: 20px 0;
+}
+
+.modal__section {
+    margin-bottom: 90px;
 }
 
 .modal__footer {
