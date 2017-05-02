@@ -6,7 +6,7 @@
               v-if="tag.current_position"
               :lat-lng="tag.current_position.coordinates"
               :color="tag.color"
-              :icon="icon"
+              :icon="getTagIcon(tag)"
               class="marker-class">
     </v-marker>
     <v-marker v-for="tag in sharedTags"

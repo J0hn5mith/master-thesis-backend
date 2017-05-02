@@ -55,7 +55,6 @@ class TagViewSet(viewsets.ModelViewSet):
             serializer.save(avatar=tag.avatar)
             return Response(serializer.data)
         except Exception as e:
-            print("Error")
             print(e)
             return Response(
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST

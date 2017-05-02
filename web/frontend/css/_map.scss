@@ -31,4 +31,6 @@
 
 .leaflet-marker-icon{
   width: 35px;
+  height: 35px;
+  clip-path: polygon(0 50%, 25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
 }

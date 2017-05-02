@@ -35,17 +35,18 @@ var TagOverviewMap = {
         return par.hover;
       }
     },
-    getTagIcon: function(tag) {
+    getTagIcon: function(tag, shared) {
+      var url;
       if (tag.avatar){
-        return L.icon({
-          iconUrl: tag.avatar,
-          shadowUrl: '',
-          iconSize: [40, 35],
-          iconAnchor: [20, 17],
-        });
+          url =  tag.avatar;
+      } else if (!shared){
+        url = '/static/img/icons/marker.svg';
+      } else {
+        url = '/static/img/icons/marker--orange.svg';
       }
+
       return L.icon({
-        iconUrl: '/static/img/icons/marker--orange.svg',
+        iconUrl: url,
         shadowUrl: '',
         iconSize: [40, 35],
         iconAnchor: [20, 17],
@@ -72,7 +73,8 @@ var TagOverviewMap = {
       }
       return sharedTags;
     },
-    icon: function() {
+    icon: function(data) {
+      console.log(data);
       return L.icon({
         iconUrl: '/static/img/icons/marker.svg',
         shadowUrl: '',
@@ -81,8 +83,6 @@ var TagOverviewMap = {
       });
     },
     iconOrange: function(data) {
-      console.log(data);
-      console.log("hello");
       return L.icon({
         iconUrl: '/static/img/icons/marker--orange.svg',
         shadowUrl: '',

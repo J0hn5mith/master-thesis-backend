@@ -12,6 +12,15 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    def get_serializer(self, *args, **kwargs):
+            """
+            Return the serializer instance that should be used for validating and
+            deserializing input, and for serializing output.
+            """
+            serializer_class = self.get_serializer_class()
+            kwargs['context'] = self.get_serializer_context()
+            return serializer_class(*args, **kwargs)
+
 
 class UserConfigurationViewSet(viewsets.ModelViewSet):
     queryset = UserConfiguration.objects.all()

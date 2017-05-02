@@ -2,34 +2,26 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse, Http404
 from django.contrib.gis.geos import Point
-from rest_framework import viewsets
-from rest_framework import status
+from rest_framework import viewsets, status
 from tags.models import Tag
 from sensor_data.serializers import PositionMeasurementSerializer
 from sensor_data.models import PositionMeasurement
+import django_filters.rest_framework
 
 
 class PositionMeasurementViewSet(viewsets.ModelViewSet):
     queryset = PositionMeasurement.objects.all()
     serializer_class = PositionMeasurementSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend, )
+    filter_fields = ('uid', )
 
     def get_queryset(self):
-        if 'uid' not in self.request.GET:
-            raise Http404
-
-        uid = self.request.GET['uid']
-
-        tag = None
-        try:
-            tag = Tag.objects.get(uid=uid)
-        except Tag.DoesNotExist:
-            raise Http404
-
         user = self.request.user
-        if not user.has_perm('view_tag', tag):
-            raise Http404
+        tags = Tag.objects.filter(user=user).values_list('uid', flat=True)
+        mes = PositionMeasurement.objects.all()
+        mes = mes.filter(uid__in=tags)
 
-        return PositionMeasurement.objects.all().filter(uid=uid)
+        return mes
 
 
 @csrf_exempt

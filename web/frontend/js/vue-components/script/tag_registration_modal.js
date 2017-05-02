@@ -10,7 +10,7 @@ var TagRegistrationModal={
   data: function() {
     return {
       visible: false,
-      urlSuffix: "new-tag",
+      urlSuffix: "new-tag/",
       tag: null,
     };
   },
@@ -51,14 +51,17 @@ var TagRegistrationModal={
     },
     updateImage: function(file){
       var restClient = new RESTClient();
+
       restClient.uploadFile(file, function(url){
         this.tag.avatar = url;
       }.bind(this));
+
     },
     setPrototype: function(){
       this.tag = {
         name: "",
         uid: "",
+        avatar: "",
       };
     },
   },

@@ -40,13 +40,6 @@ var TagDetailMap = {
       }
       return null;
     },
-    center: function() {
-      if(this.positions){
-        return this.positions[0];
-      } else {
-        return [0,0];
-      }
-    },
     areaCenter: function() {
       if(this.tag.alarm_config && this.tag.alarm_config.area){
         return {
@@ -55,12 +48,6 @@ var TagDetailMap = {
         };
       }
       return {};
-    },
-    currentPosition: function(){
-      if (this.posMes && this.posMes.length > 0){
-        return this.posMes[0].coordinates;
-      }
-      return false;
     },
     positions: function(){
       var coords = [];

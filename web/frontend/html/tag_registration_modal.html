@@ -11,7 +11,7 @@
           <div class="my-columns">
             <div class="column__25">
               <div class="avatar__border avatar__border--blue avatar__border--large" @drop="handleFileDrop">
-                <div v-if="tag.avatar">
+                <div v-if="tag.avatar" class="avatar">
                   <img  v-bind:src="tag.avatar"></img>
                 </div>
                 <div v-else>

@@ -8,14 +8,7 @@ import ShareTagButton from '../share_tag_button.vue';
 import ShareSettingsEntry from '../share_settings_entry.vue';
 import RESTClient from './../../src/RESTClient.js';
 
-function fetchPosMes(instance){
-  var restClient = new RESTClient();
-  restClient.getSensorData(instance.tag.uid, function (data) {
-    instance.posMes = data;
-  });
-}
 
-//https://vuejs.org/v2/examples/modal.html
 var TagModal = {
   props: {
     tag: Object,
@@ -33,8 +26,9 @@ var TagModal = {
     'v-share-settings-entry': ShareSettingsEntry,
   },
   created: function(){
-    fetchPosMes(this);
+    this.updatePosData(this);
     this.visible = window.location.pathname.endsWith(this.tag.pk +  "/");
+
     var restClient = new RESTClient();
     restClient.getSharedTagsFor(
       this.tag.pk,
@@ -43,6 +37,7 @@ var TagModal = {
       }.bind(this),
       function (error) { console.log(error);}
     );
+
   },
   data: function(){
     return{
@@ -52,6 +47,12 @@ var TagModal = {
     };
   },
   methods: {
+    updatePosData: function updatePosData(){
+      var restClient = new RESTClient();
+      restClient.getSensorData(this.tag.uid, function (data) {
+        this.posMes = data;
+      }.bind(this));
+    },
     toggle: function(){
       this.visible = !this.visible;
       if (this.visible){
@@ -102,6 +103,9 @@ var TagModal = {
         function(error){
           this.tag.alarm_config.area.center.radius = oldValue;
         }.bind(this));
+    },
+    'tag.current_position': function(value, oldValue){
+        this.updatePosData(this);
     },
   },
   computed: {

@@ -38,7 +38,6 @@ var  ShareSettingsEntry = {
             }
           }
           unavailableUrls.push(this.userData.user.url);
-          console.log(unavailableUrls);
           for (var i in users) {
             var user = users[i];
             if(unavailableUrls.indexOf(user.url)<0){

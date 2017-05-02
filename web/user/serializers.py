@@ -17,7 +17,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     conf = UserConfigurationSerializer(read_only=True)
 
     def get_field_names(self, declared_fields, info):
-        print(self.context['request'].user)
         return super().get_field_names(declared_fields, info)
 
     class Meta:

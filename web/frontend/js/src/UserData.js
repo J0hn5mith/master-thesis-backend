@@ -12,6 +12,7 @@ class UserData {
 
     this._load_user();
     setInterval(this._updateTags.bind(this), 5000);
+    setInterval(this._updateSharedTags.bind(this), 5000);
   }
 
   get user() {
@@ -115,15 +116,57 @@ class UserData {
           for (var ii = 0; ii < this._tags.length; ii++) {
             var oldVersion = this._tags[ii];
             if (newVersion.url === oldVersion.url){
-              console.log(oldVersion);
-              //todo check if tag actually has changed!
-              oldVersion.current_position = newVersion.current_position;
+              this._updateTag(oldVersion, newVersion);
             }
           }
         }
       }.bind(this),
       function (error) { console.log(error);}
     );
+  }
+
+  _updateSharedTags(){
+    if(!this._sharedTags){
+      return;
+    }
+    var restClient = new RESTClient();
+    restClient.getSharedTags(
+      function (sharedTags) {
+        for (var i = 0; i < sharedTags.length; i++) {
+          var newVersion = sharedTags[i].tag;
+          for (var ii = 0; ii < this._sharedTags.length; ii++) {
+            var oldVersion = this.sharedTags[ii].tag;
+            if (newVersion.url === oldVersion.url){
+              this._updateTag(oldVersion, newVersion);
+            }
+          }
+        }
+      }.bind(this),
+      function (error) { console.log(error);}
+    );
+  }
+
+  _updateTag(oldTag, newTag){
+    if (this._checkIfTagChanged(oldTag, newTag)){
+      oldTag.current_position = newTag.current_position;
+    }
+  }
+  /**
+   * Checks weather a tag has changed or not
+   */
+  _checkIfTagChanged(tagOld, tagNew){
+    try {
+      if(tagOld.current_position === null && tagNew.current_position === null){
+        return true;
+      }
+      if( tagOld.current_position.url !== tagNew.current_position.url){
+        return true;
+      }
+    }
+    catch(err) {
+      return true;
+    }
+    return false;
   }
 
   _load_user(){
