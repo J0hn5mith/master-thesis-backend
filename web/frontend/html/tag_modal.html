@@ -40,13 +40,13 @@
                   <span class="hint--top" aria-label="You can't change alarm settings of active tags.">
                     <div class="btn btn-info btn-info--disabled">Current Position</div>
                   </span>
-                    <v-slider-controll :max="10000" :area="tag.alarm_config.area" :disabled="true"></v-slider-controll>
+                    <v-slider-controll :max="10" :area="tag.alarm_config.area" :disabled="true"></v-slider-controll>
                 </div>
                 <div v-else>
                   <input v-model.number="tag.alarm_config.area.center.coordinates[0]"></input>
                   <input v-model.number="tag.alarm_config.area.center.coordinates[1]"></input>
                   <div class="btn btn-info" @click="setCenterToCurrentPosition">Current Position</div>
-                  <v-slider-controll :max="10000" :area="tag.alarm_config.area"></v-slider-controll>
+                  <v-slider-controll :max="10" :step="1" :tick_interval="1" :area="tag.alarm_config.area"></v-slider-controll>
                 </div>
               </div>
             </div>

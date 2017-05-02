@@ -14,20 +14,17 @@ var TagDetailMap = {
     'v-marker': Vue2Leaflet.Marker,
     'v-circle': Vue2Leaflet.LCircle,
     'v-alarm-config-area': AlarmConfigArea,
+    'v-geojson': Vue2Leaflet.GeoJSON,
   },
   data: function(){
     return {
       zoom:11,
-      circleCenter: L.latLng(47.413220, 8.519482),
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       options: {
         style: function () {
           return {
             weight: 2,
-            color: '#ECEFF1',
-            opacity: 1,
-            fillColor: '#e4ce7f',
-            fillOpacity: 1
+            fillOpacity: 0.3
           };
         }
       },

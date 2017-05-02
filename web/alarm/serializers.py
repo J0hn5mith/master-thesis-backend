@@ -1,13 +1,18 @@
 from rest_framework import serializers
 from alarm.models import AlarmConfig, AlarmConfigArea, Alarm
+from rest_framework_gis.serializers import GeometrySerializerMethodField
 
 
 class AlarmConfigAreaSerializer(serializers.HyperlinkedModelSerializer):
+    area = GeometrySerializerMethodField()
+
+    def get_area(self, obj):
+        return obj.area()
+
     class Meta:
         model = AlarmConfigArea
-        # TODO
-        fields = ('url', 'center', 'radius', )
-        read_only = ('url')
+        fields = ('url', 'center', 'radius', 'area')
+        read_only = ('url', 'area')
 
 
 class AlarmConfigSerializer(serializers.HyperlinkedModelSerializer):

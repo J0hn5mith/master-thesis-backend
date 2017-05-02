@@ -84,6 +84,10 @@ class AlarmConfigArea(models.Model):
                 )
         super().save(*args, **kwargs)
 
+    def area(self):
+        circle = self.center.buffer(self.radius*0.01)
+        return circle
+
 
 class AlarmStates(object):
     TRIGGERED = 0

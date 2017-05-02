@@ -14,7 +14,7 @@ var SliderControll = {
     },
     step: {
       type: Number,
-      default: 500,
+      default: 5,
       //required: true,
     },
     area: {
@@ -24,7 +24,7 @@ var SliderControll = {
     },
     tick_interval: {
       type: Number,
-      default: 500,
+      default: 5,
     },
     disabled: {
       type: Boolean,

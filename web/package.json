@@ -14,7 +14,7 @@
     "hint.css": "^2.4.1",
     "lodash": "^4.17.4",
     "raven-js": "^3.12.1",
-    "vue2-leaflet": "^0.0.32"
+    "vue2-leaflet": "^0.0.47"
   },
   "devDependencies": {
     "axios": "^0.15.3",

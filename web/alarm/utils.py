@@ -18,7 +18,7 @@ def detect_alarms(tag):
         return False
 
     alarm_config = tag.alarm_config
-    circle = alarm_config.area.center.buffer(alarm_config.area.radius/100000)
+    circle = alarm_config.area.center.buffer(alarm_config.area.radius*0.01)
     disjoint = circle.disjoint(alarm_config.tag.current_position().position)
     return disjoint
 

@@ -97,13 +97,14 @@ var TagModal = {
       var restClient = new RESTClient();
       restClient.update(this.tag.alarm_config.area,
         function(newArea){
-        },
+          this.tag.alarm_config.area.area.coordinates = newArea.area.coordinates;
+        }.bind(this),
         function(error){
           this.tag.alarm_config.area.center.radius = oldValue;
         }.bind(this));
     },
     'tag.current_position': function(value, oldValue){
-        this.updatePosData(this);
+      this.updatePosData(this);
     },
   },
   computed: {
