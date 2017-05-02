@@ -40,7 +40,7 @@ class Tag(models.Model):
         null=True,
     )
 
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=False)
 
     last_update = models.DateTimeField(
         null=True,

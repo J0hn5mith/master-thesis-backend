@@ -30,6 +30,9 @@ class UserConfiguration(models.Model):
         user_config = cls()
         return user_config
 
+    def __str__(self):
+        return "User conf for user \"{0}\"".format(self.user)
+
     def save(self, *args, **kwargs):
         """
         Makes sure all the model's fields are set properly

@@ -7,24 +7,32 @@ from alarm.models import Alarm
 from user.notifications import notify
 
 
-def check_trigger_alarm(alarm_config):
+def detect_alarms(tag):
     """
-    Checks if a alarm should be triggered for specified tag.
+    Checks if a alarm has to be triggered for a specific tag.
     """
-    circle = alarm_config.area.center.buffer(alarm_config.area.radius)
-    return circle.disjoint(alarm_config.tag.current_position().position)
+    if not tag.active:
+        return False
+
+    if hasattr(tag, 'alarm'):
+        return False
+
+    alarm_config = tag.alarm_config
+    circle = alarm_config.area.center.buffer(alarm_config.area.radius/100000)
+    disjoint = circle.disjoint(alarm_config.tag.current_position().position)
+    return disjoint
 
 
 def create_alarm(alarm_config):
     """
     Creates an alarm instance for alarm_config associated tag.
     """
-    Alarm.objects.get_or_create(
+    return Alarm.objects.get_or_create(
         tag=alarm_config.tag,
         start_position=(alarm_config.tag.current_position().position),
         activate_time=timezone.now() +
         timedelta(seconds=alarm_config.tag.alarm_config.time_to_deactivate)
-    )
+    )[0]
 
 
 def update_alarms():

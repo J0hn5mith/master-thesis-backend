@@ -32,13 +32,17 @@ class AlarmConfig(models.Model):
         default=60.0,
     )
 
+    def __str__(self):
+        return "{0}'s alarm config".format(self.tag)
+
     def save(self, *args, **kwargs):
-        if hasattr(self, 'tag') and hasattr(self.alarm_config, 'tag'):
+        if hasattr(self, 'id') and hasattr(self, 'tag'):
             if self.tag.active:
                 raise ValidationError(
                     "Cant modify AlarmConfigArea \
                             when corresponding tag is active"
                 )
+        super().save(*args, **kwargs)
 
 
 def create_alert_config(sender, instance, created, **kwargs):
@@ -71,7 +75,8 @@ class AlarmConfigArea(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        if hasattr(self, 'alarm_config') and hasattr(self.alarm_config, 'tag'):
+        if hasattr(self, 'id') and hasattr(self, 'alarm_config') \
+                and hasattr(self.alarm_config, 'tag'):
             if self.alarm_config.tag.active:
                 raise ValidationError(
                     "Cant modify AlarmConfigArea \
