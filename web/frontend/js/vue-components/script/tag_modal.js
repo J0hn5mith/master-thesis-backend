@@ -88,7 +88,6 @@ var TagModal = {
       restClient.update(
         this.tag.alarm_config.area,
         function(newArea){
-          //this.tag.alarm_config.area = newArea;
         },
         function(error){
           this.tag.alarm_config.area.center.coordinates = oldValue;
@@ -98,7 +97,6 @@ var TagModal = {
       var restClient = new RESTClient();
       restClient.update(this.tag.alarm_config.area,
         function(newArea){
-          //this.tag.alarm_config.area = newArea;
         },
         function(error){
           this.tag.alarm_config.area.center.radius = oldValue;

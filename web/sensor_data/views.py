@@ -20,7 +20,6 @@ class PositionMeasurementViewSet(viewsets.ModelViewSet):
         tags = Tag.objects.filter(user=user).values_list('uid', flat=True)
         mes = PositionMeasurement.objects.all()
         mes = mes.filter(uid__in=tags)
-
         return mes
 
 

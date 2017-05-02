@@ -26,6 +26,10 @@ var SliderControll = {
       type: Number,
       default: 500,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     ticks: function() {

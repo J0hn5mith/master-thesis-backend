@@ -1,14 +1,22 @@
 <div class="slider__container">
-  <input class="slider" type="range" :min="min" :max="max" :step="step" v-model.number="area.radius"/>
+  <input v-if="disabled"
+         disabled
+         class="slider"
+         type="range"
+         :min="min"
+         :max="max"
+         :step="step"
+         v-model.number="area.radius"/>
+  <input v-else class="slider" type="range" :min="min" :max="max" :step="step" v-model.number="area.radius"/>
   <div class="slider__labels">
     <div class="slider__ticks">
       <div v-for="tick in ticks" :class="['slider__tick', {'slider__tick--large': tick%5 == 0}, ]"></div>
     </div>
     <div class=slider__tick-labels>
-        <p v-for="label in labels" class="slider__tick-label">
-          {{ label }}
-        </p>
-      </div>
+      <p v-for="label in labels" class="slider__tick-label">
+      {{ label }}
+      </p>
     </div>
   </div>
+</div>
 </div>

@@ -5,11 +5,13 @@ from django.core.validators import MinValueValidator
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from tags.models import Tag
+from django.core.exceptions import ValidationError
 
 
 class AlarmConfig(models.Model):
     """
     Configures the alarm conditions for a tag.
+    Can't be saved if corresponding tag is active.
     """
 
     tag = models.OneToOneField(
@@ -22,12 +24,21 @@ class AlarmConfig(models.Model):
     area = models.OneToOneField(
         to='AlarmConfigArea',
         on_delete=models.CASCADE,
+        related_name='alarm_config',
         null=True,
     )
 
     time_to_deactivate = models.FloatField(
         default=60.0,
     )
+
+    def save(self, *args, **kwargs):
+        if hasattr(self, 'tag') and hasattr(self.alarm_config, 'tag'):
+            if self.tag.active:
+                raise ValidationError(
+                    "Cant modify AlarmConfigArea \
+                            when corresponding tag is active"
+                )
 
 
 def create_alert_config(sender, instance, created, **kwargs):
@@ -50,6 +61,7 @@ class AlarmConfigArea(models.Model):
     """
     Defines the area a tag is allowed to be in. Currently
     only supports circular areas.
+    Can't be saved if the corresponding tag object is active.
     """
 
     center = models.PointField(default=Point(0, 0))
@@ -57,6 +69,15 @@ class AlarmConfigArea(models.Model):
         default=2,
         validators=(MinValueValidator(0), ),
     )
+
+    def save(self, *args, **kwargs):
+        if hasattr(self, 'alarm_config') and hasattr(self.alarm_config, 'tag'):
+            if self.alarm_config.tag.active:
+                raise ValidationError(
+                    "Cant modify AlarmConfigArea \
+                            when corresponding tag is active"
+                )
+        super().save(*args, **kwargs)
 
 
 class AlarmStates(object):
