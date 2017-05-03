@@ -18,7 +18,7 @@ def detect_alarms(tag):
         return False
 
     alarm_config = tag.alarm_config
-    circle = alarm_config.area.center.buffer(alarm_config.area.radius*0.01)
+    circle = alarm_config.area.center.buffer(alarm_config.area.radius * 0.01)
     disjoint = circle.disjoint(alarm_config.tag.current_position().position)
     return disjoint
 
@@ -85,4 +85,8 @@ def send_alarm_notification(alarm):
     except:
         print("Failed to render template")
 
-    notify(alarm.tag.user, mail_subject, mail_content, sms_content)
+    users = [shared_tag.user for shared_tag in alarm.tag.shared_users.all()]
+    users.append(alarm.tag.user)
+
+    for user in users:
+        notify(user, mail_subject, mail_content, sms_content)

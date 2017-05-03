@@ -121,3 +121,12 @@
 .form__link--danger {
   color: $red;
 }
+
+.form__feedback{
+  text-align: left;
+  font-size: $font-size--small;
+}
+
+.form__feedback--danger{
+  color: $red;
+}

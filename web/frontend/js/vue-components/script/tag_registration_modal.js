@@ -12,6 +12,7 @@ var TagRegistrationModal={
       visible: false,
       urlSuffix: "new-tag/",
       tag: null,
+      error: false,
     };
   },
   methods: {
@@ -35,7 +36,10 @@ var TagRegistrationModal={
           this.setPrototype();
           this.toggle();
         }.bind(this),
-        null
+        function(error){
+          console.log(error);
+          this.error = true;
+        }.bind(this)
       );
     },
     handleFileDrop: function(e){

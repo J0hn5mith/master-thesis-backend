@@ -10,8 +10,8 @@
     </title>
 </head>
 
-<body>
-    <p>Hi {{ tag.user.first_name }},</p>
+<body style="padding: 25px;">
+    <p>Hi {{ tag.user.username }},</p>
 
     <p>Your tag "{{ tag.name }}" reports an alarm. What would you like to do?</p>
     <a href="{{ url_confirm }}" class="btn btn-success">Confirm</a>

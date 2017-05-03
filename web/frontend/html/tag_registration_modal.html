@@ -21,8 +21,21 @@
             </div>
             <div class="column__75">
               <form>
-                <input type="text" class="form-control form-control--light form-control--large heading-1" v-model="tag.name" placeholder="Name"></input>
-                <input type="text" class="form-control form-control--light" v-model="tag.uid" placeholder="Tag ID"></input>
+                <span class="hint--top" aria-label="Provide a name for the new tag." >
+                  <input type="text"
+                         class="form-control form-control--light form-control--large heading-1"
+                         v-model="tag.name"
+                         placeholder="Name"
+                         >
+                  </input>
+                </span>
+                  <div class="form-group has-danger">
+                    <span class="hint--top form-control" aria-label="UID of the tag. Used to map sensor data to the tag.">
+                      <input type="text" class="form-control form-control-danger form-control--light" v-model="tag.uid" placeholder="Tag ID">
+                      </input>
+                      <div v-if="error" class="form__feedback form__feedback--danger">This tag has already been registered</div>
+                    </span>
+                  </div>
               </form>
             </div>
           </div>

@@ -12,6 +12,6 @@ def load_env(develop=False):
 
     project_dir = dirname(dirname(__file__))
     if develop:
-        dotenv.read_dotenv(join(project_dir, '.env.develop'))
+        dotenv.read_dotenv(join(project_dir, '.env.local'))
     else:
         dotenv.read_dotenv(join(project_dir, '.env'))
