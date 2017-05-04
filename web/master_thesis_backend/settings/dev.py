@@ -5,8 +5,8 @@ DEBUG = True
 
 INTERNAL_IPS = ('127.0.0.1', )
 # 'localhos' makes sure that non docker setup works
-ALLOWED_HOSTS = (os.environ.get('HOST'), 'localhost', '127.0.0.1')
-PAGE_URL = os.environ.get('PAGE_URL')
+ALLOWED_HOSTS = (os.environ.get('DOMAIN'), 'localhost', '127.0.0.1')
+PAGE_URL = os.environ.get('DOMAIN')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ.get('EMAIL_HOST')

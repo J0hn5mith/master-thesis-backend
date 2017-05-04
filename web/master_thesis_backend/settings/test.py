@@ -1,3 +1,6 @@
+"""
+Settings file for running unit tests.
+"""
 # Settings for live deployed environments: vagrant, staging, production, etc
 from master_thesis_backend.settings.base import *
 
@@ -11,12 +14,6 @@ SECRET_KEY = 'SECRET_KEY'
 PAGE_URL = 'example.com'
 
 DEBUG = False
-
-# DATABASES['default']['NAME'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
-# DATABASES['default']['USER'] = 'master_thesis_backend_%s' % ENVIRONMENT.lower()
-# DATABASES['default']['HOST'] = os.environ.get('DB_HOST', '')
-# DATABASES['default']['PORT'] = os.environ.get('DB_PORT', '')
-# DATABASES['default']['PASSWORD'] = os.environ.get('DB_PASSWORD', '')
 
 WEBSERVER_ROOT = '/var/www/master_thesis_backend/'
 
@@ -77,9 +74,6 @@ for backend in TEMPLATES:
         else:
             backend['OPTIONS']['loaders'] = [('django.template.loaders.cached.Loader', loaders)]
 
-# Uncomment if using celery worker configuration
-# CELERY_SEND_TASK_ERROR_EMAILS = True
-# BROKER_URL = 'amqp://master_thesis_backend_%(ENVIRONMENT)s:%(BROKER_PASSWORD)s@%(BROKER_HOST)s/master_thesis_backend_%(ENVIRONMENT)s' % os.environ  # noqa
 
 # Environment overrides
 # These should be kept to an absolute minimum

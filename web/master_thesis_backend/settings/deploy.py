@@ -3,8 +3,8 @@ from .base import *  # noqa
 DEBUG = False
 
 INTERNAL_IPS = ('127.0.0.1', )
-ALLOWED_HOSTS = (os.environ.get('HOST'),)
-PAGE_URL = os.environ.get('PAGE_URL')
+ALLOWED_HOSTS = (os.environ.get('DOMAIN'),)
+PAGE_URL = os.environ.get('DOMAIN')
 
 EMAIL_HOST = os.environ.get('EMAIL_HOST', 'localhost')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
