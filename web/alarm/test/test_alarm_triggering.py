@@ -1,3 +1,4 @@
+from unittest.mock import patch
 from django.test import TestCase
 from tags.models import Tag
 from sensor_data.models import PositionMeasurement
@@ -10,7 +11,8 @@ class AlarmTriggeringTrestCase(TestCase):
         # Creates alarm config by signal
         self.tag = Tag.objects.create(uid='tag', active=True)
 
-    def test_new_position_outside_geofence(self):
+    @patch('alarm.utils.send_alarm_notification')
+    def test_new_position_outside_geofence(self, notify):
         PositionMeasurement.objects.create(
             position=Point(10, 10),
             time_stamp=timezone.now(),
@@ -19,7 +21,8 @@ class AlarmTriggeringTrestCase(TestCase):
 
         self.assertTrue(hasattr(self.tag, 'alarm'))
 
-    def test_new_position_inside_geofence(self):
+    @patch('alarm.utils.send_alarm_notification')
+    def test_new_position_inside_geofence(self, notify):
         PositionMeasurement.objects.create(
             position=Point(0, 0),
             time_stamp=timezone.now(),

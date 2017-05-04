@@ -89,4 +89,4 @@ def send_alarm_notification(alarm):
     users.append(alarm.tag.user)
 
     for user in users:
-        notify(user, mail_subject, mail_content, sms_content)
+        notify.delay(user.id, mail_subject, mail_content, sms_content)

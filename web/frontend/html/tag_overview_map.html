@@ -1,6 +1,6 @@
 <div class="map">
   <v-map :zoom="zoom" :center="center" :tags="tags">
-    <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
+    <v-tilelayer url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-marker v-for="tag in tags"
               :key="tag.id"
               v-if="tag.current_position"

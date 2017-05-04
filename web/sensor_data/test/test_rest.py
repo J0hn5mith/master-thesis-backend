@@ -6,6 +6,7 @@ from rest_framework.test import APIClient
 from django.contrib.gis.geos import Point
 from sensor_data.models import PositionMeasurement
 from rest_framework import status
+from tags.models import Tag
 
 User = get_user_model()
 
@@ -27,9 +28,13 @@ class SensorDataRESTTrestCase(TestCase):
         )
         self.client = APIClient()
         self.client.force_authenticate(self.user)
+        self.tag = Tag.objects.create(
+            user=self.user,
+            uid='uid'
+        )
 
     def test_get(self):
-        response = self.client.get(self.url_list, format='json')
+        response = self.client.get(self.url_list, format='json', secure=True)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_for_invalid_tag(self):

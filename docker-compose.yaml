@@ -20,10 +20,27 @@ services:
     links:
       - postgis:postgis
       - redis:redis
-    volumes:
-      - /usr/src/app/static
     env_file: ${WEB_ENV_FILE}
-    command: /usr/local/bin/gunicorn master_thesis_backend.wsgi:application -w 2 -b :8000
+    command: ./run_web.sh
+    volumes:
+      - /usr/src/app
+      - /usr/src/app/static
+
+  celery_worker:
+    restart: always
+    build: ./web
+    container_name: celery_worker
+    depends_on:
+      - web_base
+      - redis
+    command: ./run_celery.sh
+    env_file: ${WEB_ENV_FILE}
+    links:
+      - postgis:postgis
+      - redis:redis
+    volumes:
+      - /usr/src/app
+      - /usr/src/app/static
 
   letsencrypt-proxy:
     build: docker-nginx-letsencrypt-proxy

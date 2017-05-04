@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from alarm.models import AlarmConfig, Alarm
-from alarm.utils import check_trigger_alarm, create_alarm
+from user.notifications import test
 
 
 class Command(BaseCommand):
@@ -12,12 +12,13 @@ class Command(BaseCommand):
         * Check if alarm is activated
         * Check if tag not already has alarm
         """
+        test.delay()
 
-        self.delete_alarms()
-        for alarm_config in AlarmConfig.objects.all():
-            if check_trigger_alarm(alarm_config):
-                create_alarm(alarm_config)
+        # self.delete_alarms()
+        # for alarm_config in AlarmConfig.objects.all():
+            # if check_trigger_alarm(alarm_config):
+                # create_alarm(alarm_config)
 
-    def delete_alarms(self):
-        for alarm in Alarm.objects.all():
-            alarm.delete()
+    # def delete_alarms(self):
+        # for alarm in Alarm.objects.all():
+            # alarm.delete()

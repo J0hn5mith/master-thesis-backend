@@ -3,7 +3,6 @@ import os
 import sys
 from master_thesis_backend import load_env
 
-
 if __name__ == "__main__":
     if len(sys.argv) > 0 and sys.argv[1] == 'test':
         os.environ.setdefault(

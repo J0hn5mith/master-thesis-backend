@@ -46,3 +46,4 @@ CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
         'rest_framework.authentication.BasicAuthentication'
         )
+

@@ -1,6 +1,10 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from sendsms.api import send_sms
+from celery.decorators import task
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 def notify_by_email(user, subject, message):
@@ -24,13 +28,32 @@ def notify_by_sms(user, message):
     )
 
 
-def notify(user, subject=None, email=None, sms=None):
+from celery.utils.log import get_task_logger
+logger = get_task_logger(__name__)
+
+
+@task(name="test")
+def test():
+    logger.info("Test")
+
+
+@task(name="notify")
+def notify(user_id, subject=None, email=None, sms=None):
     """
     Sends a notification to a user. The notifications are only
     sent if the channel content is provided and the user as activated
     the channel in the settings. So far the channels 'SMS' and 'Email'
     are available.
     """
+    user = None
+    try:
+        user = User.objects.get(id=user_id)
+    except:
+        print(
+            "Can't send message to user with id {0}. User does not exist".
+            format(user_id)
+        )
+
     if email and subject and user.conf.notify_by_email:
         notify_by_email(user, subject, email)
 
