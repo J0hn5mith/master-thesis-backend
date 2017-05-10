@@ -1,9 +1,9 @@
-{% load static %}
+{% load frontend from utils %}
 <!--Normal-->
 <div class="dashboard-navbar__container">
   <div class="dashboard__navbar--normal">
     <a class="dashboard__navbar-brand" href="{% url 'dashboard' %}">
-      <img class="dashboard__navbar-logo" src="{% static "img/icons/tower--new.svg"%}">
+      <img class="dashboard__navbar-logo" src="{% frontend "img/icons/tower--new.svg"%}">
       <span class="dashboard__navbar-title large-only">Pharos<span>
     </a>
 
@@ -15,8 +15,8 @@
           {% else %}
           <li class="dashboard__navbar-item hover-apear__container">
             {% endif %}
-            <img class="dashboard__navbar-icon" src="{% static item.icon_monochrome %}" >
-            <img class="dashboard__navbar-icon hover-apear" src="{% static item.icon %}" >
+            <img class="dashboard__navbar-icon" src="{% frontend item.icon_monochrome %}" >
+            <img class="dashboard__navbar-icon hover-apear" src="{% frontend item.icon %}" >
             <div class="large-only dashboard__navbar-text">{{ item.label }}</div>
           </li>
       </a>
@@ -26,7 +26,7 @@
     <ul class="dashboard__navbar-list">
       <a class="dashboard__navbar-link" href="{% url "auth_logout" %}">
         <li class="dashboard__navbar-item hover-apear__container">
-          <img class="dashboard__navbar-icon " src="{% static "img/icons/logout--white.svg" %}" >
+          <img class="dashboard__navbar-icon " src="{% frontend "img/icons/logout--white.svg" %}" >
           <div class="large-only dashboard__navbar-text">Logout</div>
         </li>
       </a>
@@ -36,7 +36,7 @@
   <!--Mobile-->
   <div class="dashboard__navbar--mobile">
     <div class="dashboard__mobile-navbar--collapsed">
-      <img src="{% static "img/icons/menu.svg" %}" alt=""/>
+      <img src="{% frontend "img/icons/menu.svg" %}" alt=""/>
     </div>
     <div class="dashboard__mobile-navbar--expanded">
       <ul class="dashboard__navbar-list">
@@ -47,8 +47,8 @@
             {% else %}
             <li class="dashboard__navbar-item hover-apear__container">
               {% endif %}
-              <img class="dashboard__navbar-icon" src="{% static item.icon_monochrome %}" >
-              <img class="dashboard__navbar-icon hover-apear" src="{% static item.icon %}" >
+              <img class="dashboard__navbar-icon" src="{% frontend item.icon_monochrome %}" >
+              <img class="dashboard__navbar-icon hover-apear" src="{% frontend item.icon %}" >
               <div class="dashboard__navbar-text">{{ item.label }}</div>
             </li>
         </a>
@@ -58,7 +58,7 @@
       <ul class="dashboard__navbar-list">
         <a class="dashboard__navbar-link" href="{% url "auth_logout" %}">
           <li class="dashboard__navbar-item hover-apear__container">
-            <img class="dashboard__navbar-icon " src="{% static "img/icons/logout--white.svg" %}" >
+            <img class="dashboard__navbar-icon " src="{% frontend "img/icons/logout--white.svg" %}" >
             <div class="dashboard__navbar-text">Logout</div>
           </li>
         </a>

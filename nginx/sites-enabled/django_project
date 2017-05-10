@@ -11,10 +11,14 @@ server {
     ssl_ciphers         HIGH:!aNULL:!MD5;
     charset utf-8;
 
+    location /frontend {
+        alias /usr/src/frontend;
+    }
 
     location /static {
         alias /usr/src/app/static;
     }
+
 
     location / {
         proxy_pass http://web:8000;

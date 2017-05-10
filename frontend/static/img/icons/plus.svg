@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.2 (33826) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/plus</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/plus">
+            <g id="Capa_1">
+                <g>
+                    <circle id="Oval" fill="#53B80F" cx="100" cy="100" r="100"></circle>
+                    <path d="M100,32.0372236 L100,171.962776" id="Shape" stroke="#FFFFFF" stroke-width="2"></path>
+                    <path d="M169.012192,99 L30.9878077,99" id="Shape" stroke="#FFFFFF" stroke-width="2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

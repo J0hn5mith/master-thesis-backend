@@ -1,0 +1,8 @@
+node_modules/
+src/
+bundle.js
+Dockerfile
+gulpfile.js
+package.json
+webpack.config.js
+yarn.lock

@@ -1,11 +1,3 @@
-{% load static from staticfiles %}
-{% if false %}
-<!-- build:css /css/libs.css -->
-<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"></link>
-<link href="node_modules/hint.css/hint.css" rel="stylesheet"></link>
-<link href="node_modules/leaflet/dist/leaflet.css" rel="stylesheet"></link>
-<!-- endbuild -->
-{% else %}
-<link href="{% static "css/libs.css" %}" rel="stylesheet"></link>
-<link href="{% static "css/main.css" %}" rel="stylesheet"></link>
-{% endif %}
+{% load frontend from utils %}
+<link href="{% frontend "css/libs.css" %}" rel="stylesheet"></link>
+<link href="{% frontend "css/main.css" %}" rel="stylesheet"></link>

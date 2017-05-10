@@ -1,10 +1,6 @@
-{% load static from staticfiles %}
-{% if false %}
-<!-- build:js /js/libs.js -->
-<script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-<!-- endbuild -->
-{% else %}
+{% load frontend from utils %}
+{% comment %}
 <script type="text/javascript" src="{% static "js/libs.js" %}"></script>
-<script type="text/javascript" src="{% static "js/bundle.js" %}"></script>
-{% endif %}
+{% endcomment %}
+<!--<script type="text/javascript" src="{% frontend "js/libs.js" %}"></script>-->
+<script type="text/javascript" src="{% frontend "js/bundle.js" %}"></script>

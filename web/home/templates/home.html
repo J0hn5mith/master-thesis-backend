@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-
-{% load static %}
+{% load frontend from utils %}
 
 {% block content %}
 
@@ -8,7 +7,7 @@
   <div class="content-panel">
     <div class="content-panel__header content-panel__header--center">
       <h1 class="logo__heading logo__heading--large">Pharos</h1>
-      <object class="home__logo" data="{% static "img/icons/tower--new.svg"%}" type="image/svg+xml"></object>
+      <object class="home__logo" data="{% frontend "img/icons/tower--new.svg"%}" type="image/svg+xml"></object>
     </div>
     <form class="home__login-form" action="{% url 'login' %}" method="post">
       {% csrf_token %}
@@ -29,36 +28,4 @@
     </form>
   </div>
 </div>
-
-<!--<div class="section">-->
-  <!--<div class="home__section-background-image parallax__layer--back" >-->
-    <!--<div class="center-content">-->
-      <!--<img src="{% static "./img/map.png" %}"></img>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="columns__1-1--reverse shadow--inset">-->
-    <!--<div class="home__text-block">-->
-      <!--<h2 class="font__inverted home__heading">Keep Track of your Things!</h2>-->
-      <!--<p class="font__inverted">{% lorem %}</p>-->
-    <!--</div>-->
-    <!--<div class="center-content">-->
-      <!--<object class="home__image--large" data="{% static "img/icons/tag.svg"%}" type="image/svg+xml"></object>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!--<div class="section home__section-background">-->
-  <!--<div class="columns__1-1">-->
-    <!--<div>-->
-      <!--<h2 class="font__inverted home__heading">Object Tracking Made Easy!</h2>-->
-      <!--<div class="center-content">-->
-        <!--<iframe class="home__video" src="https://www.youtube.com/embed/ITHKAu4xmNg" frameborder="0" allowfullscreen></iframe>-->
-        <!--[><div class="home__video">Hello</div><]-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="center-content">-->
-      <!--<object class="home__image--large" data="{% static "img/icons/lock.svg"%}" type="image/svg+xml"></object>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
 {% endblock %}

@@ -222,6 +222,8 @@ AUTHENTICATION_BACKENDS = (
     'guardian.backends.ObjectPermissionBackend',
 )
 
+FRONTEND_URL = os.environ.get('FRONTEND_URL')
+
 ##################################################
 # Local Apps
 ##################################################

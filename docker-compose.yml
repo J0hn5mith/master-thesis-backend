@@ -1,0 +1,103 @@
+version: "2.1"
+
+services:
+  web_base:
+    build: 
+      context: ./web
+      dockerfile: DockerfileBase
+    container_name: web_base
+    image: web_base:latest
+    volumes:
+      - /usr/src/app
+      - /usr/src/app/static
+
+  web:
+    restart: always
+    build: ./web
+    container_name: web
+    depends_on:
+      - web_base
+    expose:
+      - 8000
+    links:
+      - postgis:postgis
+      - redis:redis
+    env_file: ${WEB_ENV_FILE}
+    command: ./run_web.sh
+    volumes:
+      - /usr/src/app
+      - /usr/src/app/static
+
+  celery_worker:
+    restart: always
+    build: ./web
+    container_name: celery_worker
+    depends_on:
+      - web_base
+      - redis
+    command: ./run_celery.sh
+    env_file: ${WEB_ENV_FILE}
+    links:
+      - postgis:postgis
+      - redis:redis
+    volumes:
+      - /usr/src/app
+      - /usr/src/app/static
+
+  letsencrypt-proxy:
+    build: docker-nginx-letsencrypt-proxy
+    ports:
+      - 443:443
+      - 80:80
+    container_name: letsencrypt-proxy
+    env_file: ${ENV_FILE}
+    volumes:
+      - /etc/letsencrypt
+    links:
+      - nginx
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    container_name: nginx
+    volumes:
+      - /www/static/
+    volumes_from:
+      - web
+      #- frontend
+    links:
+      - web:web
+
+  postgis:
+    restart: always
+    build: ./postgis
+    container_name: postgis
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/9.5/main
+      - pgisdata:/var/lib/postgis/data/
+    env_file: ${ENV_FILE}
+
+  redis:
+    restart: always
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/data
+
+  frontend:
+    #restart: always
+    build: ./frontend
+    container_name: frontend
+    env_file: ${ENV_FILE}
+    command: echo "Ok"
+    volumes:
+      - /usr/src/frontend
+
+volumes:
+  redisdata:
+  pgisdata:
+  pgdata:

@@ -1,0 +1,63 @@
+<tr class="table__row" @click="toggleModal" >
+
+  <td class="table__cell" style="display: hidden;">
+    <v-tag-modal :triggerModal="showModal" v-bind:tag="tag" :user-data="userData">
+      <div></div>
+    </v-tag-modal>
+  </td>
+
+
+  <td class="table__cell">
+    <div class="table__content--center">
+      <img v-if="tag.avatar" class="table__icon table__icon--hexagon" :src="tag.avatar"></img>
+      <img v-else class="table__icon" :src="'/img/icons/marker.svg'| static"></img>
+    </div>
+  </td>
+
+
+  <td class="table__cell">
+    <p class="table__cell-text">
+    {{ tag.name }}
+    </p>
+  </td>
+
+
+  <td class="table__cell">
+    <div class="table__content--center">
+      <span class="hint--top" v-bind:aria-label="alertStatusHint" style="height:30px">
+        <p v-if="tag.alarm">
+        <img class="table__icon table__icon--small" :src="'/img/icons/alert.svg'| static"></img>
+        </p>
+        <p v-else>
+        <img class="table__icon table__icon--small" :src="'/img/icons/check.svg'| static"></img>
+        </p>
+      </span>
+    </div>
+  </td>
+
+
+  <td class="table__cell">
+    <div class="table__content--center">
+      <p v-if="tag.last_update" class="table__cell-text table__cell-text--small">
+      {{ tag.last_update | date }}
+      </p>
+      <p v-else class="table__cell-text table__cell-text--small">
+      <span class="hint--top" v-bind:aria-label="noLastUpdateHint">Unknown</span>
+      </p>
+    </div>
+  </td>
+
+
+  <td class="table__cell">
+    <div class="table__content--center">
+      <v-tag-charge-bar v-bind:tag="tag"></v-tag-charge-bar>
+    </div>
+  </td>
+
+
+  <td class="table__cell">
+    <div class="table__content--center">
+      <v-tag-toggle v-bind:tag="tag"></v-tag-toggle>
+    </div>
+  </td>
+</tr>

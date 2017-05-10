@@ -20,9 +20,9 @@ if [[ $1 == staging ]]; then
     exit 0;
 fi
 
-if [[ $1 == deploy ]]; then
-    echo "export WEB_ENV_FILE=web/.env.deploy"
-    echo "export ENV_FILE=.env.deploy"
+if [[ $1 == production ]]; then
+    echo "export WEB_ENV_FILE=web/.env"
+    echo "export ENV_FILE=.env"
     exit 0;
 fi
 
