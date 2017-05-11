@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS += ('debug_toolbar', 'django_extensions', )
-STATIC_ROOT = static
+STATIC_ROOT = '/usr/src/app/static/'
 STATIC_URL = '/static/'
 
 

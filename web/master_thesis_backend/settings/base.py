@@ -185,7 +185,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'), )
+STATICFILES_FINDER = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
 # Authentication
 AUTH_PASSWORD_VALIDATORS = [

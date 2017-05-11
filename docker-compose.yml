@@ -9,7 +9,7 @@ services:
     image: web_base:latest
     volumes:
       - /usr/src/app
-      - /usr/src/app/static
+      - web_static:/usr/src/app/static
 
   web:
     restart: always
@@ -26,7 +26,7 @@ services:
     command: ./run_web.sh
     volumes:
       - /usr/src/app
-      - /usr/src/app/static
+      - web_static:/usr/src/app/static
 
   celery_worker:
     restart: always
@@ -42,7 +42,7 @@ services:
       - redis:redis
     volumes:
       - /usr/src/app
-      - /usr/src/app/static
+      - web_static:/usr/src/app/static
 
   letsencrypt-proxy:
     build: docker-nginx-letsencrypt-proxy
@@ -62,9 +62,8 @@ services:
     container_name: nginx
     volumes:
       - /www/static/
-    volumes_from:
-      - web
-      #- frontend
+      - web_static:/usr/src/app/static
+      - frontend:/usr/src/frontend
     links:
       - web:web
 
@@ -95,9 +94,11 @@ services:
     env_file: ${ENV_FILE}
     command: echo "Ok"
     volumes:
-      - /usr/src/frontend
+      - frontend:/usr/src/frontend
 
 volumes:
   redisdata:
   pgisdata:
   pgdata:
+  web_static:
+  frontend:
