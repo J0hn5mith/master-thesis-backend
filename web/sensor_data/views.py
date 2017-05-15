@@ -1,12 +1,16 @@
 import json
-from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse, Http404
 from django.contrib.gis.geos import Point
-from rest_framework import viewsets, status
 from tags.models import Tag
 from sensor_data.serializers import PositionMeasurementSerializer
 from sensor_data.models import PositionMeasurement
 import django_filters.rest_framework
+
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets, status
+from rest_framework.decorators import api_view, authentication_classes, \
+        permission_classes
 
 
 class PositionMeasurementViewSet(viewsets.ModelViewSet):
@@ -23,7 +27,9 @@ class PositionMeasurementViewSet(viewsets.ModelViewSet):
         return mes
 
 
-@csrf_exempt
+@authentication_classes((BasicAuthentication, ))
+@api_view(['POST'])
+@permission_classes((IsAuthenticated, ))
 def post_position_measurement(request):
     if not request.body:
         raise Http404
@@ -60,7 +66,9 @@ def post_position_measurement(request):
     return JsonResponse({'status': 'ok'})
 
 
-@csrf_exempt
+@authentication_classes((BasicAuthentication, ))
+@api_view(['POST'])
+@permission_classes((IsAuthenticated, ))
 def post_position_measurement_ttn(request):
     if not request.body:
         raise Http404

@@ -19,7 +19,7 @@ var TagTable = {
     var restClient = new RESTClient();
 
     restClient.getTags(
-      function (results) { instance.tags = results;},
+      function (results) {this.tags = results;}.bind(this),
       null
     );
   },

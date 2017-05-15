@@ -219,7 +219,6 @@ X_FRAME_OPTIONS = 'DENY'
 # Mail
 DEFAULT_FROM_EMAIL = os.environ.get('FROM_MAIL', 'develop@example.com')
 
-# Mail
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',  # default
     'guardian.backends.ObjectPermissionBackend',
