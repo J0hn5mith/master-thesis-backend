@@ -16,9 +16,9 @@ module.exports = {
       //FRONTEND_SETTINGS: 'local',
       //FRONTEND_URL: 'https://192.168.99.100/frontend',
       //FRONTEND_SETTINGS: 'develop',
-      FRONTEND_URL: 'https://pharos.jan-meier.me/frontend',
+      FRONTEND_URL: 'https://pharos.jan-meier.me/frontend/',
       FRONTEND_SETTINGS: 'production',
-      TILE_SET_URL: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      TILE_SET_URL: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png',
       DEBUG: true,
     })
   ],

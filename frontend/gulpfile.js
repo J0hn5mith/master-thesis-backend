@@ -38,7 +38,6 @@ var img_input = ['./node_modules/leaflet/dist/images/*',];
 var img_output = './static/img/';
 
 
-
 function swallowError(error) {
     console.log(error.toString());
     this.emit('end');
