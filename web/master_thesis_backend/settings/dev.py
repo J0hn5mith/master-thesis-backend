@@ -42,9 +42,3 @@ SENDSMS_TWILIO_AUTH_TOKEN = TWILIO_AUTH_TOKEN
 # Celery
 CELERY_ALWAYS_EAGER = True
 CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
-
-# REST
-REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
-        'rest_framework.authentication.BasicAuthentication'
-        )
-
