@@ -8,7 +8,6 @@ services:
     container_name: web_base
     image: web_base:latest
     volumes:
-      - /usr/src/app
       - web_static:/usr/src/app/static
 
   web:
@@ -25,7 +24,7 @@ services:
     env_file: ${WEB_ENV_FILE}
     command: ./run_web.sh
     volumes:
-      - /usr/src/app
+      - web:/usr/src/app
       - web_static:/usr/src/app/static
 
   celery_worker:
@@ -41,7 +40,7 @@ services:
       - postgis:postgis
       - redis:redis
     volumes:
-      - /usr/src/app
+      - web:/usr/src/app
       - web_static:/usr/src/app/static
 
   letsencrypt-proxy:
@@ -52,7 +51,7 @@ services:
     container_name: letsencrypt-proxy
     env_file: ${ENV_FILE}
     volumes:
-      - /etc/letsencrypt
+      - letsencrypt:/etc/letsencrypt
     links:
       - nginx
 
@@ -61,7 +60,6 @@ services:
     build: ./nginx/
     container_name: nginx
     volumes:
-      - /www/static/
       - web_static:/usr/src/app/static
       - frontend:/usr/src/frontend
     links:
@@ -97,8 +95,10 @@ services:
       - frontend:/usr/src/frontend
 
 volumes:
+  web:
   redisdata:
   pgisdata:
   pgdata:
   web_static:
   frontend:
+  letsencrypt:
