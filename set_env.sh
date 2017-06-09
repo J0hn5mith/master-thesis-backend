@@ -11,18 +11,21 @@ fi
 if [[ $1 == dev ]]; then
     echo "export WEB_ENV_FILE=web/.env.develop"
     echo "export ENV_FILE=.env.develop"
+    docker-machine env dev
     exit 0;
 fi
 
 if [[ $1 == staging ]]; then
     echo "export WEB_ENV_FILE=web/.env.staging"
     echo "export ENV_FILE=.env.staging"
+    docker-machine env staging
     exit 0;
 fi
 
 if [[ $1 == production ]]; then
     echo "export WEB_ENV_FILE=web/.env"
     echo "export ENV_FILE=.env"
+    docker-machine env productin
     exit 0;
 fi
 

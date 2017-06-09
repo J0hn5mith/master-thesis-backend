@@ -19,9 +19,11 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from login_registration.views import LoginView
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    # Third party
+        # Hack to redirect after two factor setup
+    url(r'^account/two_factor/setup/complete/', RedirectView.as_view(url='/dashboard/', permanent=False)),
     url(r'', include('two_factor.urls', 'two_factor')),
     url(r'', include('registration.backends.default.urls')),
     url(r'^user/', include('user.urls'), name='user'),
@@ -34,6 +36,7 @@ urlpatterns = [
     url(r'login/', include('login_registration.urls')),
     url(r'^login$', LoginView.as_view(), name='login'),
     url(r'^utils/', include('utils.urls')),
+
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )

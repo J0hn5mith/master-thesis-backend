@@ -1,9 +1,5 @@
 import RESTClient from './RESTClient.js';
 
-/**
- * A single interaction point for the data fetched from the webapp and the vue
- * components.
- */
 class UserData {
   constructor(){
     this._tags = null;
@@ -151,6 +147,7 @@ class UserData {
       oldTag.current_position = newTag.current_position;
     }
   }
+
   /**
    * Checks weather a tag has changed or not
    */

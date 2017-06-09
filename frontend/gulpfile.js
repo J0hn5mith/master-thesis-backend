@@ -33,7 +33,7 @@ var input_html = '**/templates/**/*.html';
 var input_libs = './src/libs/*.html';
 var libs_output = './static/';
 var fonts_input = './node_modules/bootstrap/fonts/*';
-var fonts_output = './static/fonts/';
+var output_fonts = './static/fonts/';
 var img_input = ['./node_modules/leaflet/dist/images/*',];
 var img_output = './static/img/';
 
@@ -86,7 +86,7 @@ gulp.task('libs-compile', function() {
 });
 
 gulp.task('copy-fonts', function() {
-    return gulp.src(fonts_input).pipe(gulp.dest(fonts_output));
+    return gulp.src(fonts_input).pipe(gulp.dest(output_fonts));
 });
 
 gulp.task('copy-img', function() {
@@ -107,7 +107,8 @@ gulp.task('webpack', function() {
         .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('watch', ['browserSync', 'serve'], function() {
+gulp.task('watch', ['serve'], function() {
+//gulp.task('watch', ['browserSync', 'serve'], function() {
     gulp.watch(input_folder_js, ['webpack'])
         .on('change', function(event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
@@ -143,7 +144,7 @@ gulp.task('browserSync', [], function() {
 });
 
 gulp.task('clean',['libs-clean'], function() {
-    var generated = ['static/js/libs.js', 'static/css/libs.css'];
+    var generated = [output_css, output_js, output_img, output_fonts ];
     return gulp.src(generated)
         .pipe(rimraf());
 });

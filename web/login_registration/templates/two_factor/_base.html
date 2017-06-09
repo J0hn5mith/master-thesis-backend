@@ -1,0 +1,44 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta-description %}{% endblock %}">
+    <meta name="author" content="{% block meta-author %}{% endblock %}">
+    <meta name="keywords" content="{% block meta-keywords %}{% endblock %}">
+    {% block extra-meta %}{% endblock %}
+    <!--CSS-->
+    {% include "partials/css.html" %}
+
+    {% block extra-css %}{% endblock %}
+  </head>
+  <body>
+    <div class="window">
+      {% block navbar %}
+      {% include "partials/navbar.html" %}
+      {% endblock %}
+      <section>
+        <div class="section section--fullscreen section--fullscreen section--blue center-content">
+          <div class="content-panel">
+            <div class="form-panel">
+                {% block content %}{% endblock %}
+            </div>
+          </div>
+        </div>
+      </section>
+      {% block footer %}
+      <div class="footer">
+        {% include "partials/footer.html" %}
+      </div>
+      {% endblock footer %}
+    </div>
+    {% block extra-js %}{% endblock %}
+  </body>
+  <!--JS-->
+  {% include "partials/js.html" %}
+  <script type="text/javascript" charset="utf-8">
+var csrfToken = "{{ request.COOKIES.csrftoken }}"; //TODO: Security risk
+  </script>
+</html>

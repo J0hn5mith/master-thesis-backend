@@ -1,59 +1,10 @@
 {% extends "dashboard_base.html" %}
 
 {% block dashboard_content %}
-<div class="dashboard__content-panel">
 
-  <div class="settings__panel">
-    <form>
-      <div class="settings__section settings__section--first">
-        <div class="settings__section-title settings__section-title--first">
-          <div class="avatar__border avatar__border--blue avatar__border--large">
-            <img class="avatar avatar--large" src="{{ request.user.conf.avatar.url }}" />
-          </div>
-          <form>
-            <input type="file" onchange="previewFile()"></input>
-          </form>
-          <a class="btn btn-info btn-settings">Edit</a>
-        </div>
-        <div class="settings__section-content">
-          <div class="form-group__double">
-            <div class="form-group form-group--min">
-              <input type="text" class="form-conrol form-control--min form-control--light heading-1" value="{{ request.user.first_name }} "></input>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-conrol form-control--light heading-1" value="{{ request.user.last_name }}"></input>
-            </div>
-          </div>
-          <p>{{ request.user.email }}</p>
-          <p>079 123 45 67</p>
-          <p type="password">••••••••••</p>
-        </div>
-      </div>
-    </form>
-
-    <div id="vue">
-      <v-user-settings :user="user"></v-user-settings>
-    </div>
-
-    <div>
-      <h2>Mobile Devices</h2>
-      <table class="table table-bordered">
-        <thead>
-          <th>Device Name</th>
-          <th>Last Login</th>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Name 1</th>
-            <td>1.2.17</td>
-          </tr>
-          <tr>
-            <th>Name 2</th>
-            <td>2.2.17</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<div id="vue">
+  <!--<v-user-settings :user="user"></v-user-settings>-->
+  <v-user-settings></v-user-settings>
 </div>
+
 {% endblock dashboard_content %}

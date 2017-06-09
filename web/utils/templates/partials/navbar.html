@@ -1,5 +1,6 @@
-
 {% load static %}
+{% load frontend from utils %}
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="blur-layer">
@@ -13,7 +14,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="{% url 'home' %}">
-        <object class="navbar__logo" data="{% static "img/icons/tower--new.svg"%}" type="image/svg+xml"></object>
+        <object class="navbar__logo" data="{% frontend "img/icons/tower--new.svg"%}" type="image/svg+xml"></object>
         <h1 class="navbar__logo-title">Pharos</h1>
       </a>
     </div>

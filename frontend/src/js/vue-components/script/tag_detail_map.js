@@ -1,6 +1,4 @@
 import * as Vue2Leaflet from 'vue2-leaflet';
-import TagMarker  from './../tag_marker.vue';
-import AlarmConfigArea  from './../alarm_config_area.vue';
 import Settings from './../../settings.js';
 
 var TagDetailMap = {
@@ -14,7 +12,6 @@ var TagDetailMap = {
     'v-poly': Vue2Leaflet.Polyline,
     'v-marker': Vue2Leaflet.Marker,
     'v-circle': Vue2Leaflet.LCircle,
-    'v-alarm-config-area': AlarmConfigArea,
     'v-geojson': Vue2Leaflet.GeoJSON,
   },
   data: function(){

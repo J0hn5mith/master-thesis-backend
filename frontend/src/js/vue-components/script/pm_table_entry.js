@@ -28,5 +28,4 @@ var PMTableEntry = {
   }
 };
 
-
 export default PMTableEntry;

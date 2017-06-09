@@ -1,9 +1,10 @@
 import RESTClient from './../../src/RESTClient.js';
+import UserData from './../../src/UserData.js';
 
 var UserSettings = {
-  props: ['user'],
   data: function(){
     return{
+      userData: new UserData(),
       emailDisabledInfo: "Set and activated a email address.",
       smsDisabledInfo: "Set and activated a mobile device.",
     };
@@ -11,13 +12,18 @@ var UserSettings = {
   mounted: function(){
   },
   watch: {
-    'user.conf.notify_by_email': function(oldVal, newVal){
+    'userData.user.conf.notify_by_email': function(oldVal, newVal){
       var restClient = new RESTClient();
-      restClient.update(this.user.conf);
+      restClient.update(this.userData.user.conf);
     },
-    'user.conf.notify_by_sms': function(oldVal, newVal){
+    'userData.user.conf.notify_by_sms': function(oldVal, newVal){
       var restClient = new RESTClient();
-      restClient.update(this.user.conf);
+      restClient.update(this.userData.user.conf);
+    },
+    'userData.user.username': function(oldVal, newVal){
+      var restClient = new RESTClient();
+      console.log(this.userData.user);
+      restClient.update(this.userData.user);
     },
   }
 };

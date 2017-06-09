@@ -92,7 +92,6 @@ var  ShareSettingsEntry = {
       restClient.createSharedTag(
         this.sharedTag,
         function (sharedTag) {
-          //TODO: very ugly! Find better solution
           this.sharedTag.pk = sharedTag.pk;
           this.sharedTag.user = sharedTag.user;
           this.sharedTag.tag = sharedTag.tag;

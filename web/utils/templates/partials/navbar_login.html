@@ -1,4 +1,6 @@
 {% load static %}
+{% load frontend from utils %}
+
 {% if not request.user or not request.user.is_authenticated %}
 <form class="navbar-form navbar-right large-only" action="{% url 'login' %}" method="post">
 

@@ -12,12 +12,8 @@ module.exports = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-      //FRONTEND_URL: 'http://localhost:8001/',
-      //FRONTEND_SETTINGS: 'local',
-      //FRONTEND_URL: 'https://192.168.99.100/frontend',
-      //FRONTEND_SETTINGS: 'develop',
-      FRONTEND_URL: 'https://pharos.jan-meier.me/frontend/',
-      FRONTEND_SETTINGS: 'production',
+      FRONTEND_SETTINGS: 'local',
+      FRONTEND_URL: 'http://localhost:8001/',
       TILE_SET_URL: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       DEBUG: true,
     })

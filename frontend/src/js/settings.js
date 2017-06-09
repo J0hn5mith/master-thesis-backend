@@ -1,4 +1,6 @@
-//process.env.FRONTEND_SETTINGS
+/**
+ * Stores the settings for the front end code.
+ */
 var Settings = {
   STATIC_FILE_URL: process.env.FRONTEND_URL,
   IMAGE_URL: process.env.FRONTEND_URL + 'img/',

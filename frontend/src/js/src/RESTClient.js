@@ -1,3 +1,5 @@
+/*
+ */
 import axios from 'axios';
 import Raven from 'raven-js';
 
@@ -17,7 +19,7 @@ var URL_CONFIG = {
 class RESTClient {
 
   /**
-   * Sends an delete request to the REST server.
+   * A single class to handle all the comunication with the back end.
    * @param{instance} Instance which has to be deleted.
    * @param{success} Success callback function.
    * @param{success} error callback function.

@@ -1,6 +1,5 @@
 import * as Vue from 'vue';
 import * as Vue2Leaflet from 'vue2-leaflet';
-import TagMarker  from './../tag_marker.vue';
 import StaticFile from '../../filters/static_file.js';
 import Settings from  '../../settings.js';
 

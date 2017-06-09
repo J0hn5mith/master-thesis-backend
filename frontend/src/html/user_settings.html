@@ -1,38 +1,66 @@
-<div class="settings__section">
-  <div class="settings__section-title">
-    <h2 class="settings__heading-2">Notification</h2>
-  </div>
-  <div class="settings__section-content">
-    <p>How would you like to be informed about alarms?</p>
-    <form action="settings_submit" method="get" accept-charset="utf-8">
-      <fieldset v-if="user && user.conf.has_active_email">
-        <div class="form-group">
-          <input type="checkbox" name="email" v-model="user.conf.notify_by_email" id="email">
-          <label for="email">Email</label>
+<div class="settings__panel">
+  <div class="settings__section settings__section--first">
+    <div class="settings__section-title settings__section-title--first">
+      <div class="avatar__border avatar__border--blue avatar__border--large">
+        <img v-if="userData && userData.user" class="avatar avatar--large" :src="userData.user.conf.avatar_2" readonly>
+      </div>
+    </div>
+    <div class="settings__section-content">
+      <div class="form-group__double">
+        <div class="form-group form-group--min">
+          <input v-if="userData && userData.user" type="text" class="form-conrol form-control--min form-control--light heading-1"
+          v-model="userData.user.username" readonly></input>
         </div>
-      </fieldset>
-      <fieldset v-else disabled>
-        <span class="hint--top" :aria-label="emailDisabledInfo">
-          <div class="form-group">
-            <input type="checkbox" name="email" value="false" checked="" id="email">
-            <label class="form-group__label--disabled" for="email">Email</label>
-          </div>
-        </span>
-      </fieldset>
-      <fieldset v-if="user && user.conf.has_active_phone">
-        <div class="form-group">
-          <input type="checkbox" name="sms" v-model="user.conf.notify_by_sms" id="sms">
-          <label for="SMS">SMS</label>
-        </div>
-      </fieldset>
-      <fieldset v-else disabled>
-        <span class="hint--top" :aria-label="smsDisabledInfo">
-          <div class="form-group">
-            <input type="checkbox" name="sms" value="" id="sms" disabled>
-            <label class="form-group__label--disabled" for="SMS">SMS</label>
-          </div>
-        </span>
-      </fieldset>
-    </form>
+      </div>
+      <p v-if="userData && userData.user">{{ userData.user.email }}</p>
+      <p>079 123 45 67</p>
+      <p type="password">••••••••••</p>
+    </div>
   </div>
+
+
+  <div class="settings__section">
+
+
+    <div class="settings__section-title">
+      <h2 class="settings__heading-2">Notification</h2>
+    </div>
+
+
+
+    <div class="settings__section-content">
+      <p>How would you like to be informed about alarms?</p>
+      <form action="settings_submit" method="get" accept-charset="utf-8">
+        <fieldset v-if="userData && userData.user && userData.user.conf.has_active_email">
+          <div class="form-group">
+            <input type="checkbox" name="email" v-model="userData.user.conf.notify_by_email" id="email">
+            <label for="email">Email</label>
+          </div>
+        </fieldset>
+        <fieldset v-else disabled>
+          <span class="hint--top" :aria-label="emailDisabledInfo">
+            <div class="form-group">
+              <input type="checkbox" name="email" value="false" checked="" id="email">
+              <label class="form-group__label--disabled" for="email">Email</label>
+            </div>
+          </span>
+        </fieldset>
+        <fieldset v-if="userData && userData.user && userData.user.conf.has_active_phone">
+          <div class="form-group">
+            <input type="checkbox" name="sms" v-model="userData.user.conf.notify_by_sms" id="sms">
+            <label for="SMS">SMS</label>
+          </div>
+        </fieldset>
+        <fieldset v-else disabled>
+          <span class="hint--top" :aria-label="smsDisabledInfo">
+            <div class="form-group">
+              <input type="checkbox" name="sms" value="" id="sms" disabled>
+              <label class="form-group__label--disabled" for="SMS">SMS</label>
+            </div>
+          </span>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
 </div>

@@ -4,13 +4,14 @@ from .models import UserConfiguration
 
 
 class UserConfigurationSerializer(serializers.HyperlinkedModelSerializer):
+    avatar_2 = serializers.ImageField(source='avatar', read_only=True)
     class Meta:
         model = UserConfiguration
         fields = (
             'url', 'notify_by_email', 'notify_by_sms', 'has_active_email',
-            'has_active_phone', 'avatar'
+            'has_active_phone', 'avatar_2'
         )
-        read_only = ('url', 'has_active_email', 'has_active_phone', 'avatar')
+        read_only = ('url', 'has_active_email', 'has_active_phone', 'avatar_2')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

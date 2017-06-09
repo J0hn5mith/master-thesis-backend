@@ -27,6 +27,7 @@ class UserConfigurationViewSet(viewsets.ModelViewSet):
     serializer_class = UserConfigurationSerializer
 
 
+
 class LightUserList(viewsets.ReadOnlyModelViewSet):
     queryset = UserConfiguration.objects.all()
     serializer_class = LightUserSerializer

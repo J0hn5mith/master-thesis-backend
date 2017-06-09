@@ -5,21 +5,17 @@ var SliderControll = {
     min: {
       type: Number,
       default: 0,
-      //required: true,
     },
     max: {
       type: Number,
       default: 100,
-      //required: true,
     },
     step: {
       type: Number,
       default: 5,
-      //required: true,
     },
     area: {
       type: Object,
-      //default: 50,
       required: true,
     },
     tick_interval: {
