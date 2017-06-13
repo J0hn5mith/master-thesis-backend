@@ -18,6 +18,7 @@ services:
       - web_base
     expose:
       - 8000
+      - 535
     links:
       - postgis:postgis
       - redis:redis
