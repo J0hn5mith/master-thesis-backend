@@ -38,7 +38,11 @@ FAQ:
     * https://nodejs.org/en/
 * Install yarn
     * https://yarnpkg.com/lang/en/docs/install/
-* Run yarn to install frontend packages
+* Run yarn to install front end packages
+* Install gulp
+    * http://gulpjs.com/
+* Install sass
+    * http://sass-lang.com/
 
 ## Build frontend
 * `gulp build`

@@ -2,13 +2,14 @@ version: "2.1"
 
 services:
   web_base:
-    build: 
+    build:
       context: ./web
       dockerfile: DockerfileBase
     container_name: web_base
     image: web_base:latest
     volumes:
       - web_static:/usr/src/app/static
+      - web_media:/usr/src/app/public/media
 
   web:
     restart: always
@@ -63,6 +64,7 @@ services:
     container_name: nginx
     volumes:
       - web_static:/usr/src/app/static
+      - web_media:/usr/src/app/public/media
       - frontend:/usr/src/frontend
     links:
       - web:web
@@ -102,5 +104,6 @@ volumes:
   pgisdata:
   pgdata:
   web_static:
+  web_media:
   frontend:
   letsencrypt:

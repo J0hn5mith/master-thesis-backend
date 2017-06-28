@@ -13,7 +13,10 @@ module.exports = {
   plugins: [
     new webpack.EnvironmentPlugin({
       FRONTEND_SETTINGS: 'local',
-      FRONTEND_URL: 'http://localhost:8001/',
+      FRONTEND_SETTINGS: 'local',
+      //FRONTEND_URL: 'http://localhost:8001/',
+      FRONTEND_URL: 'https://staging.jan-meier.me/frontend/',
+      STATIC_FILE_PREFIX: 'static/',
       TILE_SET_URL: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       DEBUG: true,
     })

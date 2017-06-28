@@ -1,3 +1,5 @@
+# Set Up
+1) Install yarn
 
 # Settings
 The settings for the front end are defined in the `webpack.config.js` files. The following settings are available:
