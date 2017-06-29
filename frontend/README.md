@@ -8,16 +8,13 @@
     * http://gulpjs.com/
 * Install sass
     * http://sass-lang.com/
-* Install yarn
-    * https://yarnpkg.com/lang/en/docs/install/
-
 
 # Gulp Commands
 | Command | Description  |
 | --------- | -----------  |
-| `clean` | Removes all build files (all the files in the static folder) and all intermediate files.|
-| `watch` | The front end's main 
-watch
+| `clean` | Removes all build files (all the files in the static folder) and all intermediate files. |
+| `watch` | Used for development. |
+| `build` | Builds the front end. |
 
 # Update Frontend
 1. Run command `gulp build` in this folder to create the files in the static folder
