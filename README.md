@@ -27,16 +27,13 @@ FAQ:
 * Docker Workflow
 * set env variables `ENV_FILE` and `WEB_ENV_FILE` to corresponding paths
 
-# Installation Front end
-* Install NPM
-    * https://nodejs.org/en/
-* Install yarn
-    * https://yarnpkg.com/lang/en/docs/install/
-* Run yarn to install front end packages
-* Install gulp
-    * http://gulpjs.com/
-* Install sass
-    * http://sass-lang.com/
 
 ## Build frontend
 * `gulp build`
+
+# Settings
+| Parameter | Description  |
+| --------- | -----------  |
+| `STATIC_FILE_URL` | URL where the front end files are hosted. |
+| `TILE_SET_URL` | URL for the tile's used for the map. |
+| `DEBUG` |  Toggle for debug mode. |
