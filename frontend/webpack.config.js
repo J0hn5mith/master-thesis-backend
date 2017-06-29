@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
+const DotenvPlugin = require('webpack-dotenv-plugin');
+
+const ENV_FILE = '../' + process.env['ENV_FILE'];
 
 
 
@@ -11,15 +13,10 @@ module.exports = {
     filename: "./bundle.js",
   },
   plugins: [
-    new webpack.EnvironmentPlugin({
-      FRONTEND_SETTINGS: 'local',
-      FRONTEND_SETTINGS: 'local',
-      //FRONTEND_URL: 'http://localhost:8001/',
-      FRONTEND_URL: 'https://staging.jan-meier.me/frontend/',
-      STATIC_FILE_PREFIX: 'static/',
-      TILE_SET_URL: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-      DEBUG: true,
-    })
+        new DotenvPlugin({
+            sample: ENV_FILE,
+            path: ENV_FILE,
+        })
   ],
   module: {
     rules: [

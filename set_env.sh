@@ -29,5 +29,12 @@ if [[ $1 == production ]]; then
     exit 0;
 fi
 
+if [[ $1 == csg ]]; then
+    echo "export WEB_ENV_FILE=web/.env.csg"
+    echo "export ENV_FILE=.env.csg"
+    docker-machine env csg
+    exit 0;
+fi
+
 exit 1;
 
